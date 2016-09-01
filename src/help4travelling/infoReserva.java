@@ -6,13 +6,15 @@ public class infoReserva {
     private int cantidad;
     private Articulo art;
     private Reserva res;
+    private String nickProveedor;
     
-    public infoReserva(DtInfoReserva dtir, Articulo a, Reserva r){
+    public infoReserva(DtInfoReserva dtir, Articulo a, Reserva r, String nickProveedor){
         this.fechaIni = dtir.GetFechaIni();
         this.fechaFin = dtir.GetFechaFin();
         this.cantidad = dtir.GetCantidad();
         this.art = a;
         this.res = r;
+        this.setNickProveedor(nickProveedor);
     }
     
     public int GetCantidad(){
@@ -46,4 +48,13 @@ public class infoReserva {
     public DtInfoReserva GetDtInfoReserva(){
         return new DtInfoReserva(this);
     }
+
+    public void setNickProveedor(String nickProveedor) {
+        this.nickProveedor = nickProveedor;
+    }
+
+    public String getNickProveedor() {
+        return nickProveedor;
+    }
+    
 }

@@ -10,7 +10,7 @@ public class DtReserva {
     private Estado estado;
     private Set infoReserva = new HashSet<DtInfoReserva>();
     private String cli;
-    
+    private float precio;
     public DtReserva(int id, Estado estado, String nickCli){
         this.id = id;
         this.estado = estado;
@@ -23,6 +23,11 @@ public class DtReserva {
         this.date = res.GetFecha();
         this.cli = res.GetCliente().getNick();
         this.infoReserva = res.GetInfoReservas();
+        this.precio = res.getPrecio();
+    }
+
+    public float getPrecio() {
+        return precio;
     }
     
     public int GetId(){

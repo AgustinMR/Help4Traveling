@@ -14,6 +14,15 @@ public class Reserva {
     private Estado estado;
     private Set infoReserva;
     private Cliente cli;;
+    private float precio;
+
+    public float getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(float precio) {
+        this.precio = precio;
+    }
     
     public int GetId(){
         return this.id;
@@ -39,12 +48,13 @@ public class Reserva {
         this.id = id;
         this.date = dtres.GetFecha();
         this.estado = dtres.GetEstado();
+        this.precio = dtres.getPrecio();
         this.infoReserva = dtres.GetInfoReservas();
         this.cli = c;        
     }
     
     public infoReserva ReservarArticulo(DtInfoReserva dtir, Articulo a){
-        return new infoReserva(dtir, a, this);
+        return new infoReserva(dtir, a, this, a.getProv());
     }
     
     public void EnlazarReserva(infoReserva ir){

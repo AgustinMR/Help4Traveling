@@ -12,8 +12,7 @@ public abstract class Articulo {
     
     protected String nombre; 
     private Set infoReservas = new HashSet<infoReserva>();
-    //private Ciudad[] city;  //Si el articulo necesita conocer la ciudad
-    //private Provedor prov;    // "
+    private String prov;    // "
     //private InfoReserva info; //Luego de crearse InfoReserva decomentar
     
     protected String GetNombre(){
@@ -37,4 +36,21 @@ public abstract class Articulo {
     public void EnlazarReserva(infoReserva ar){
         this.infoReservas.add(ar);
     }    
+
+    public Set getInfoReservas() {
+        return infoReservas;
+    }
+
+    public void setInfoReservas(Set infoReservas) {
+        this.infoReservas = infoReservas;
+    }
+
+    public String getProv() {
+        return prov;
+    }
+
+    public void setProv(String prov) {
+        this.prov = prov;
+    }
+    
 }

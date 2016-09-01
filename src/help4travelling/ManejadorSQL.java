@@ -219,10 +219,9 @@ public class ManejadorSQL {
         return ret;
     }
     
-            // ALTA DE PROMOCION.
-    public static boolean agregarReserva(DtReserva r, String nickProveedor, ArrayList<String> servicios){
-        // calcular precio total de la reserva
-        String sql1 = "INSERT INTO RESERVAS(precioTotal, fechaCreacion, estado, nicknameCliente) VALUES (" + r. + ", " + p.GetNombre() + ", " + p.GetDescuento() + ", " + p.GetPrecioTotal() + " );";
+    // ALTA DE RESERVAS
+    public static boolean agregarReserva(DtReserva r){
+        String sql1 = "INSERT INTO RESERVAS(precioTotal, fechaCreacion, estado, nicknameCliente) VALUES (" + r.getPrecio() + ", " + r.Get + ", " + r.GetEstado() + ", " + r.GetCliente() + " );";
         String sql2 = "INSERT INTO PROMOCIONES(nicknameProveedor, nombreArticulo, descuento, precio) VALUES (" + nickProveedor + ", " + p.GetNombre() + ", " + p.GetDescuento() + ", " + p.GetPrecioTotal() + " );";
         String sql3;
         Statement usuario;
