@@ -16,7 +16,7 @@ public class DtCliente {
     private DtFecha fechaN;
     private Blob[] avatar;
     private ArrayList<Reserva> reserva;
-    
+    //  X X X X X X X X X X X X X X X X
     
     public DtCliente(String nick, String nombre, String apellido, String email, DtFecha fechaN, Blob[] avatar, ArrayList<Reserva> reserva){
         this.nick=nick;
