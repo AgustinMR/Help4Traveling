@@ -119,7 +119,6 @@ public class ManejadorSQL {
         return ret;
     }
     
-    
     // ALTA DE CLIENTE
     public static boolean agregarUsuario(DtCliente c){
         String sql1 = "INSERT INTO USUARIOS(nickname, nombre, apellido, email) VALUES (" + c.getNick() + "," + c.getNombre() + "," + c.getApellido() + "," + c.getEmail() + " );";
@@ -171,6 +170,50 @@ public class ManejadorSQL {
             usuario.execute(sql2); // ingreso en servicios
             for(int x = 0; x < categorias.size(); x++){
                 sql3 = "INSERT INTO POSEEN(nicknameProvedoor, nombreArticulo, nombreCategoria) VALUES ( " + nickProveedor + ", " + s.getNombre() + ", " + categorias.get(x) + " );";
+                usuario.execute(sql3); // ingreso las categorias, asumo que estas ya existen debido a que fueron seleccionadas.
+            }
+            ret = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ret;
+    }
+    
+        // ALTA DE PROMOCION.
+    public static boolean agregarPromocion(DtPromocion p, String nickProveedor, ArrayList<String> servicios){
+        String sql1 = "INSERT INTO ARTICULOS(nicknameProveedor, nombre) VALUES (" + nickProveedor + "," + p.GetNombre()+ " );";
+        String sql2 = "INSERT INTO PROMOCIONES(nicknameProveedor, nombreArticulo, descuento, precio) VALUES (" + nickProveedor + ", " + p.GetNombre() + ", " + p.GetDescuento() + ", " + p.GetPrecioTotal() + " );";
+        String sql3;
+        Statement usuario;
+        boolean ret = false;
+        try {
+            usuario = ManejadorSQL.getConex().createStatement();
+            usuario.execute(sql1);
+            usuario.execute(sql2);
+            for(int x = 0; x < servicios.size(); x++){
+                sql3 = "INSERT INTO COMPUESTOS(nicknameProvServ, nombreArticuloServ, nicknameProvProm, nombreArticuloProm) VALUES (" + nickProveedor + ", " + servicios.get(x) + ", " + nickProveedor + ", " + p.GetNombre() + " );";
+                usuario.execute(sql3); // ingreso las categorias, asumo que estas ya existen debido a que fueron seleccionadas.
+            }
+            ret = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ret;
+    }
+    
+            // ALTA DE PROMOCION.
+    public static boolean agregarReserva(DtReserva r, String nickProveedor, ArrayList<String> servicios){
+        String sql1 = "INSERT INTO ARTICULOS(nicknameProveedor, nombre) VALUES (" + nickProveedor + "," + p.GetNombre()+ " );";
+        String sql2 = "INSERT INTO PROMOCIONES(nicknameProveedor, nombreArticulo, descuento, precio) VALUES (" + nickProveedor + ", " + p.GetNombre() + ", " + p.GetDescuento() + ", " + p.GetPrecioTotal() + " );";
+        String sql3;
+        Statement usuario;
+        boolean ret = false;
+        try {
+            usuario = ManejadorSQL.getConex().createStatement();
+            usuario.execute(sql1);
+            usuario.execute(sql2);
+            for(int x = 0; x < servicios.size(); x++){
+                sql3 = "INSERT INTO COMPUESTOS(nicknameProvServ, nombreArticuloServ, nicknameProvProm, nombreArticuloProm) VALUES (" + nickProveedor + ", " + servicios.get(x) + ", " + nickProveedor + ", " + p.GetNombre() + " );";
                 usuario.execute(sql3); // ingreso las categorias, asumo que estas ya existen debido a que fueron seleccionadas.
             }
             ret = true;
