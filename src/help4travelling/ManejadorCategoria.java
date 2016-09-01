@@ -1,0 +1,110 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package help4travelling;
+
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+
+/**
+ *
+ * @author Nacho
+ */
+public class ManejadorCategoria {
+    
+    private HashMap<String, Categoria> categorias = new HashMap<String, Categoria>();
+    private Categoria categ;
+    private static ManejadorCategoria instance = null;
+    
+    public static ManejadorCategoria GetInstance(){
+        if (instance==null)
+            instance = new ManejadorCategoria();
+        return instance;
+    }
+    
+    public void IngresarCategoria (String nombre){
+        Categoria cat = new Categoria(nombre);
+        categorias.put(cat.getNombre(), cat);
+    }
+    
+    public void IngresarCategoria (String nombre, String padre){
+        Categoria catpad = this.BuscarCategoria(padre);
+        if(catpad!=null){
+            Categoria cat = new Categoria(nombre);
+            categorias.put(cat.getNombre(), cat);
+            catpad.AgregarCatHija(cat);
+        }else{
+            System.out.println("La categoria padre no existe");
+        }
+    }    
+    
+    public Categoria BuscarCategoria (String nombre){
+        Categoria ret = null;
+        boolean enc=false;
+        if(this.categorias!=null){
+            Iterator it = this.categorias.entrySet().iterator();
+            while(it.hasNext()&&(enc==false)){
+                Map.Entry e = (Map.Entry)it.next();
+                if(e.getKey().equals(nombre)){
+                    enc = true;
+                    ret = (Categoria) e.getValue();
+                }
+            }
+            if(enc==false){
+                System.out.println("La categoria no existe");
+            }
+        }else{
+            System.out.println("No hay categorias");
+        }
+        return ret;
+    }
+    
+    /*public ArrayList<String> listarCategorias(){
+        ArrayList<String> ArrayCategorias = new ArrayList<String>();
+        for (String name: categorias.keySet()) {
+            ArrayCategorias.add(categorias.get(name).getNombre());
+        }
+        return ArrayCategorias;
+    }*/
+    
+     public ArrayList<DtCategoria> listarCategorias(){
+        return listarCategoriasAux("todo", 0);        
+    }
+     
+    public ArrayList<DtCategoria> listarCategoriasAux(String padre, int nivel){
+        if (categorias.get(padre).getHijos() != null){
+           ArrayList<DtCategoria> ArrayCategorias = new ArrayList<DtCategoria>();
+           ArrayList<Categoria> ArrayHijos = categorias.get(padre).getHijos();
+           for (int i = 0; i < ArrayHijos.size(); i++) {
+               ArrayCategorias.add(new DtCategoria(ArrayHijos.get(i).getNombre(),padre,nivel));
+               ArrayList<DtCategoria> hijo = listarCategoriasAux(ArrayHijos.get(i).getNombre(), nivel+1);
+               if (hijo.get(0) != null){
+                   for (int j = 0; j < hijo.size(); j++) {
+                       ArrayCategorias.add(hijo.get(j));
+                   }
+               }
+           }        
+           return ArrayCategorias;
+        }else{
+            return null;
+        }
+       
+    }
+    
+    public ArrayList<String> listarServicios(String nombre){
+         categ = categorias.get(nombre);
+         return categ.listarServicios();
+    }
+     
+    public DtServicio datosServicio(String nombreServ){
+         return categ.listarServicios(nombreServ);
+    }
+    
+    public void QuitarCategoria(String catName){
+        //proximamente
+    }
+}
