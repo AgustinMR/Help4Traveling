@@ -127,24 +127,20 @@ public class ConectarBD extends javax.swing.JFrame {
 
     private void btn_conectarBDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_conectarBDMouseClicked
         if(!txt_conectarBD.getText().isEmpty()){
-            if(ManejadorSQL.init(txt_conectarBD.getText())){
+            if(ManejadorSQL.GetInstance().init(txt_conectarBD.getText())){
                 lbl_bienvenidoBD.setVisible(true);
                 new Help4Travelling().setVisible(true);
-                try {
-                    this.wait(5000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(ConectarBD.class.getName()).log(Level.SEVERE, null, ex);
-                }
                 dispose();
             }
             else{
+                lbl_errorBD.setText("ERROR AL CONECTAR CON BASE DE DATOS!");
                 lbl_errorBD.setVisible(true);
             }
         }
         else{
-            
+            lbl_errorBD.setText("EL CAMPO ESTA VACÍO!");
+            lbl_errorBD.setVisible(true);
         }
-
     }//GEN-LAST:event_btn_conectarBDMouseClicked
 
     private void txt_conectarBDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_conectarBDMouseClicked
