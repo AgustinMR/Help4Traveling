@@ -1,9 +1,6 @@
 package help4travelling;
 import java.awt.*;
 import java.util.*;
-import java.lang.*;
-import java.time.LocalDate;
-import java.time.Month;
 import javax.swing.*;
 import java.util.ArrayList;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -3723,7 +3720,8 @@ public class Help4Travelling extends javax.swing.JFrame {
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         java.awt.EventQueue.invokeLater(() -> {
-            new Help4Travelling().setVisible(true);
+            new Help4Travelling().setVisible(false);
+            new ConectarBD().setVisible(true);
         });
         
         

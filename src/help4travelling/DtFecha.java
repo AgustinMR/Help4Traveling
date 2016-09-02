@@ -1,31 +1,40 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package help4travelling;
 
+/**
+ *
+ * @author Agustin
+ */
 public class DtFecha {
+    private int anio;
+    private int mes;
+    private int dia;
     
-    private int dia, mes, anio;
-    
-    public DtFecha(int dia, int mes, int anio) {
-        this.dia = dia;
-        this.mes = mes;
-        this.anio = anio;
+    DtFecha(int anio, int mes, int dia){
+        
     }
     
-    public DtFecha(DtFecha otra) {
-        this.anio = otra.getAnio();
-        this.mes = otra.getMes();
-        this.dia = otra.getDia();
+    //Contruye la fecha con un string de esta forma "yyyy/mm/dd"
+    DtFecha(String bdformato){
+        String[] parts = bdformato.split("/");
+        this.anio = Integer.parseInt(parts[0]);
+        this.mes = Integer.parseInt(parts[1]);
+        this.dia = Integer.parseInt(parts[2]);
     }
 
-    public int getDia() {
-        return dia;
+    public int getAnio() {
+        return anio;
     }
 
     public int getMes() {
         return mes;
     }
 
-    public int getAnio() {
-        return anio;
-    }
-    
+    public int getDia() {
+        return dia;
+    }    
 }

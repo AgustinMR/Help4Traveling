@@ -23,12 +23,17 @@ public class ManejadorSQL {
         return instance;
     }    
     
-    public static void init(String ip){
+    public static boolean init(String ip){
+        boolean ret;
         try{
-            DriverManager.getConnection("jdbc:mysql://"+ip+"3306/bd_help4traveling?useSSL=false", "root", "tecnoDBweb2016");
-        }catch(SQLException err){
-            System.out.println("\33[31mError\33[39m: IP o Puerto incorrecto");
-        }        
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection c = DriverManager.getConnection("jdbc:mysql://"+ip+":3306/bd_help4traveling?useSSL=false", "root", "tecnoDBweb2016");
+            ret = true;
+        }catch(ClassNotFoundException | SQLException ex) {
+               Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
+               ret = false;
+        }
+        return ret;
     }            
     
     // CARGAR USUARIOS
@@ -138,8 +143,7 @@ public class ManejadorSQL {
     
     // ALTA DE CLIENTE
     public static boolean agregarUsuario(DtCliente c){
-        // agregar fecha en formato que le gusta a mysql.
-        String sql1 = "INSERT INTO USUARIOS(nickname, nombre, apellido, email, fechaNac) VALUES (" + c.getNick() + "," + c.getNombre() + "," + c.getApellido() + "," + c.getEmail() + " );";
+        String sql1 = "INSERT INTO USUARIOS(nickname, nombre, apellido, email, fechaNac) VALUES (" + c.getNick() + "," + c.getNombre() + "," + c.getApellido() + "," + c.getEmail()+ c.getFechaN().getAnio() + "/" + c.getFechaN().getMes() + "/" + c.getFechaN().getDia() + " );";
         String sql2 = "INSERT INTO CLIENTES(nicknameCliente) VALUES (" + c.getNick() + " );";
         Statement usuario;
         boolean ret = false;
@@ -221,19 +225,39 @@ public class ManejadorSQL {
     
     // ALTA DE RESERVAS
     public static boolean agregarReserva(DtReserva r){
-        String sql1 = "INSERT INTO RESERVAS(precioTotal, fechaCreacion, estado, nicknameCliente) VALUES (" + r.getPrecio() + ", " + r.Get + ", " + r.GetEstado() + ", " + r.GetCliente() + " );";
-        String sql2 = "INSERT INTO PROMOCIONES(nicknameProveedor, nombreArticulo, descuento, precio) VALUES (" + nickProveedor + ", " + p.GetNombre() + ", " + p.GetDescuento() + ", " + p.GetPrecioTotal() + " );";
+        Statement usuario;
+        String sql1 = "INSERT INTO RESERVAS(precioTotal, fechaCreacion, estado, nicknameCliente) VALUES (" + r.getPrecio() + ", " + r.GetFecha().getAnio() + "/" + r.GetFecha().getMes() + "/" + r.GetFecha().getDia() + ", " + r.GetEstado() + ", " + r.GetCliente() + " );";
+        // NO BORRAR -- String sql2 = "SELECT id FROM RESERVAS WHERE precioTotal = " + r.getPrecio() + " AND fechaCreacion = " + r.GetFecha().getAnio() + "/" + r.GetFecha().getMes() + "/" + r.GetFecha().getDia() + " AND estado = " + r.GetEstado() + " AND nickaname = " + r.GetCliente() + ";";
         String sql3;
+     /*   try {
+            usuario = ManejadorSQL.getConex().createStatement();
+            usuario.execute(sql1);
+            String id = usuario.getGeneratedKeys().getString("id");
+            for(int x = 0; x < r.GetInfoReservas().size(); x++){
+                sql3 = "INSERT INTO INFO_RESERVA(id, cantArticulos, nicknameProveedor, nombreArticulo, fechaIni, fechaFin, precioUnitario, precioTotal)";
+                sql3 += " VALUES (" + id + ", " + r.GetInfoReservas(). + ", " + p.GetDescuento() + ", " + p.GetPrecioTotal() + " );";
+
+            }
+            ret = true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        */
+        
+        
+        boolean ret = false;
+
+        return ret;
+    }
+    
+    // ACTUALIZAR ESTADO DE RESERVA
+    public static boolean actualizarEstado(String idReserva, String nickCliente, String estadoNuevo){
         Statement usuario;
         boolean ret = false;
+        String sql1 = "UPDATE RESERVAS SET estado = " + estadoNuevo + " WHERE id = " + idReserva + " AND nicknameCliente = " + nickCliente + ";";
         try {
             usuario = ManejadorSQL.getConex().createStatement();
             usuario.execute(sql1);
-            usuario.execute(sql2);
-            for(int x = 0; x < servicios.size(); x++){
-                sql3 = "INSERT INTO COMPUESTOS(nicknameProvServ, nombreArticuloServ, nicknameProvProm, nombreArticuloProm) VALUES (" + nickProveedor + ", " + servicios.get(x) + ", " + nickProveedor + ", " + p.GetNombre() + " );";
-                usuario.execute(sql3); // ingreso las categorias, asumo que estas ya existen debido a que fueron seleccionadas.
-            }
             ret = true;
         } catch (SQLException ex) {
             Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
@@ -242,35 +266,57 @@ public class ManejadorSQL {
     }
     
     // DEVOLVER USUARIO
-    public static boolean devolverCliente(String nickUsuario){
+    public static DtCliente devolverCliente(String nickUsuario){
+        DtCliente ret = null;
         String sql1 = "SELECT nombre, apellido, email, fechaNac FROM USUARIOS WHERE nickname = " + nickUsuario + ";";
-        String sql2 = "SELECT INTO USUARIOS(nickname, nombre, apellido, email) VALUES (" + p.getNick() + "," + p.getNombre() + "," + p.getApellido() + "," + p.getEmail() + " );";
-        
+        String sql2 = "SELECT id FROM RESERVAS WHERE nicknameCliente = " + nickUsuario + ";";
+        String name, ap, email, fechaN;
+        ArrayList<Integer> ids = new ArrayList<Integer>();
         Statement usuario;
-        boolean ret = false;
-        try {
+     /*   try {
             usuario = ManejadorSQL.getConex().createStatement();
             usuario.execute(sql1);
+            name = usuario.getResultSet().getString("nombre");
+            ap = usuario.getResultSet().getString("apellido");
+            email = usuario.getResultSet().getString("email");
+            fechaN = usuario.getResultSet().getDate("fechaNac").toString();
             usuario.execute(sql2);
+            while(!usuario.getResultSet().isAfterLast()){
+                ids.add(usuario.getResultSet().getInt("id"));
+                usuario.getResultSet().next();
+            }
+            DtCliente ret = new DtCliente(nickUsuario, name, ap, email,);
             ret = true;
         } catch (SQLException ex) {
             Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
+        */
         return ret;
+    
     }
     
     // DEVOLVER SERVICIOS
-    public static boolean devolverServicio(String nickProveedor, String nombre){
-        String sql1 = "SELECT descripcion, precio, ciudadO, ciudadD FROM USUARIOS WHERE nicknameProveedor = " + nickProveedor + " AND nombreArticulo = "+ nombre + ";";
+    public static DtServicio devolverServicio(String nickProveedor, String nombre){
+        String sql1 = "SELECT descripcion, precio, ciudadO, ciudadD FROM SERVICIOS WHERE nicknameProveedor = " + nickProveedor + " AND nombreArticulo = "+ nombre + ";";
         String sql2 = "SELECT nombreCategoria FROM POSEEN WHERE nicknameProveedor = " + nickProveedor + " AND nombreArticulo = "+ nombre + ";";
-        
+        String desc, co, cd;
+        float p;
+        ArrayList<String> categorias = new ArrayList<String>();
         Statement usuario;
-        boolean ret = false;
-        try {
+        DtServicio ret = null;
+        try{
             usuario = ManejadorSQL.getConex().createStatement();
             usuario.execute(sql1);
+            desc = usuario.getResultSet().getString("descripcion");
+            p = usuario.getResultSet().getFloat("precio");
+            co = usuario.getResultSet().getString("ciudadO");
+            cd = usuario.getResultSet().getString("ciudadD");
             usuario.execute(sql2);
-            ret = true;
+            while(!usuario.getResultSet().isAfterLast()){
+                categorias.add(usuario.getResultSet().getString("nombreCategoria"));
+                usuario.getResultSet().next();
+            }
+            ret = new DtServicio(nombre, p, desc, categorias, co, cd);
         } catch (SQLException ex) {
             Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -18,9 +18,9 @@ public class Cliente extends Usuario{
     }
 
     public DtCliente getDtCliente(){
-        ArrayList<Reserva> ArrayReservas = new ArrayList<Reserva>();
+        ArrayList<Integer> ArrayReservas = new ArrayList<Integer>();
         for (String name: reservas.keySet()) {
-            ArrayReservas.add(reservas.get(name));
+         //   ArrayReservas.add(reservas.get(name));
         }
         return new DtCliente(nick, nombre, apellido, email, fechaN, avatar, ArrayReservas);
     }

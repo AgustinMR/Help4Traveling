@@ -27,6 +27,15 @@ public class DtServicio {
         this.ciudadDestino=ciudadDestino;
     }
     
+    public DtServicio(String nombre, float precio, String descripcion, ArrayList<String> categorias, String ciudadOrigen, String ciudadDestino){
+        this.nombre=nombre;
+        this.precio=precio;
+        this.descripcion=descripcion;
+        this.categorias=categorias; 
+        this.ciudadOrigen=ciudadOrigen; 
+        this.ciudadDestino=ciudadDestino;
+    }
+     
     public DtServicio(String nombre, Float precio, String descripcion){
         this.nombre=nombre;
         this.precio=precio;
