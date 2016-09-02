@@ -7,7 +7,7 @@ import java.util.HashSet;
 /**
  * @author Antares
  */
-public interface IControladorArticulo {
+public abstract interface IControladorArticulo {
     public abstract boolean CrearPromocion(DtPromocion DtProm);
     public abstract ArrayList<String> listarPromociones();
     public abstract Set<DtServicio> ListarServicios();

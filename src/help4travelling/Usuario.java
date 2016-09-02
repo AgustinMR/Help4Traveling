@@ -14,6 +14,5 @@ public abstract class Usuario implements Serializable {
      
      public abstract String getNickCliente();
      public abstract String getNickProveedor();
-     
     
 }

@@ -5,8 +5,11 @@
  */
 package help4travelling;
 
+import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;        
+import java.util.List;
 
 /**
  *
@@ -17,106 +20,125 @@ public class help5test {
     /**
      * @param args the command line arguments
      */
-    
-    public static void TestRealizarReserva(int idReserva){
-        //Preparacion para caso Alta Reserva**********************
+                 
+    public static void TestAltaUsuario(String nick){
+        //1)La interfaz debe preguntarle al admin si quiere ingresar un cliente o proveedor
+        //2)Recuperar todos los datos que ingrese el admin a travez de la interfaz
+        //2.5)Recuperar la imagen y pasarla a tipo blob puede llegar a ser complicado, en ese caso postergar
+        //3)Contruir un DtCliente o DtProveedor a partir de los datos recuperados
+        //4)uso la funcion VerificarUsuario del ControladorUsuario, si devuelve true tiene que salir un aviso al admin
+        //5)si al verificar devolvio true es porque ya existe otro usuario con ese nick creado antes, el usuario puede modificar los campos en la interfaz o cancelar
+        //5)si corrigio los campos se corre el verificar devuelta
+        //6)si verificar devolvio false uso la funcion AltaCliente o AltaProveedor del ControladorUsuario con el DataType de parametro para ingrear el usuario
+        //7)al usar la funcion AltaCliente se debe persistir en la base de datos el objeto
         
-        //Creacion DtReserva
-        Estado es = Estado.Registrada;
-        String nickCliente = "Pmoretto";
-        DtReserva dr = new DtReserva(idReserva, es, nickCliente);
         
-        //Creacion usuario-cliente
-        Cliente c = new Cliente("Pmoretto", "Pedro");
-        c.setNombre("Pedro");
-        c.setApellido("Moretto");
-        c.setNick("Pmoretto");        
-                        
-        //Insertar cliente
-        ManejadorUsuario manUsu = ManejadorUsuario.getinstance();
-        manUsu.InstertarCliente(c);
+        //optional)esta la funcion ModificarUsuario que despues de dar un alta, modifica ese mismo usuario con el DataType que le pasas por parametro
         
-        //Obtener cliente de coleccion
-        Cliente cli = manUsu.ObtenerCliente("Pmoretto");
-        System.out.println(cli.getNick());
+        //nora) la funcion AltaUsuario necesita dos parametros, pero el email enrealidad esta pintado, esta ahi porque la letra dice que es unico en el usuario pero aun no esta implementado eso (y no creo que se vaya a implementar...)
         
-        //Creo Articulo
-        float precio = 200.0f;
-        Servicio sertest = new Servicio("Vuelo", "rapido", precio);
+        //Mini test
         
-        //Inserto Articulo
-        ManejadorArticulo manArt = ManejadorArticulo.GetInstance();
-        manArt.AgregarServicio(sertest);        
+        //A)Creo un DtCliente para pasarle de parametro a la funcion que hace el alta ( usar un contructor completo, no este)
         
-        //Creo InfoReserva
-        DtInfoReserva dtretest = new DtInfoReserva(idReserva, "Vuelo", 2);
         
-        //Test de Caso Alta Reserva*******************************        
-        System.out.println("Arranca caso 1");        
+        DtFecha fech = new DtFecha(2016,11,2);
+        System.out.println(fech.getAnio());
+        DtCliente dataCli = new DtCliente(nick, "nombre", "apellido", "email", fech ,null);
+        ControladorUsuario CU = new ControladorUsuario();
         
-        //Primera operacion
-        ControladorReserva CR = new ControladorReserva();
-        CR.CrearReserva(dr);
+        //B)Verifico que no exista el usuario antes
+        if (CU.VerificarUsuario(dataCli.getNick(), dataCli.getEmail()) == false){
+            System.out.println("El no existe en el sistema");
+        }
         
-        //Segunda operacion
-        CR.ReservarArticulo(dtretest);
+        //C)Doy el alta a un cliente
+        CU.AltaCliente(dataCli);
         
-        //Tercera operacion
-        CR.ConfirmarReserva(true);
+        //D)Verifico que fuera insertado efectivamente el cliente de la parte C
+        if (CU.VerificarUsuario(dataCli.getNick(), dataCli.getEmail()) == true){
+            System.out.println("El usuario ya existe en el sistema");
+        }
         
-        //Verificacion de caso Alta Reserva
-        ManejadorReserva manRes = ManejadorReserva.GetInstance();
-        Reserva restest = manRes.ObtenerReserva(idReserva);
-        System.out.println(restest.GetEstado());
-        System.out.println(restest.GetCliente().getNick());
+        //E)Creo otro dt para modificar el ingresado en la parte C)
+       /* DtCliente dataCli2 = new DtCliente("nick2", "nombre2", "apellido2", "email2", new DtFecha(2017,10,3),null);
         
-        System.out.println("Insercion de InfoReserva");
-        Set infoset = restest.GetInfoReservas();
-        infoset.forEach(i -> System.out.println(((infoReserva)i).GetCantidad()));
-    } 
-    
-    public static void TestMostrarDatosReserva(int idReserva){
-        //Test de Mostrar Datos Reserva
-        
-        //Test de operacion 1
-        ControladorReserva CR = new ControladorReserva();
-        Set keysReser;
-        keysReser = CR.ListarNroReservas();
-        
-        System.out.println("idReservas"); 
-        keysReser.forEach(System.out::println);
-
-        //Test de operacion 2
-        DtReserva datosReserva = CR.ObtenerDatosReserva(idReserva);
-        System.out.println(datosReserva.GetCliente());
-        
-        //Test de operacion 3
-        System.out.println("op3---");
-        Set arRes = CR.ObtenerInfoArticulosReservados();
-        System.out.println("op3---2");
-        arRes.forEach(i -> System.out.println(((DtInfoReserva)i).GetNombreArticulo()));
+        //F)Modifico el usuario en memoria ingresado en la parte C
+        CU.ModificarUsuario(dataCli2);
+        */
     }
     
-    public static void TestAltaServicio(String nombre){
-        //Creo DtServicio con los datos para crear el servicio
-        DtServicio dtSer = new DtServicio(nombre, 11.0f, "hardcoderino");
+    public static void TestVerInfoCliente(String nick){
+        //Sigo estrictamente el DSS Ver informacion proveedor y cliente
+        //La interfaz puede verificar si existe el usuario con la funcion VerificarUsuario del controladorUsuario
         
-        //Test de crear servicio
-        ControladorArticulo CA = new ControladorArticulo();
-        CA.CrearServicio(dtSer);
+        if (ManejadorSQL.GetInstance().init("192.168.10.132") == true)
+             System.out.println("init");
         
-        //Verificar que este insertado Servicio
-        System.out.println("Test AltaSer1:");
-        Servicio sertest = ManejadorArticulo.GetInstance().BuscarServicio("Anta");
-        System.out.println(sertest.GetNombre());
+        //inserto algunos clientes para probar
+        
+        
+        TestAltaUsuario("ale");
+        
+        TestAltaUsuario("ale2");
+        TestAltaUsuario("ale3");
+        
+        //Op 1
+        ControladorUsuario CU = new ControladorUsuario();
+        List<String> lcli;
+        lcli = CU.listarClientes();
+        
+        //test de Op1
+        System.out.println("Usuarios en el sistema: ");
+        lcli.forEach(i -> System.out.println(i));
+        
+        //Op 2
+        DtCliente datac = CU.datosCliente(nick);
+        
+        //test de Op 2
+        System.out.println("Datos de usuario elegido:");
+        System.out.println("Nick Cliente: " + datac.getNick());
+        System.out.println("Nombre Cliente: " + datac.getNombre());
+        System.out.println("Apellido Cliente: " + datac.getApellido());
+        System.out.println("Avatar Cliente: " + datac.getAvatar());
+        
+        //op3
+        //depende de otros casos de uso, 
+        
     }
+    /*
+    public static void TestVerInfoProveedor(String nick){
+        //Sigo el DSS de TestVerInfoCliente
+        
+        //Creo un proveedor
+        ControladorUsuario CU = new ControladorUsuario();
+        DtProveedor dataPro = new DtProveedor(nick, "Raz", "Puti", "mail@gmail.com", new DtFecha(01,01,2016), null, "evil corps", "Deep web", null);
+        CU.AltaProvedor(dataPro);
+        
+        List<String> lpro;
+        System.out.println("Proveedores en el sistema: ");
+        lpro = CU.listarProveedores();
+        lpro.forEach(i -> System.out.println(i));
+        
+        DtProveedor retPro = CU.datosProveedor(nick);
+        System.out.println("Datos de usuario elegido:");
+        System.out.println("Nick Proveedor " + retPro.getNick());
+        System.out.println("Nombre Provee: " + retPro.getNombre());
+        System.out.println("Apellido Prove: " + retPro.getApellido());
+        System.out.println("Avatar Prov: " + retPro.getAvatar());        
+    
+        //Usa otro caso de uso asi que la wea fome 50%
+    }
+*/
     
     public static void main(String[] args) {
-        //TestRealizarReserva(1);
-        //TestRealizarReserva(2);
         
-        //TestMostrarDatosReserva(1);
+        TestAltaUsuario("ale4");
         
-        //TestAltaServicio("Anta");
+       // TestVerInfoCliente("ale4");
+        
+       // TestVerInfoProveedor("Mr Proveedor");
+        
+        
     }
 }

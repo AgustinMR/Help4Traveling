@@ -6,15 +6,16 @@ import java.util.List;
  *
  * @author Bruno
  */
-public interface IControladorUsuario {
+public abstract interface IControladorUsuario {
   
-  public void ingresarUsuario( DtCliente cliente);
-  public void ingresarUsuario( DtProveedor proveedor);
-  public List<String> listarClientes();
-  public List<String> listarProveedores();
-  public DtCliente datosCliente(String nick);
-  public DtProveedor datosProveedor(String nick);
-  public DtReserva datosReserva(int num);
-  public DtServicio datosServicio(int num);
+  public abstract void ingresarUsuario( DtCliente cliente);
+  public abstract void ingresarUsuario( DtProveedor proveedor);
+  public abstract List<String> listarClientes();
+  public abstract List<String> listarProveedores();
+  public abstract DtCliente datosCliente(String nick);
+  public abstract DtProveedor datosProveedor(String nick);
+  public abstract DtReserva datosReserva(int num);
+  public abstract DtServicio datosServicio(int num);
+  public abstract boolean VerificarUsuario(String nickUsaurio, String email);
   
 }

@@ -99,5 +99,5 @@ public class Cliente extends Usuario{
     public String getNickProveedor() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+  
 }

@@ -75,8 +75,14 @@ public class ManejadorUsuario {
         this.usuarios.put(u.getNickCliente(), u);
     }
      
-    public void InstertarCliente(Cliente c){
-        this.usuarios.put(c.getNick(), c);
+    public void InstertarCliente(DtCliente c){
+        Cliente newcli = new Cliente(c);
+        this.usuarios.put(c.getNick(), newcli);
+        ManejadorSQL.GetInstance().agregarUsuario(c);
     }
+    
+     public boolean ExisteUsuario(String nickUsu, String email){
+         return this.usuarios.containsKey(nickUsu);
+     }
     
 }

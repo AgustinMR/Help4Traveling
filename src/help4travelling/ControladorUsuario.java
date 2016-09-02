@@ -3,6 +3,8 @@ package help4travelling;
 import java.util.List;
 
 public class ControladorUsuario implements IControladorUsuario{
+    
+    private Usuario usuMem;
 
     public void ingresarUsuario( DtCliente cliente){
       //  ManejadorUsuario.getinstance().InstertarUsuario(cliente);
@@ -43,5 +45,28 @@ public class ControladorUsuario implements IControladorUsuario{
     @Override
     public DtServicio datosServicio(int num) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //chequear que estas funciones estan en IControladorUsuario
+    
+    
+    public boolean VerificarUsuario(String nickUsaurio, String email){
+        return ManejadorUsuario.getinstance().ExisteUsuario(nickUsaurio, email);
+    }
+    
+    public void AltaCliente(DtCliente dataCli){
+        ManejadorUsuario.getinstance().InstertarCliente(dataCli);
     }
 }

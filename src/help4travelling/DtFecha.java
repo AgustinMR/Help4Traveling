@@ -15,7 +15,9 @@ public class DtFecha {
     private int dia;
     
     DtFecha(int anio, int mes, int dia){
-        
+        this.anio = anio;
+        this.mes = mes;
+        this.dia =  dia;
     }
     
     //Contruye la fecha con un string de esta forma "yyyy/mm/dd"
@@ -27,14 +29,14 @@ public class DtFecha {
     }
 
     public int getAnio() {
-        return anio;
+        return this.anio;
     }
 
     public int getMes() {
-        return mes;
+        return this.mes;
     }
 
     public int getDia() {
-        return dia;
+        return this.dia;
     }    
 }

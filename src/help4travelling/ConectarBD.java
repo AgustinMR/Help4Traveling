@@ -116,6 +116,11 @@ public class ConectarBD extends javax.swing.JFrame {
                 txt_conectarBDActionPerformed(evt);
             }
         });
+        txt_conectarBD.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_conectarBDKeyPressed(evt);
+            }
+        });
         getContentPane().add(txt_conectarBD, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 310, 30));
 
         pack();
@@ -130,17 +135,16 @@ public class ConectarBD extends javax.swing.JFrame {
             if(ManejadorSQL.GetInstance().init(txt_conectarBD.getText())){
                 lbl_bienvenidoBD.setVisible(true);
                 new Help4Travelling().setVisible(true);
-                dispose();
+                dispose();              
             }
             else{
-                lbl_errorBD.setText("ERROR AL CONECTAR CON BASE DE DATOS!");
                 lbl_errorBD.setVisible(true);
             }
         }
         else{
-            lbl_errorBD.setText("EL CAMPO ESTA VACÍO!");
-            lbl_errorBD.setVisible(true);
+            
         }
+
     }//GEN-LAST:event_btn_conectarBDMouseClicked
 
     private void txt_conectarBDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_conectarBDMouseClicked
@@ -154,6 +158,10 @@ public class ConectarBD extends javax.swing.JFrame {
     private void lbl_errorBDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_errorBDMouseClicked
         lbl_errorBD.setVisible(false);
     }//GEN-LAST:event_lbl_errorBDMouseClicked
+
+    private void txt_conectarBDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_conectarBDKeyPressed
+       
+    }//GEN-LAST:event_txt_conectarBDKeyPressed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
