@@ -72,9 +72,6 @@ public class help5test {
         //Sigo estrictamente el DSS Ver informacion proveedor y cliente
         //La interfaz puede verificar si existe el usuario con la funcion VerificarUsuario del controladorUsuario
         
-        if (ManejadorSQL.GetInstance().init("192.168.10.132") == true)
-             System.out.println("init");
-        
         //inserto algunos clientes para probar
         
         
@@ -132,6 +129,9 @@ public class help5test {
 */
     
     public static void main(String[] args) {
+        
+        if (ManejadorSQL.GetInstance().init("192.168.10.132") == true)
+             System.out.println("init");
         
         TestAltaUsuario("ale4");
         

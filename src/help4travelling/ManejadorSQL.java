@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class ManejadorSQL {
     
-    private String ip = null;
+    private String ip;
     private static ManejadorSQL instance = null;
     
     public static ManejadorSQL GetInstance(){
@@ -139,6 +139,8 @@ public class ManejadorSQL {
         }
         return ret;
     }
+    
+    
     
     // ALTA DE CLIENTE
     public boolean agregarUsuario(DtCliente c){
@@ -335,7 +337,7 @@ public class ManejadorSQL {
 
     public Connection getConex() {
         try {
-            Connection c = DriverManager.getConnection("jdbc:mysql://"+ ip +":3306/bd_help4traveling?useSSL=false", "root", "tecnoDBweb2016");
+            Connection c = DriverManager.getConnection("jdbc:mysql://"+ this.ip +":3306/bd_help4traveling?useSSL=false", "root", "tecnoDBweb2016");
             return c;
         } catch (SQLException ex) {
             Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
