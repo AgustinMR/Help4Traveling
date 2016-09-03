@@ -8,8 +8,6 @@ import java.util.List;
  */
 public abstract interface IControladorUsuario {
   
-  public abstract void ingresarUsuario( DtCliente cliente);
-  public abstract void ingresarUsuario( DtProveedor proveedor);
   public abstract List<String> listarClientes();
   public abstract List<String> listarProveedores();
   public abstract DtCliente datosCliente(String nick);
@@ -20,6 +18,6 @@ public abstract interface IControladorUsuario {
   
   public abstract boolean VerificarUsuario(String nickUsaurio, String email);
   public abstract void AltaCliente(DtCliente dataCli);
-  public abstract void AltaProvedor(DtProveedor dataProv);
+  public abstract void AltaProveedor(DtProveedor dataProv);
   
 }

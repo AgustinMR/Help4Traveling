@@ -6,14 +6,6 @@ public class ControladorUsuario implements IControladorUsuario{
     
     private Usuario usuMem;
 
-    public void ingresarUsuario( DtCliente cliente){
-      //  ManejadorUsuario.getinstance().InstertarUsuario(cliente);
-    }
-
-    public void ingresarUsuario( DtProveedor proveedor){
-        //ManejadorUsuario.getinstance().InstertarUsuario(proveedor);
-     }
-
     public List<String> listarClientes(){
         ManejadorUsuario manejuser = ManejadorUsuario.getinstance();
         return manejuser.listarClientes();
@@ -62,7 +54,7 @@ public class ControladorUsuario implements IControladorUsuario{
         ManejadorUsuario.getinstance().InstertarCliente(dataCli);
     }
     
-    public void AltaProvedor(DtProveedor dataProv){
+    public void AltaProveedor(DtProveedor dataProv){
         ManejadorUsuario.getinstance().InstertarProveedor(dataProv);
     }
 }
