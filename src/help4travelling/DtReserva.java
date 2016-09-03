@@ -7,24 +7,28 @@ public class DtReserva {
     private int id;
     private DtFecha date;
     private Estado estado;
-    private ArrayList infoReserva = new ArrayList<DtInfoReserva>();
+    private ArrayList<DtInfoReserva> infoReserva = new ArrayList<DtInfoReserva>();
     private String cli;
     private float precio;
-    public DtReserva(int id, Estado estado, String nickCli){
+    
+    public DtReserva(int id, Estado estado, DtFecha date, ArrayList<DtInfoReserva> infoReserva ,String nickCli, float precio){
         this.id = id;
         this.estado = estado;
+        this.date = date;
+        this.infoReserva = infoReserva;
         this.cli = nickCli;
-    }
+        this.precio = precio;
+    }    
     
-    public DtReserva(Reserva res){
-        this.id = res.GetId();
-        this.estado = res.GetEstado();
-        this.date = res.GetFecha();
-        this.cli = res.GetCliente().getNick();
-        this.infoReserva = res.GetInfoReservas();
-        this.precio = res.getPrecio();
-    }
-
+     public DtReserva(Estado estado, DtFecha date, ArrayList<DtInfoReserva> infoReserva ,String nickCli, float precio){
+        this.id = id;
+        this.estado = estado;
+        this.date = date;
+        this.infoReserva = infoReserva;
+        this.cli = nickCli;
+        this.precio = precio;
+    }   
+    
     public float getPrecio() {
         return precio;
     }
@@ -41,7 +45,7 @@ public class DtReserva {
         return this.estado;
     }
     
-    public ArrayList GetInfoReservas(){
+    public ArrayList<DtInfoReserva> GetInfoReservas(){
         return this.infoReserva;
     }
     

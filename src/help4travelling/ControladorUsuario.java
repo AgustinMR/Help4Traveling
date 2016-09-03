@@ -51,14 +51,6 @@ public class ControladorUsuario implements IControladorUsuario{
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
     //chequear que estas funciones estan en IControladorUsuario
     
     

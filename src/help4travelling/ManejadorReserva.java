@@ -22,7 +22,6 @@ public class ManejadorReserva {
     }
     
     public Reserva CrearReserva(DtReserva dtRes, Cliente c){
-        id += 1;
         return new Reserva(dtRes, c, this.id);
     }
     

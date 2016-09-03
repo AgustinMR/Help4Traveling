@@ -53,4 +53,6 @@ public abstract class Articulo {
         this.prov = prov;
     }
     
+     public abstract Float getPrecio();
+    
 }

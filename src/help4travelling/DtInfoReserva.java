@@ -7,30 +7,28 @@ public class DtInfoReserva {
     private String nameArticulo;
     private String nickProveedor;
     private int idReserva;
-    float precioArticulo;
-    
-    public DtInfoReserva(int idReserva, String nombreArticulo, int cantidad, String nickProv){
+    private float precioArticulo;
+
+    public DtInfoReserva(DtFecha fechaIni, DtFecha fechaFin, int cantidad, String nameArticulo, String nickProveedor, int idReserva, float precioArticulo) {
+        this.fechaIni = fechaIni;
+        this.fechaFin = fechaFin;
+        this.cantidad = cantidad;
+        this.nameArticulo = nameArticulo;
+        this.nickProveedor = nickProveedor;
         this.idReserva = idReserva;
+        this.precioArticulo = precioArticulo;
+    }
+      
+    public DtInfoReserva(String nombreArticulo, int cantidad, String nickProv, DtFecha fechaFin, DtFecha fechaIni, float precio){
         this.nameArticulo = nombreArticulo;
         this.cantidad = cantidad;
         this.nickProveedor = nickProv;
-    }
-    
-    public DtInfoReserva(infoReserva infoRes){
-        this.idReserva = infoRes.GetReserva().GetId();
-        this.nameArticulo = infoRes.GetArticulo().GetNombre();
-        this.cantidad = infoRes.GetCantidad();
-        this.fechaIni = infoRes.GetFechaIni();
-        this.fechaFin = infoRes.GetFechaFin();
-        this.nickProveedor = infoRes.getNickProveedor();
+        this.fechaIni = fechaIni;
+        this.fechaFin = fechaFin;
     }
     
     public DtFecha GetFechaIni(){
         return this.fechaIni;
-    }
-    
-    public float getPrecioArticulo() {
-        return precioArticulo;
     }
     
     public DtFecha GetFechaFin(){
@@ -51,6 +49,10 @@ public class DtInfoReserva {
 
     public String getNickProveedor() {
         return nickProveedor;
+    }
+    
+    public float getPrecioArticulo() {
+        return this.precioArticulo;
     }
     
     

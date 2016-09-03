@@ -51,10 +51,6 @@ public class Servicio extends Articulo{
         return this.descripcion;
     }
     
-    public Float GetFloat(){
-        return this.precio;
-    }
-    
     public boolean isPromocion(){
         return false;
     }

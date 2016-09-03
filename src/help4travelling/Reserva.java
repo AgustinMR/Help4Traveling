@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package help4travelling;
 
 import java.util.ArrayList;
@@ -8,7 +13,7 @@ public class Reserva {
     private int id;
     private DtFecha date;
     private Estado estado;
-    private ArrayList infoReserva;
+    private ArrayList<infoReserva> infoReserva = new  ArrayList<infoReserva>();
     private Cliente cli;;
     private float precio;
 
@@ -32,7 +37,7 @@ public class Reserva {
         return this.estado;
     }
     
-    public ArrayList GetInfoReservas(){
+    public ArrayList<infoReserva> GetInfoReservas(){
         return this.infoReserva;
     }
     
@@ -40,17 +45,28 @@ public class Reserva {
         return this.cli;
     }
     
+    public Reserva(DtReserva dtres, Cliente c, int id, ArrayList<infoReserva> infoRes){
+        this.id = id;
+        this.date = dtres.GetFecha();
+        this.estado = dtres.GetEstado();
+        this.precio = dtres.getPrecio();
+        this.infoReserva = infoRes;
+        this.cli = c;        
+    }
+    
     public Reserva(DtReserva dtres, Cliente c, int id){
         this.id = id;
         this.date = dtres.GetFecha();
         this.estado = dtres.GetEstado();
         this.precio = dtres.getPrecio();
-        this.infoReserva = dtres.GetInfoReservas();
+        this.infoReserva = null;
         this.cli = c;        
     }
     
+    
+    
     public infoReserva ReservarArticulo(DtInfoReserva dtir, Articulo a){
-        return new infoReserva(dtir, a, this, a.getProv());
+        return new infoReserva(dtir, a, this);
     }
     
     public void EnlazarReserva(infoReserva ir){
@@ -58,11 +74,16 @@ public class Reserva {
     }
     
     public void DesenlazarReserva(infoReserva ar){
+        ar.DesenlazarInfoReserva();
         this.infoReserva.remove(ar);
     }
     
     public DtReserva GetDtReserva(){
-        return new DtReserva(this);
+        ArrayList<DtInfoReserva> arrayDtInfo = new ArrayList<DtInfoReserva>();
+        for (int i = 0; i < infoReserva.size(); i++) {
+            arrayDtInfo.add(infoReserva.get(i).GetDtInfoReserva());
+        }
+        return new DtReserva(this.id, this.estado, this.date, arrayDtInfo , this.cli.getNick(), this.precio);
     }
     
     public Set<DtInfoReserva> GetArticulosReservados(){

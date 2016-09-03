@@ -1,5 +1,6 @@
 package help4travelling;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 /**
@@ -21,10 +22,10 @@ public class ControladorReserva implements IControladorReserva{
         return true;
     }
     
-    public void CrearReserva(DtReserva dtRes){        
+   public Reserva CrearReserva(DtReserva dtRes){        
         Cliente cli = ManejadorUsuario.getinstance().ObtenerCliente(dtRes.GetCliente());
-        Reserva res = ManejadorReserva.GetInstance().CrearReserva(dtRes, cli);
-        this.res = res;
+        res = ManejadorReserva.GetInstance().CrearReserva(dtRes, cli);
+        return res;
     }
     
     public void ReservarArticulo(DtInfoReserva dtir){

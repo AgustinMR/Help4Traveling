@@ -6,4 +6,5 @@ package help4travelling;
  */
 public abstract interface IControladorReserva {
     public abstract boolean actualizarEstado(Estado e,String r);
+    public abstract Reserva CrearReserva(DtReserva dtRes);
 }

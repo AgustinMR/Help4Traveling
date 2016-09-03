@@ -10,7 +10,7 @@ import java.util.HashSet;
 public abstract interface IControladorArticulo {
     public abstract boolean CrearPromocion(DtPromocion DtProm);
     public abstract ArrayList<String> listarPromociones();
-    public abstract Set<DtServicio> ListarServicios();
+    public abstract ArrayList<DtServicio> ListarServicios();
     public abstract void PublicarServicio(String nameServ, String nameProv);
     public abstract DtPromocion datosPromociones(String nombreProm, String nameProv);
     public abstract DtServicio datosServicio(String nombreServ, String nameProv);

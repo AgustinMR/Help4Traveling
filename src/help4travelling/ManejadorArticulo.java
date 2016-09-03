@@ -50,8 +50,8 @@ public class ManejadorArticulo {
         return ArrayPromociones;
     }
      
-    public Set<DtServicio> ListarServicios(){
-        Set<DtServicio> ret = new HashSet<DtServicio>();
+    public ArrayList<DtServicio> ListarServicios(){
+        ArrayList<DtServicio> ret = new ArrayList<DtServicio>();
         for (int i = 0; i < articulos.size(); i++) {
             if(articulos.get(i).IsServicio()){
                 ret.add(articulos.get(i).GetDtServicio());
@@ -102,14 +102,14 @@ public class ManejadorArticulo {
         return Art;
     }
     
-    public boolean insertarServicio(String nombre, String nickProv, String desc, Ciudad ciudadO, Ciudad ciudadD, float precio){
+    public boolean insertarServicio(DtServicio DtServ, Ciudad ciudadO, Ciudad ciudadD){
        for (int i = 0; i < articulos.size(); i++) {
-            if (articulos.get(i).GetNombre() == nombre && articulos.get(i).getProv() == nickProv )
+            if (articulos.get(i).GetNombre() == DtServ.getNombre() && articulos.get(i).getProv() == DtServ.getNickProveedor() )
                 return false;
        }
-       Servicio serv = new Servicio(nombre, nickProv, desc, ciudadO, ciudadD, precio);
+       Servicio serv = new Servicio(DtServ.getNombre(), DtServ.getNickProveedor(), DtServ.getDescripcion(), ciudadO, ciudadD, DtServ.getPrecio());
        articulos .add((Articulo)serv);
        //mandar datos a la base de datos
-       return true;
+       return ManejadorSQL.GetInstance().agregarServicio(DtServ, DtServ.getNickProveedor(), DtServ.getCategorias());
     }
 }

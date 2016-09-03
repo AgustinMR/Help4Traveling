@@ -17,9 +17,9 @@ public class ControladorArticulo implements IControladorArticulo{
         Ciudad ciudadO = ManejadorCiudad.GetInstance().BuscarCiudad(DtServ.getCiudadOrigen());
         if (DtServ.getCiudadDestino() != null){
             Ciudad ciudadD = ManejadorCiudad.GetInstance().BuscarCiudad(DtServ.getCiudadDestino());
-            return ManejadorArticulo.GetInstance().insertarServicio(DtServ.getNombre(), DtServ.getNickProveedor(), DtServ.getDescripcion(), ciudadO, ciudadD, DtServ.getPrecio());
+            return ManejadorArticulo.GetInstance().insertarServicio(DtServ, ciudadO, ciudadD);
         }else{
-            return ManejadorArticulo.GetInstance().insertarServicio(DtServ.getNombre(), DtServ.getNickProveedor(), DtServ.getDescripcion(), ciudadO, null, DtServ.getPrecio());
+            return ManejadorArticulo.GetInstance().insertarServicio(DtServ, ciudadO, null);
         }
     }
     
@@ -41,7 +41,7 @@ public class ControladorArticulo implements IControladorArticulo{
         return ManejadorArticulo.GetInstance().listarPromociones();
     }
     
-    public Set<DtServicio> ListarServicios()
+    public ArrayList<DtServicio> ListarServicios()
     {
         return ManejadorArticulo.GetInstance().ListarServicios();
     }

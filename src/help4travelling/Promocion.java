@@ -50,4 +50,12 @@ public class Promocion extends Articulo {
         servicios.add(ser);
     }
     
+    public Float getPrecio(){
+        float precioT = 0;
+        for (int i = 0; i < servicios.size(); i++) {
+               precioT = precioT + servicios.get(i).getPrecio();
+        }
+        return (descuento*precioT)/100;
+    }
+    
 }

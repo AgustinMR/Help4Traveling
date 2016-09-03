@@ -160,6 +160,32 @@ public class ManejadorSQL {
         return ret;
     }
     
+    // DEVOLVER RESERVA
+    public DtReserva devolverReserva(int idReserva){
+        DtReserva ret = null;
+        String sql1 = "SELECT precioTotal, fechaCreacion, estado, nicknameCliente FROM RESERVAS WHERE id = '" + idReserva + "';";
+        String sql2 = "SELECT cantArticulos, nicknameProveedor, nombreArticulo, fechaIni, fechaFin, precioUnitario, precioTotal FROM INFO_RESERVA WHERE id = '" + idReserva + "';";
+        try {
+            Connection conex = getConex();
+            Statement usuario = conex.createStatement();
+            float ptR; String nickC, estado; DtFecha fc; ArrayList<DtInfoReserva> r = new ArrayList();
+            ResultSet rs = usuario.executeQuery(sql1);
+            rs.next();
+            ptR = rs.getFloat("precioTotal");
+            fc = new DtFecha(rs.getDate("fechaCreacion").toString());
+            estado = rs.getString("estado");
+            nickC = rs.getString("nicknameCliente");
+            rs = usuario.executeQuery(sql2);
+            while(rs.next()){
+                r.add(new DtInfoReserva(new DtFecha(rs.getDate("fechaIni").toString()), new DtFecha(rs.getDate("fechaFin").toString()), rs.getInt("cantArticulos"), rs.getString("nombreArticulo"), rs.getString("nicknameProveedor"), idReserva, rs.getFloat("precioTotal")));
+            }
+            ret = new DtReserva();
+        } catch (SQLException ex) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ret;
+    }
+    
      // CARGAR CATEGORIAS
     public void cargarCategorias(){
         String sql = "SELECT nombre, nombreCategoriaPadre FROM HEREDA;";
@@ -218,12 +244,12 @@ public class ManejadorSQL {
     
     // ALTA DE SERVICIO.
     public boolean agregarServicio(DtServicio s, String nickProveedor, ArrayList<String> categorias){
-        String sql1 = "INSERT INTO ARTICULOS(nicknameProveedor, nombre) VALUES (" + nickProveedor + "," + s.getNombre() + " );";
+        String sql1 = "INSERT INTO ARTICULOS(nicknameProveedor, nombre) VALUES ('" + nickProveedor + "','" + s.getNombre() + "');";
         String sql2, sql3;
         if(s.getCiudadDestino().isEmpty())
-            sql2 = "INSERT INTO SERVICIOS(nicknameProveedor, nombreArticulo, descripcion, precio, ciudadO) VALUES (" + nickProveedor + ", " + s.getNombre() + ", " + s.getDescripcion() + ", " + s.getPrecio() + ", " + s.getCiudadOrigen() + " );";
+            sql2 = "INSERT INTO SERVICIOS(nicknameProveedor,nombreArticulo,descripcion,precio,ciudadO) VALUES ('" + nickProveedor + "','" + s.getNombre() + "','" + s.getDescripcion() + "'," + s.getPrecio() + ",'" + s.getCiudadOrigen() + "');";
         else
-            sql2 = "INSERT INTO SERVICIOS(nicknameProveedor, nombreArticulo, descripcion, precio, ciudadO, ciudadD) VALUES (" + nickProveedor + ", " + s.getNombre() + ", " + s.getDescripcion() + ", " + s.getPrecio() + ", " + s.getCiudadOrigen() + ", " + s.getCiudadDestino() + " );";
+            sql2 = "INSERT INTO SERVICIOS(nicknameProveedor,nombreArticulo,descripcion,precio,ciudadO,ciudadD) VALUES ('" + nickProveedor + "','" + s.getNombre() + "','" + s.getDescripcion() + "'," + s.getPrecio() + ",'" + s.getCiudadOrigen() + "','" + s.getCiudadDestino() + "' );";
         Statement usuario;
         // para cuando se considere las imagenes, hacer un alter table por cada imagen. de esa manera, no hay que hacer if anidados, por ambos casos.
         boolean ret = false;
@@ -231,11 +257,13 @@ public class ManejadorSQL {
             Connection conex = getConex();
             usuario = conex.createStatement();
             usuario.executeUpdate(sql1); // ingreso en articulos
+            this.setForeignKeysOff(usuario);
             usuario.executeUpdate(sql2); // ingreso en servicios
             for(int x = 0; x < categorias.size(); x++){
-                sql3 = "INSERT INTO POSEEN(nicknameProveedor, nombreArticulo, nombreCategoria) VALUES ( " + nickProveedor + ", " + s.getNombre() + ", " + categorias.get(x) + " );";
+                sql3 = "INSERT INTO POSEEN(nicknameProveedor, nombreArticulo, nombreCategoria) VALUES ('" + nickProveedor + "','" + s.getNombre() + "','" + categorias.get(x) + "');";
                 usuario.executeUpdate(sql3); // ingreso las categorias, asumo que estas ya existen debido a que fueron seleccionadas.
             }
+            this.setForeignKeysOn(usuario);
             ret = true;
             conex.close();
         } catch (SQLException ex) {
@@ -287,7 +315,7 @@ public class ManejadorSQL {
         return ret;
     }
     
-    // ALTA DE RESERVAS
+        // ALTA DE RESERVAS
     public boolean agregarReserva(DtReserva r){
         boolean ret = false;
         Statement usuario;
@@ -305,7 +333,7 @@ public class ManejadorSQL {
                 sql3 += " VALUES ('" + id + "', '" + inf.GetCantidad() + "', '" + inf.getNickProveedor() + "', '" + inf.GetNombreArticulo() + "', '";
                 sql3 += inf.GetFechaIni().getAnio() + "/" + inf.GetFechaIni().getMes() + "/" + inf.GetFechaIni().getDia() + "', '";
                 sql3 += inf.GetFechaFin().getAnio() + "/" + inf.GetFechaFin().getMes() + "/" + inf.GetFechaFin().getDia() + "', '";
-                sql3 += (inf.GetCantidad()*inf.getPrecioArticulo()) + "', '" + inf.getNickProveedor() + "', '" + inf.GetNombreArticulo() + "', ";
+                sql3 += inf.getPrecioArticulo() + "', '" + (inf.GetCantidad()*inf.getPrecioArticulo()) + "';)";
             }
             conex.close();
             ret = true;
@@ -461,22 +489,18 @@ public class ManejadorSQL {
         return null;
     }
     
-    public void setForeignKeysOff(){
+    public void setForeignKeysOff(Statement usuario){
         try {
             String sql1 = "SET FOREIGN_KEY_CHECKS=0;";
-            Connection conex = getConex();
-            Statement usuario = conex.createStatement();
             usuario.executeUpdate(sql1);
         } catch (SQLException ex) {
             Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public void setForeignKeysOn(){
+    public void setForeignKeysOn(Statement usuario){
         try {
             String sql1 = "SET FOREIGN_KEY_CHECKS=1;";
-            Connection conex = getConex();
-            Statement usuario = conex.createStatement();
             usuario.executeUpdate(sql1);
         } catch (SQLException ex) {
             Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;        
 import java.util.List;
-
+import java.util.Calendar;
 /**
  *
  * @author tecnoinf
@@ -89,7 +89,49 @@ public class help5test {
         }
     }
      
-     public static void TestAltaCategoria(String nombre, String nombrePadre){
+     public static void TestAltaReserva(){
+        ArrayList<DtInfoReserva> arrayInfoRes = new ArrayList<DtInfoReserva>();
+        DtFecha fech2 = new DtFecha(2016,1,7);
+        DtFecha fech21 = new DtFecha(2017,1,7);
+        arrayInfoRes.add(new DtInfoReserva("Euro-Car-2", 2, "moody", fech2, fech21, 500));
+        DtFecha fech3 = new DtFecha(2017,1,25);
+        DtFecha fech31 = new DtFecha(2017,1,20);
+        arrayInfoRes.add(new DtInfoReserva("Euro-Car-3", 1, "moody", fech3, fech31, 600));
+        
+        
+        Calendar calendario = Calendar.getInstance();
+        DtFecha fech = new DtFecha(calendario.get(Calendar.YEAR),calendario.get(Calendar.MONTH)+1,calendario.get(Calendar.DAY_OF_MONTH));
+        System.out.println(fech.getAnio() + " " + fech.getMes() + " " + fech.getDia());
+        
+        
+        DtReserva dataProv = new DtReserva(Estado.Registrada, fech, arrayInfoRes , "eWatson", 2600);
+        ControladorReserva CR = new ControladorReserva();
+        
+       /* CR.AltaProvedor(dataProv);
+        
+        //D)Verifico que fuera insertado efectivamente el cliente de la parte C
+        if (CU.VerificarUsuario(dataProv.getNick(), dataProv.getEmail()) == true){
+            System.out.println("El usuario ya existe en el sistema");
+        }*/
+    }
+     
+     
+     
+     public static void TestAltaServicio (String nombre, String nombrePadre){
+        ControladorArticulo CA = new ControladorArticulo();
+        //CC.IngresarCategoria(nombre, nombrePadre);
+        ArrayList<String> arrayCat = new ArrayList<String>();
+        arrayCat.add("Automóviles");
+        arrayCat.add("Cruceros");
+        DtServicio serv = new DtServicio("nombre2", "tCook", 500, "hola que tal", arrayCat, "Montevideo", "Valencia");
+        boolean b = CA.insertarServicio(serv);
+        System.out.println(b);
+        for (int i = 0; i < CA.ListarServicios().size(); i++) {
+            System.out.println(CA.ListarServicios().get(i).getNombre());
+        }
+    }
+     
+     public static void TestAltaCategoria (){
         ControladorCategoria CC = new ControladorCategoria();
         //CC.IngresarCategoria(nombre, nombrePadre);
         ArrayList<DtCategoria> ac = CC.listarCategorias();
@@ -167,7 +209,9 @@ public class help5test {
         
         //TestAltaProvedor("ale5");
         
-        TestAltaCategoria("holaaaa", "todas");
+        TestAltaReserva();
+        
+        //TestAltaServicio("holaaaa", "todas");
         
         // TestVerInfoProveedor("Mr Proveedor");
         
