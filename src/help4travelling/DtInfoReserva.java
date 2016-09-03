@@ -7,6 +7,7 @@ public class DtInfoReserva {
     private String nameArticulo;
     private String nickProveedor;
     private int idReserva;
+    float precioArticulo;
     
     public DtInfoReserva(int idReserva, String nombreArticulo, int cantidad, String nickProv){
         this.idReserva = idReserva;
@@ -26,6 +27,10 @@ public class DtInfoReserva {
     
     public DtFecha GetFechaIni(){
         return this.fechaIni;
+    }
+    
+    public float getPrecioArticulo() {
+        return precioArticulo;
     }
     
     public DtFecha GetFechaFin(){

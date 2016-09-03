@@ -217,7 +217,7 @@ public class ManejadorSQL {
     }
     
     // ALTA DE SERVICIO.
-    public boolean agregarArticulo(DtServicio s, String nickProveedor, ArrayList<String> categorias){
+    public boolean agregarServicio(DtServicio s, String nickProveedor, ArrayList<String> categorias){
         String sql1 = "INSERT INTO ARTICULOS(nicknameProveedor, nombre) VALUES (" + nickProveedor + "," + s.getNombre() + " );";
         String sql2, sql3;
         if(s.getCiudadDestino().isEmpty())
@@ -289,28 +289,29 @@ public class ManejadorSQL {
     
     // ALTA DE RESERVAS
     public boolean agregarReserva(DtReserva r){
+        boolean ret = false;
         Statement usuario;
-        String sql1 = "INSERT INTO RESERVAS(precioTotal, fechaCreacion, estado, nicknameCliente) VALUES (" + r.getPrecio() + ", " + r.GetFecha().getAnio() + "/" + r.GetFecha().getMes() + "/" + r.GetFecha().getDia() + ", " + r.GetEstado() + ", " + r.GetCliente() + " );";
+        String sql1 = "INSERT INTO RESERVAS(precioTotal, fechaCreacion, estado, nicknameCliente) VALUES ('" + r.getPrecio() + "', '" + r.GetFecha().getAnio() + "/" + r.GetFecha().getMes() + "/" + r.GetFecha().getDia() + "', '" + r.GetEstado() + "', '" + r.GetCliente() + "' );";
         // NO BORRAR -- String sql2 = "SELECT id FROM RESERVAS WHERE precioTotal = " + r.getPrecio() + " AND fechaCreacion = " + r.GetFecha().getAnio() + "/" + r.GetFecha().getMes() + "/" + r.GetFecha().getDia() + " AND estado = " + r.GetEstado() + " AND nickaname = " + r.GetCliente() + ";";
         String sql3;
-     /*   try {
+        try {
+            Connection conex = getConex();
             usuario = conex.createStatement();
-            usuario.execute(sql1);
-            String id = usuario.getGeneratedKeys().getString("id");
+            int id = usuario.getGeneratedKeys().getInt("id");
+            DtInfoReserva inf = null;
             for(int x = 0; x < r.GetInfoReservas().size(); x++){
+                inf = (DtInfoReserva) r.GetInfoReservas().get(x);
                 sql3 = "INSERT INTO INFO_RESERVA(id, cantArticulos, nicknameProveedor, nombreArticulo, fechaIni, fechaFin, precioUnitario, precioTotal)";
-                sql3 += " VALUES (" + id + ", " + r.GetInfoReservas(). + ", " + p.GetDescuento() + ", " + p.GetPrecioTotal() + " );";
-
+                sql3 += " VALUES ('" + id + "', '" + inf.GetCantidad() + "', '" + inf.getNickProveedor() + "', '" + inf.GetNombreArticulo() + "', '";
+                sql3 += inf.GetFechaIni().getAnio() + "/" + inf.GetFechaIni().getMes() + "/" + inf.GetFechaIni().getDia() + "', '";
+                sql3 += inf.GetFechaFin().getAnio() + "/" + inf.GetFechaFin().getMes() + "/" + inf.GetFechaFin().getDia() + "', '";
+                sql3 += (inf.GetCantidad()*inf.getPrecioArticulo()) + "', '" + inf.getNickProveedor() + "', '" + inf.GetNombreArticulo() + "', ";
             }
+            conex.close();
             ret = true;
-        } catch (SQLException ex) {
+        } catch(SQLException ex){
             Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
-        */
-        
-        
-        boolean ret = false;
-
         return ret;
     }
     

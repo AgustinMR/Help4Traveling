@@ -1,14 +1,13 @@
 
 package help4travelling;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
 public class DtReserva {
     private int id;
     private DtFecha date;
     private Estado estado;
-    private Set infoReserva = new HashSet<DtInfoReserva>();
+    private ArrayList infoReserva = new ArrayList<DtInfoReserva>();
     private String cli;
     private float precio;
     public DtReserva(int id, Estado estado, String nickCli){
@@ -42,7 +41,7 @@ public class DtReserva {
         return this.estado;
     }
     
-    public Set GetInfoReservas(){
+    public ArrayList GetInfoReservas(){
         return this.infoReserva;
     }
     
