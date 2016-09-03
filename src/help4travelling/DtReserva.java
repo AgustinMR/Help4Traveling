@@ -21,7 +21,6 @@ public class DtReserva {
     }    
     
      public DtReserva(Estado estado, DtFecha date, ArrayList<DtInfoReserva> infoReserva ,String nickCli, float precio){
-        this.id = id;
         this.estado = estado;
         this.date = date;
         this.infoReserva = infoReserva;

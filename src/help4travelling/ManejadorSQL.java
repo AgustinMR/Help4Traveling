@@ -179,7 +179,8 @@ public class ManejadorSQL {
             while(rs.next()){
                 r.add(new DtInfoReserva(new DtFecha(rs.getDate("fechaIni").toString()), new DtFecha(rs.getDate("fechaFin").toString()), rs.getInt("cantArticulos"), rs.getString("nombreArticulo"), rs.getString("nicknameProveedor"), idReserva, rs.getFloat("precioTotal")));
             }
-            ret = new DtReserva();
+            ret = new DtReserva(idReserva, Estado.valueOf(estado), fc, r, nickC, ptR);
+            usuario.close();
         } catch (SQLException ex) {
             Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
