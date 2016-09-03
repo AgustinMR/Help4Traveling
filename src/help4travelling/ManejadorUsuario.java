@@ -48,7 +48,7 @@ public class ManejadorUsuario {
      
      public List<String> listarProveedores(){
          //Creo la lista a para devolver
-         List<String> userCi = new ArrayList<String>();      
+        /*        List<String> userCi = new ArrayList<String>();      
          //creo un iterador para recorrer las claves del mapa
          Iterator it = usuarios.keySet().iterator();
          
@@ -67,7 +67,8 @@ public class ManejadorUsuario {
 
                 }
          
-      return  userCi;
+      return  userCi;*/
+      return ManejadorSQL.GetInstance().cargarProveedores();
   }
     public Cliente ObtenerCliente(String nameCli){
         return (Cliente)this.usuarios.get(nameCli);         
