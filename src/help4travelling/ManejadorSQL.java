@@ -102,6 +102,25 @@ public class ManejadorSQL {
         return ret;
     }
     
+    // CARGAR ARTICULOS
+    public HashMap<String, String> cargarArticulos(){
+        String sql = "SELECT nicknameProveedor, nombreArticulo FROM ARTICULOS;";
+        Statement usuarios;
+        HashMap<String, String> ret = new HashMap<>();
+        try {
+            Connection conex = getConex();
+            usuarios = conex.createStatement();
+            ResultSet rs = usuarios.executeQuery(sql);
+            while(usuarios.getResultSet().next()){
+                ret.put(rs.getString("nicknameProveedor"),rs.getString("nombre"));
+            } 
+            conex.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ret;
+    }
+    
     // CARGAR SERVICIOS
     public HashMap<String, String> cargarServicios(){
         String sql = "SELECT nicknameProveedor, nombreArticulo FROM SERVICIOS;";
@@ -138,7 +157,6 @@ public class ManejadorSQL {
             Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return ret;
-     
     }
     
     // CARGAR RESERVAS
