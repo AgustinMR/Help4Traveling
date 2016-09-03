@@ -3,10 +3,6 @@ package help4travelling;
 import java.util.HashMap;
 import java.util.ArrayList;
 
-/**
- *
- * @author Bruno
- */
 public class Proveedor extends Usuario{
 
     private String nombreEmpresa;
@@ -37,10 +33,12 @@ public class Proveedor extends Usuario{
 
 
     public DtProveedor getDtProveedor(){
-        ArrayList<Servicio> ArrayServicios = new ArrayList<Servicio>();
+        ArrayList<DtServicio> ArrayServicios = new ArrayList<DtServicio>();
         for (String name: servicios.keySet()) {
-            ArrayServicios.add(servicios.get(name));
+            ArrayServicios.add(new DtServicio(servicios.get(name)));
         }
         return new DtProveedor(nick, nombre, apellido, email, fechaN, avatar, nombreEmpresa, url, ArrayServicios);
+        
+        
     }
 }

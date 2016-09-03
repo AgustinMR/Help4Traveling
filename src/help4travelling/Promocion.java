@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Promocion extends Articulo {
     private float descuento;
     private float precioTotal;
-    private HashMap<String, Servicio> servicios = new HashMap<String, Servicio>();
+    private ArrayList<Servicio> servicios = new ArrayList<Servicio>();
     
     public Promocion(DtPromocion DtProm){
         String name = DtProm.GetNombre();
@@ -27,17 +27,19 @@ public class Promocion extends Articulo {
     }
     
     public DtPromocion getDtPromocion(){
-        ArrayList<String> ArrayServicios = new ArrayList<String>();
         float precioT = 0;
-        for (String name: servicios.keySet()) {
-            precioT = precioT + servicios.get(name).getPrecio();
-            ArrayServicios.add(servicios.get(name).GetNombre());
+        for (int i = 0; i < servicios.size(); i++) {
+             precioT = precioT + servicios.get(i).getPrecio();
         }
-        return new DtPromocion(nombre, descuento, precioT, ArrayServicios);
+        return new DtPromocion(nombre, descuento, precioT, servicios);
     }
     
-    public DtServicio getDatosServProm(String nombreServ){
-        return servicios.get(nombreServ).getDtServicio();
+    public DtServicio getDatosServProm(String nombreServ, String nombreProv){
+        for (int i = 0; i < servicios.size(); i++) {
+              if (servicios.get(i).GetNombre() == nombreServ && servicios.get(i).getProv() == nombreProv);
+                    return servicios.get(i).getDtServicio();                    
+        }
+        return null;
     }
     
     public DtServicio GetDtServicio(){
@@ -45,7 +47,7 @@ public class Promocion extends Articulo {
     }
     
     public void AgregarServicio(Servicio ser){
-        servicios.put(ser.GetNombre(), ser);
+        servicios.add(ser);
     }
     
 }

@@ -2,6 +2,7 @@ package help4travelling;
 
 import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.Set;
 
 public class DtCliente {
     

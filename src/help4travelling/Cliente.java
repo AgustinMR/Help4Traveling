@@ -20,9 +20,10 @@ public class Cliente extends Usuario{
     public DtCliente getDtCliente(){
         ArrayList<Integer> ArrayReservas = new ArrayList<Integer>();
         for (String name: reservas.keySet()) {
-         //   ArrayReservas.add(reservas.get(name));
+             ArrayReservas.add(reservas.get(name).GetId());
         }
         return new DtCliente(nick, nombre, apellido, email, fechaN, avatar, ArrayReservas);
+        
     }
 
     public Cliente() {
@@ -90,14 +91,12 @@ public class Cliente extends Usuario{
         this.avatar = avatar;
     }
 
-    @Override
     public String getNickCliente() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.nick;
     }
 
-    @Override
     public String getNickProveedor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
   
 }

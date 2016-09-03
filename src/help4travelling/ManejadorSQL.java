@@ -64,7 +64,7 @@ public class ManejadorSQL {
         return ret;
     }
     
-            // CARGAR CLIENTES
+    // CARGAR CLIENTES
     public ArrayList<String> cargarClientes(){
         String sql = "SELECT nicknameCliente FROM PROVEEDORES;";
         Statement usuarios;
@@ -76,6 +76,25 @@ public class ManejadorSQL {
             while(rs.next()){
                 ret.add(rs.getString("nicknameCliente"));
             }
+            conex.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ret;
+    }
+    
+    // CARGAR CIUDADES POR PAISES
+    public HashMap<String, String> cargarCiudades(){
+        String sql = "SELECT nombrePais, nombre FROM CIUDADES;";
+        Statement usuarios;
+        HashMap<String, String> ret = new HashMap<>();
+        try {
+            Connection conex = getConex();
+            usuarios = conex.createStatement();
+            ResultSet rs = usuarios.executeQuery(sql);
+            while(usuarios.getResultSet().next()){
+                ret.put(rs.getString("nombrePais"),rs.getString("nombre"));
+            } 
             conex.close();
         } catch (SQLException ex) {
             Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
@@ -119,7 +138,7 @@ public class ManejadorSQL {
             Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return ret;
-     // CARGAR CATEGORIAS
+     
     }
     
     // CARGAR RESERVAS
@@ -157,8 +176,6 @@ public class ManejadorSQL {
             Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
     
     // ALTA DE CLIENTE
     public boolean agregarUsuario(DtCliente c){
@@ -317,31 +334,62 @@ public class ManejadorSQL {
     // DEVOLVER USUARIO
     public DtCliente devolverCliente(String nickUsuario){
         DtCliente ret = null;
-        String sql1 = "SELECT nombre, apellido, email, fechaNac FROM USUARIOS WHERE nickname = " + nickUsuario + ";";
-        String sql2 = "SELECT id FROM RESERVAS WHERE nicknameCliente = " + nickUsuario + ";";
+        String sql1 = "SELECT nombre, apellido, email, fechaNac FROM USUARIOS WHERE nickname = '" + nickUsuario + "';";
+        String sql2 = "SELECT id FROM RESERVAS WHERE nicknameCliente = '" + nickUsuario + "';";
         String name, ap, email, fechaN;
         ArrayList<Integer> ids = new ArrayList<Integer>();
-        Statement usuario;
-     /*   try {
-            usuario = conex.createStatement();
-            usuario.execute(sql1);
-            name = usuario.getResultSet().getString("nombre");
-            ap = usuario.getResultSet().getString("apellido");
-            email = usuario.getResultSet().getString("email");
-            fechaN = usuario.getResultSet().getDate("fechaNac").toString();
-            usuario.execute(sql2);
-            while(!usuario.getResultSet().isAfterLast()){
+        try {
+            Connection conex = getConex();
+            Statement usuario = conex.createStatement();
+            ResultSet rs = usuario.executeQuery(sql1);
+            rs.next();
+            name = rs.getString("nombre");
+            ap = rs.getString("apellido");
+            email = rs.getString("email");
+            fechaN = rs.getDate("fechaNac").toString();
+            DtFecha nac = new DtFecha(fechaN);
+            rs = usuario.executeQuery(sql2);
+            while(rs.next()){
                 ids.add(usuario.getResultSet().getInt("id"));
-                usuario.getResultSet().next();
             }
-            DtCliente ret = new DtCliente(nickUsuario, name, ap, email,);
-            ret = true;
+            ret = new DtCliente(nickUsuario, name, ap, email, nac, ids);
         } catch (SQLException ex) {
             Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
-        */
         return ret;
+    }
     
+        // DEVOLVER PROVEEDOR
+    public DtProveedor devolverProveedor(String nickUsuario){
+        DtProveedor ret = null;
+        String sql1 = "SELECT nombre, apellido, email, fechaNac FROM USUARIOS WHERE nickname = '" + nickUsuario + "';";
+        String sql2 = "SELECT nombreEmp, linkEmp FROM PROVEEDORES WHERE nicknameProveedor = '" + nickUsuario + "';";
+        String sql3 = "SELECT nombreArticulo FROM SERVICIOS WHERE nicknameProveedor = '" + nickUsuario + "';";
+        String name, ap, email, fechaN, nombreE, linkE;
+        ArrayList<DtServicio> nombreA = new ArrayList<DtServicio>();
+        try {
+            Connection conex = getConex();
+            Statement usuario = conex.createStatement();
+            ResultSet rs = usuario.executeQuery(sql1);
+            rs.next();
+            name = rs.getString("nombre");
+            ap = rs.getString("apellido");
+            email = rs.getString("email");
+            fechaN = rs.getDate("fechaNac").toString();
+            DtFecha nac = new DtFecha(fechaN);
+            rs = usuario.executeQuery(sql2);
+            rs.next();
+            nombreE = rs.getString("nombreEmp");
+            linkE = rs.getString("linkEmp");
+            rs = usuario.executeQuery(sql3);
+            while(rs.next()){
+                nombreA.add(new DtServicio(rs.getString("nombreArticulo")));
+            }
+            ret = new DtProveedor(nickUsuario, name, ap, email, nac, nombreE, linkE, nombreA);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ret;
     }
     
     // DEVOLVER SERVICIOS
@@ -354,25 +402,54 @@ public class ManejadorSQL {
         Statement usuario;
         DtServicio ret = null;
         try{
-            Connection conex = getConex();
-            usuario = conex.createStatement();
-            ResultSet rs = usuario.executeQuery(sql1);
-            desc = rs.getString("descripcion");
-            p = rs.getFloat("precio");
-            co = rs.getString("ciudadO");
-            cd = rs.getString("ciudadD");
-            rs = usuario.executeQuery(sql2);
-            while(rs.next()){
-                categorias.add(rs.getString("nombreCategoria"));
+            try (Connection conex = getConex()) {
+                usuario = conex.createStatement();
+                ResultSet rs = usuario.executeQuery(sql1);
+                desc = rs.getString("descripcion");
+                p = rs.getFloat("precio");
+                co = rs.getString("ciudadO");
+                cd = rs.getString("ciudadD");
+                rs = usuario.executeQuery(sql2);
+                while(rs.next()){
+                    categorias.add(rs.getString("nombreCategoria"));
+                }
+                ret = new DtServicio(nombre,nickProveedor, p, desc, categorias, co, cd);
             }
-            ret = new DtServicio(nombre, p, desc, categorias, co, cd);
-            conex.close();
         } catch (SQLException ex) {
             Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return ret;
     }
 
+        // DEVOLVER PROMOCIONES
+    public DtServicio devolverPromocion(String nickProveedor, String nombre){
+        String sql1 = "SELECT descripcion, precio, ciudadO, ciudadD FROM SERVICIOS WHERE nicknameProveedor = " + nickProveedor + " AND nombreArticulo = "+ nombre + ";";
+        String sql2 = "SELECT nombreCategoria FROM POSEEN WHERE nicknameProveedor = " + nickProveedor + " AND nombreArticulo = "+ nombre + ";";
+        String desc, co, cd;
+        float p;
+        ArrayList<String> categorias = new ArrayList<String>();
+        Statement usuario;
+        DtServicio ret = null;
+        try{
+            try (Connection conex = getConex()) {
+                usuario = conex.createStatement();
+                ResultSet rs = usuario.executeQuery(sql1);
+                desc = rs.getString("descripcion");
+                p = rs.getFloat("precio");
+                co = rs.getString("ciudadO");
+                cd = rs.getString("ciudadD");
+                rs = usuario.executeQuery(sql2);
+                while(rs.next()){
+                    categorias.add(rs.getString("nombreCategoria"));
+                }
+                ret = new DtServicio(nombre,nickProveedor, p, desc, categorias, co, cd);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ret;
+    }
+    
     public Connection getConex() {
         try {
             Connection c = DriverManager.getConnection("jdbc:mysql://"+ this.ip +":3306/bd_help4traveling?useSSL=false", "root", "tecnoDBweb2016");
@@ -382,7 +459,29 @@ public class ManejadorSQL {
         }
         return null;
     }
-
+    
+    public void setForeignKeysOff(){
+        try {
+            String sql1 = "SET FOREIGN_KEY_CHECKS=0;";
+            Connection conex = getConex();
+            Statement usuario = conex.createStatement();
+            usuario.executeUpdate(sql1);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void setForeignKeysOn(){
+        try {
+            String sql1 = "SET FOREIGN_KEY_CHECKS=1;";
+            Connection conex = getConex();
+            Statement usuario = conex.createStatement();
+            usuario.executeUpdate(sql1);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public ManejadorSQL getInstance() {
         return instance;
     }

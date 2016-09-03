@@ -10,10 +10,10 @@ public class DtPromocion {
     private String nombre;
     private float descuento;
     private float precioTotal;
-    private ArrayList<String> servicios;
+    private ArrayList<Servicio> servicios;
         
     
-     public DtPromocion(String nombre, float descuento, float precioTotal, ArrayList<String> servicios){
+     public DtPromocion(String nombre, float descuento, float precioTotal, ArrayList<Servicio> servicios){
         this.nombre=nombre;
         this.descuento=descuento;
         this.precioTotal=precioTotal;
@@ -28,7 +28,11 @@ public class DtPromocion {
         return this.descuento;
     }     
     
-     public float GetPrecioTotal() {
+    public float GetPrecioTotal() {
         return this.precioTotal;
-    }    
+    }
+
+    public ArrayList<Servicio> GetServicios() {
+        return this.servicios;
+    }      
 }

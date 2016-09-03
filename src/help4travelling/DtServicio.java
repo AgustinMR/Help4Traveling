@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class DtServicio {
  
     private String nombre;
+    private String nickProveedor;
     private Float precio;
     private Blob[] imagen;
     private String descripcion;
@@ -27,8 +28,9 @@ public class DtServicio {
         this.ciudadDestino=ciudadDestino;
     }
     
-    public DtServicio(String nombre, float precio, String descripcion, ArrayList<String> categorias, String ciudadOrigen, String ciudadDestino){
+    public DtServicio(String nombre, String nickProv, float precio, String descripcion, ArrayList<String> categorias, String ciudadOrigen, String ciudadDestino){
         this.nombre=nombre;
+        this.nickProveedor=nickProv;
         this.precio=precio;
         this.descripcion=descripcion;
         this.categorias=categorias; 
@@ -41,6 +43,10 @@ public class DtServicio {
         this.precio=precio;
         this.descripcion=descripcion;
     }
+    
+    public DtServicio(String nombre){
+        this.nombre=nombre;
+    }
      
     public DtServicio(Servicio serv){
         this.nombre = serv.GetNombre();
@@ -51,6 +57,10 @@ public class DtServicio {
     
     public String getNombre(){
         return this.nombre;
+    }
+    
+    public String getNickProveedor(){
+        return this.nickProveedor;
     }
     
     public Float getPrecio(){

@@ -94,7 +94,7 @@ public class help5test {
         //CC.IngresarCategoria(nombre, nombrePadre);
         ArrayList<DtCategoria> ac = CC.listarCategorias();
         for (int i = 0; i < ac.size(); i++) {
-            System.out.println(ac.get(i).getNombre() + " " + ac.get(i).getNombre());
+            System.out.println(ac.get(i).getNombre() + " " + ac.get(i).getNombrePadre());
         }
     }
     

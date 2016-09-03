@@ -3,10 +3,6 @@ package help4travelling;
 import java.sql.Blob;
 import java.util.ArrayList;
 
-/**
- *
- * @author Bruno
- */
 public class DtProveedor {
  
     private String nick;
@@ -17,16 +13,27 @@ public class DtProveedor {
     private Blob[] avatar;
     private String nombreEmpresa;
     private String url;
-    private ArrayList<Servicio> servicio;
+    private ArrayList<DtServicio> servicio;
     
      
-     public DtProveedor(String nick, String nombre, String apellido, String email, DtFecha fechaN, Blob[] avatar, String nombreEmpresa, String url, ArrayList<Servicio> servicio){
+     public DtProveedor(String nick, String nombre, String apellido, String email, DtFecha fechaN, Blob[] avatar, String nombreEmpresa, String url, ArrayList<DtServicio> servicio){
         this.nick=nick;
         this.nombre=nombre;
         this.apellido=apellido;
         this.email=email;
         this.fechaN=fechaN;
         this.avatar=avatar; 
+        this.nombreEmpresa=nombreEmpresa; 
+        this.url=url;
+        this.servicio=servicio;
+    }
+     
+    public DtProveedor(String nick, String nombre, String apellido, String email, DtFecha fechaN, String nombreEmpresa, String url, ArrayList<DtServicio> servicio){
+        this.nick=nick;
+        this.nombre=nombre;
+        this.apellido=apellido;
+        this.email=email;
+        this.fechaN=fechaN;
         this.nombreEmpresa=nombreEmpresa; 
         this.url=url;
         this.servicio=servicio;

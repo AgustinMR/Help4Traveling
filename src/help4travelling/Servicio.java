@@ -18,9 +18,12 @@ public class Servicio extends Articulo{
     private Ciudad ciudadDestino;
     //private Promocion[] prom;
     
-    public Servicio(String nombre, String descripcion, Float precio){
+    public Servicio(String nombre, String nickProv, String desc, Ciudad ciudadO, Ciudad ciudadD, float precio){
         this.SetNombre(nombre);
-        this.descripcion = descripcion;
+        this.setProv(nickProv);
+        this.descripcion = desc;
+        this.ciudadOrigen = ciudadO;
+        this.ciudadDestino = ciudadD;
         this.precio = precio;
     }
     
@@ -72,7 +75,7 @@ public class Servicio extends Articulo{
         return new DtServicio(this);        
     }
     
-    public DtServicio getDatosServProm(String nombreServ){
+    public DtServicio getDatosServProm(String nombreServ , String nomProv){
         return null;
     }    
     

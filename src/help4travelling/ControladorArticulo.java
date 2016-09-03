@@ -13,15 +13,20 @@ public class ControladorArticulo implements IControladorArticulo{
     
     public ControladorArticulo(){}
     
-    public void CrearServicio(DtServicio DtServ){
-        Servicio serv = new Servicio(DtServ);
-        ManejadorArticulo.GetInstance().AgregarServicio(serv);
+    public boolean insertarServicio(DtServicio DtServ){
+        Ciudad ciudadO = ManejadorCiudad.GetInstance().BuscarCiudad(DtServ.getCiudadOrigen());
+        if (DtServ.getCiudadDestino() != null){
+            Ciudad ciudadD = ManejadorCiudad.GetInstance().BuscarCiudad(DtServ.getCiudadDestino());
+            return ManejadorArticulo.GetInstance().insertarServicio(DtServ.getNombre(), DtServ.getNickProveedor(), DtServ.getDescripcion(), ciudadO, ciudadD, DtServ.getPrecio());
+        }else{
+            return ManejadorArticulo.GetInstance().insertarServicio(DtServ.getNombre(), DtServ.getNickProveedor(), DtServ.getDescripcion(), ciudadO, null, DtServ.getPrecio());
+        }
     }
     
     public boolean CrearPromocion(DtPromocion DtProm){
         String nameProm = DtProm.GetNombre();
         ManejadorArticulo manArt = ManejadorArticulo.GetInstance();
-        boolean ok = manArt.IsPromocion(nameProm);
+        boolean ok = manArt.IsPromocion(nameProm, DtProm.GetServicios().get(0).getProv());
         
         //Si la instancia no existe ya en el sistema puedo crearla
         if(ok == false){
@@ -41,18 +46,18 @@ public class ControladorArticulo implements IControladorArticulo{
         return ManejadorArticulo.GetInstance().ListarServicios();
     }
     
-    public void PublicarServicio(String nameServ){
-        Servicio ser = ManejadorArticulo.GetInstance().BuscarServicio(nameServ);
+    public void PublicarServicio(String nameServ, String nameProv){
+        Servicio ser = ManejadorArticulo.GetInstance().BuscarServicio(nameServ, nameProv);
         this.prom.AgregarServicio(ser);
         this.prom = null;
     }
     
-    public DtPromocion datosPromociones(String nombreProm){
-        return ManejadorArticulo.GetInstance().datosPromociones(nombreProm);
+    public DtPromocion datosPromociones(String nombreProm, String nameProv){
+        return ManejadorArticulo.GetInstance().datosPromociones(nombreProm, nameProv);
     }
     
-    public DtServicio datosServicio(String nombreServ){
-        return ManejadorArticulo.GetInstance().datosServicio(nombreServ);
+    public DtServicio datosServicio(String nombreServ, String nameProv){
+        return ManejadorArticulo.GetInstance().datosServicio(nombreServ, nameProv);
     }
     
     public Servicio ModificarServicio(DtServicio modSer){

@@ -15,8 +15,10 @@ public class ManejadorUsuario {
     }
      
      public static ManejadorUsuario getinstance(){
-        if (instancia==null)
+        if (instancia==null){
             instancia = new ManejadorUsuario();
+            //cargar HashMap usuarios de la base de datos
+        }
         return instancia;
     }
      

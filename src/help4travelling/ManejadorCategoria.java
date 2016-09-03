@@ -63,12 +63,12 @@ public class ManejadorCategoria {
             catpad = new Categoria(padre);
             categorias.put(catpad.getNombre(), catpad);
         }
-            Categoria cat = this.BuscarCategoria(nombre);
-            if(cat==null){
-                cat = new Categoria(nombre);
-                categorias.put(cat.getNombre(), cat); 
-            }
-            catpad.AgregarCatHija(cat);      
+        Categoria cat = this.BuscarCategoria(nombre);
+        if(cat==null){
+            cat = new Categoria(nombre);
+            categorias.put(cat.getNombre(), cat); 
+        }
+        catpad.AgregarCatHija(cat);      
     }      
     
     public Categoria BuscarCategoria (String nombre){

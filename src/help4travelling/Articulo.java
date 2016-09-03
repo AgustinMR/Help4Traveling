@@ -31,7 +31,7 @@ public abstract class Articulo {
     
     public abstract DtServicio GetDtServicio();
     
-    public abstract DtServicio getDatosServProm(String nombreServ);
+    public abstract DtServicio getDatosServProm(String nombreServ, String nomProv);
 
     public void EnlazarReserva(infoReserva ar){
         this.infoReservas.add(ar);

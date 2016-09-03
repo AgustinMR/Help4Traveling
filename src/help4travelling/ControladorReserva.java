@@ -28,7 +28,7 @@ public class ControladorReserva implements IControladorReserva{
     }
     
     public void ReservarArticulo(DtInfoReserva dtir){
-        Articulo art = ManejadorArticulo.GetInstance().ObtenerArticulo(dtir.GetNombreArticulo());
+        Articulo art = ManejadorArticulo.GetInstance().ObtenerArticulo(dtir.GetNombreArticulo(),dtir.getNickProveedor());
         infoReserva ir = res.ReservarArticulo(dtir, art);
         this.artmem = art;
         this.irmem = ir;
