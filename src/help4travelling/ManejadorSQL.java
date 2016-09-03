@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class ManejadorSQL {
     
-    private String ip = null;
+    private String ip;
     private static ManejadorSQL instance = null;
     
     public static ManejadorSQL GetInstance(){
@@ -119,6 +119,7 @@ public class ManejadorSQL {
             Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return ret;
+     // CARGAR CATEGORIAS
     }
     
     // CARGAR RESERVAS
@@ -139,6 +140,25 @@ public class ManejadorSQL {
         }
         return ret;
     }
+    
+     // CARGAR CATEGORIAS
+    public void cargarCategorias(){
+        String sql = "SELECT nombre, nombreCategoriaPadre FROM HEREDA;";
+        Statement usuarios;
+        try {
+            Connection conex = getConex();
+            usuarios = conex.createStatement();
+            ResultSet rs = usuarios.executeQuery(sql);
+            while(rs.next()){
+                ManejadorCategoria.GetInstance().IngresarCategoriaBD(rs.getString("nombre"),rs.getString("nombreCategoriaPadre"));
+            }
+            conex.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
     
     // ALTA DE CLIENTE
     public boolean agregarUsuario(DtCliente c){
@@ -161,8 +181,9 @@ public class ManejadorSQL {
     
     // ALTA DE PROVEEDOR.
     public boolean agregarUsuario(DtProveedor p){
-        String sql1 = "INSERT INTO USUARIOS(nickname, nombre, apellido, email) VALUES ('" + p.getNick() + "','" + p.getNombre() + "','" + p.getApellido() + "','" + p.getEmail() + "' );";
-        String sql2 = "INSERT INTO PROVEEDOR(nicknameProveedor, nombreEmp, linkEmp) VALUES ('" + p.getNick() + "','" + p.getNombreEmpresa() + "','" + p.getUrl() + "' );";
+        String sql1 = "INSERT INTO USUARIOS(nickname, nombre, apellido, email, fechaNac) VALUES ('" + p.getNick() + "','" + p.getNombre() + "','" + p.getApellido() + "','" + p.getEmail()+ "','" + p.getFechaN().getAnio() + "/" + p.getFechaN().getMes() + "/" + p.getFechaN().getDia() + "');";
+        String sql2 = "INSERT INTO PROVEEDORES(nicknameProveedor, nombreEmp, linkEmp) VALUES ('" + p.getNick() + "','" + p.getNombreEmpresa() + "','" + p.getUrl() + "');";
+        System.out.println("PRov");
         Statement usuario;
         boolean ret = false;
         try {
@@ -198,6 +219,25 @@ public class ManejadorSQL {
                 sql3 = "INSERT INTO POSEEN(nicknameProveedor, nombreArticulo, nombreCategoria) VALUES ( " + nickProveedor + ", " + s.getNombre() + ", " + categorias.get(x) + " );";
                 usuario.executeUpdate(sql3); // ingreso las categorias, asumo que estas ya existen debido a que fueron seleccionadas.
             }
+            ret = true;
+            conex.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ret;
+    }
+    
+    // ALTA DE CATEGORIA.
+    public boolean agregarCategoria(String nombre, String nombrePadre){
+        String sql1 = "INSERT INTO CATEGORIAS(nombre) VALUES ('" + nombre + "');";
+        String sql2 = "INSERT INTO HEREDA(nombre, nombreCategoriaPadre) VALUES ('" + nombre + "','" + nombrePadre + "');";
+        Statement usuario;
+        boolean ret = false;
+        try {
+            Connection conex = getConex();
+            usuario = conex.createStatement();
+            usuario.executeUpdate(sql1);
+            usuario.executeUpdate(sql2);
             ret = true;
             conex.close();
         } catch (SQLException ex) {
@@ -335,7 +375,7 @@ public class ManejadorSQL {
 
     public Connection getConex() {
         try {
-            Connection c = DriverManager.getConnection("jdbc:mysql://"+ ip +":3306/bd_help4traveling?useSSL=false", "root", "tecnoDBweb2016");
+            Connection c = DriverManager.getConnection("jdbc:mysql://"+ this.ip +":3306/bd_help4traveling?useSSL=false", "root", "tecnoDBweb2016");
             return c;
         } catch (SQLException ex) {
             Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);

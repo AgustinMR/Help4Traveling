@@ -21,12 +21,26 @@ public class ManejadorCategoria {
     private static ManejadorCategoria instance = null;
     
     public static ManejadorCategoria GetInstance(){
-        if (instance==null)
+        if (instance==null){
             instance = new ManejadorCategoria();
+            ManejadorSQL.GetInstance().cargarCategorias();
+        }
         return instance;
     }
     
     public void IngresarCategoria (String nombre){
+        Categoria catpad = this.BuscarCategoria("todas");
+        if(catpad!=null){
+            Categoria cat = new Categoria(nombre);
+            categorias.put(cat.getNombre(), cat);
+            catpad.AgregarCatHija(cat);
+            ManejadorSQL.GetInstance().agregarCategoria(nombre, "todas");
+        }else{
+            System.out.println("La categoria padre no existe");
+        }
+        
+        
+        
         Categoria cat = new Categoria(nombre);
         categorias.put(cat.getNombre(), cat);
     }
@@ -37,10 +51,25 @@ public class ManejadorCategoria {
             Categoria cat = new Categoria(nombre);
             categorias.put(cat.getNombre(), cat);
             catpad.AgregarCatHija(cat);
+            ManejadorSQL.GetInstance().agregarCategoria(nombre, padre);
         }else{
             System.out.println("La categoria padre no existe");
         }
-    }    
+    }
+
+    public void IngresarCategoriaBD (String nombre, String padre){
+        Categoria catpad = this.BuscarCategoria(padre);
+        if(catpad==null){
+            catpad = new Categoria(padre);
+            categorias.put(catpad.getNombre(), catpad);
+        }
+            Categoria cat = this.BuscarCategoria(nombre);
+            if(cat==null){
+                cat = new Categoria(nombre);
+                categorias.put(cat.getNombre(), cat); 
+            }
+            catpad.AgregarCatHija(cat);      
+    }      
     
     public Categoria BuscarCategoria (String nombre){
         Categoria ret = null;
@@ -56,23 +85,17 @@ public class ManejadorCategoria {
             }
             if(enc==false){
                 System.out.println("La categoria no existe");
+                return null;
             }
         }else{
             System.out.println("No hay categorias");
+            return null;
         }
         return ret;
     }
     
-    /*public ArrayList<String> listarCategorias(){
-        ArrayList<String> ArrayCategorias = new ArrayList<String>();
-        for (String name: categorias.keySet()) {
-            ArrayCategorias.add(categorias.get(name).getNombre());
-        }
-        return ArrayCategorias;
-    }*/
-    
      public ArrayList<DtCategoria> listarCategorias(){
-        return listarCategoriasAux("todo", 0);        
+        return listarCategoriasAux("todas", 0);        
     }
      
     public ArrayList<DtCategoria> listarCategoriasAux(String padre, int nivel){
@@ -82,7 +105,7 @@ public class ManejadorCategoria {
            for (int i = 0; i < ArrayHijos.size(); i++) {
                ArrayCategorias.add(new DtCategoria(ArrayHijos.get(i).getNombre(),padre,nivel));
                ArrayList<DtCategoria> hijo = listarCategoriasAux(ArrayHijos.get(i).getNombre(), nivel+1);
-               if (hijo.get(0) != null){
+               if (hijo != null){
                    for (int j = 0; j < hijo.size(); j++) {
                        ArrayCategorias.add(hijo.get(j));
                    }

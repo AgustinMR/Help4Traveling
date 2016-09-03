@@ -68,12 +68,39 @@ public class help5test {
         */
     }
     
+    
+     public static void TestAltaProvedor(String nick){
+        DtFecha fech = new DtFecha(1997,1,3);
+        System.out.println(fech.getAnio());
+        DtProveedor dataProv = new DtProveedor(nick, "nombre2", "apellido2", "email2", fech ,null, "nombreEmpresa", "url", null);
+        ControladorUsuario CU = new ControladorUsuario();
+        
+        //B)Verifico que no exista el usuario antes
+        if (CU.VerificarUsuario(dataProv.getNick(), dataProv.getEmail()) == false){
+            System.out.println("El no existe en el sistema");
+        }
+        
+        //C)Doy el alta a un cliente
+        CU.AltaProvedor(dataProv);
+        
+        //D)Verifico que fuera insertado efectivamente el cliente de la parte C
+        if (CU.VerificarUsuario(dataProv.getNick(), dataProv.getEmail()) == true){
+            System.out.println("El usuario ya existe en el sistema");
+        }
+    }
+     
+     public static void TestAltaCategoria(String nombre, String nombrePadre){
+        ControladorCategoria CC = new ControladorCategoria();
+        //CC.IngresarCategoria(nombre, nombrePadre);
+        ArrayList<DtCategoria> ac = CC.listarCategorias();
+        for (int i = 0; i < ac.size(); i++) {
+            System.out.println(ac.get(i).getNombre() + " " + ac.get(i).getNombre());
+        }
+    }
+    
     public static void TestVerInfoCliente(String nick){
         //Sigo estrictamente el DSS Ver informacion proveedor y cliente
         //La interfaz puede verificar si existe el usuario con la funcion VerificarUsuario del controladorUsuario
-        
-        if (ManejadorSQL.GetInstance().init("192.168.10.132") == true)
-             System.out.println("init");
         
         //inserto algunos clientes para probar
         
@@ -133,11 +160,16 @@ public class help5test {
     
     public static void main(String[] args) {
         
-        TestAltaUsuario("ale4");
+        if (ManejadorSQL.GetInstance().init("192.168.10.132") == true)
+             System.out.println("init");
         
-       // TestVerInfoCliente("ale4");
+        //TestAltaUsuario("ale4");
         
-       // TestVerInfoProveedor("Mr Proveedor");
+        //TestAltaProvedor("ale5");
+        
+        TestAltaCategoria("holaaaa", "todas");
+        
+        // TestVerInfoProveedor("Mr Proveedor");
         
         
     }

@@ -21,13 +21,11 @@ public class ControladorCategoria implements IControladorCategoria{
     }
     
     public void IngresarCategoria(String nombre){
-        ManejadorCategoria man = ManejadorCategoria.GetInstance();
-        man.IngresarCategoria(nombre);
+        ManejadorCategoria.GetInstance().IngresarCategoria(nombre);
     }
     
     public void IngresarCategoria(String nombre, String padre){
-        ManejadorCategoria man = ManejadorCategoria.GetInstance();
-        man.IngresarCategoria(nombre, padre);
+        ManejadorCategoria.GetInstance().IngresarCategoria(nombre, padre);
     }
     
     public Categoria BuscarCategoria(String nombre){

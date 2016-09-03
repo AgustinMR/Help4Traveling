@@ -69,4 +69,8 @@ public class ControladorUsuario implements IControladorUsuario{
     public void AltaCliente(DtCliente dataCli){
         ManejadorUsuario.getinstance().InstertarCliente(dataCli);
     }
+    
+    public void AltaProvedor(DtProveedor dataProv){
+        ManejadorUsuario.getinstance().InstertarProveedor(dataProv);
+    }
 }

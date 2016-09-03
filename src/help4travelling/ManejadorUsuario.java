@@ -71,8 +71,14 @@ public class ManejadorUsuario {
         return (Cliente)this.usuarios.get(nameCli);         
     }
     
-    public void InstertarUsuario(Usuario u){
+   /* public void InstertarUsuario(Usuario u){
         this.usuarios.put(u.getNickCliente(), u);
+    }*/
+    
+    public void InstertarProveedor(DtProveedor p){
+        Proveedor newprov = new Proveedor(p);
+        this.usuarios.put(p.getNick(), newprov);
+        ManejadorSQL.GetInstance().agregarUsuario(p);
     }
      
     public void InstertarCliente(DtCliente c){

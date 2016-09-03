@@ -16,6 +16,10 @@ public abstract interface IControladorUsuario {
   public abstract DtProveedor datosProveedor(String nick);
   public abstract DtReserva datosReserva(int num);
   public abstract DtServicio datosServicio(int num);
+  
+  
   public abstract boolean VerificarUsuario(String nickUsaurio, String email);
+  public abstract void AltaCliente(DtCliente dataCli);
+  public abstract void AltaProvedor(DtProveedor dataProv);
   
 }
