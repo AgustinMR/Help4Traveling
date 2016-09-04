@@ -8,8 +8,9 @@ import java.util.List;
  */
 public abstract interface IControladorUsuario {
   
-  public abstract void ingresarUsuario( DtCliente cliente);
+  /*public abstract void ingresarUsuario( DtCliente cliente);
   public abstract void ingresarUsuario( DtProveedor proveedor);
+*/
   public abstract List<String> listarClientes();
   public abstract List<String> listarProveedores();
   public abstract DtCliente datosCliente(String nick);

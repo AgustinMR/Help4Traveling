@@ -81,7 +81,7 @@ public class help5test {
         }
         
         //C)Doy el alta a un cliente
-        CU.AltaProvedor(dataProv);
+        CU.AltaProveedor(dataProv);
         
         //D)Verifico que fuera insertado efectivamente el cliente de la parte C
         if (CU.VerificarUsuario(dataProv.getNick(), dataProv.getEmail()) == true){
@@ -93,10 +93,10 @@ public class help5test {
         ArrayList<DtInfoReserva> arrayInfoRes = new ArrayList<DtInfoReserva>();
         DtFecha fech2 = new DtFecha(2016,1,7);
         DtFecha fech21 = new DtFecha(2017,1,7);
-        arrayInfoRes.add(new DtInfoReserva("Euro-Car-2", 2, "moody", fech2, fech21, 500));
+        arrayInfoRes.add(new DtInfoReserva("Euro-Car-2", 2, "moody", fech21, fech2, 500f));
         DtFecha fech3 = new DtFecha(2017,1,25);
         DtFecha fech31 = new DtFecha(2017,1,20);
-        arrayInfoRes.add(new DtInfoReserva("Euro-Car-3", 1, "moody", fech3, fech31, 600));
+        arrayInfoRes.add(new DtInfoReserva("Euro-Car-3", 1, "moody", fech31, fech3, 600f));
         
         
         Calendar calendario = Calendar.getInstance();
@@ -107,6 +107,8 @@ public class help5test {
         DtReserva dataProv = new DtReserva(Estado.Registrada, fech, arrayInfoRes , "eWatson", 2600);
         ControladorReserva CR = new ControladorReserva();
         
+        //System.out.println(arrayInfoRes.get(0).getPrecioArticulo());
+        
         CR.CrearReserva(dataProv);
         System.out.println("Crear 1");
         CR.ReservarArticulo(arrayInfoRes.get(0));
@@ -115,6 +117,7 @@ public class help5test {
         System.out.println("Crear 3");
         CR.ConfirmarReserva(true);
         System.out.println("Done");
+        
     }
      
      
@@ -142,41 +145,6 @@ public class help5test {
         }
     }
     
-    public static void TestVerInfoCliente(String nick){
-        //Sigo estrictamente el DSS Ver informacion proveedor y cliente
-        //La interfaz puede verificar si existe el usuario con la funcion VerificarUsuario del controladorUsuario
-        
-        //inserto algunos clientes para probar
-        
-        
-        TestAltaUsuario("ale");
-        
-        TestAltaUsuario("ale2");
-        TestAltaUsuario("ale3");
-        
-        //Op 1
-        ControladorUsuario CU = new ControladorUsuario();
-        List<String> lcli;
-        lcli = CU.listarClientes();
-        
-        //test de Op1
-        System.out.println("Usuarios en el sistema: ");
-        lcli.forEach(i -> System.out.println(i));
-        
-        //Op 2
-        DtCliente datac = CU.datosCliente(nick);
-        
-        //test de Op 2
-        System.out.println("Datos de usuario elegido:");
-        System.out.println("Nick Cliente: " + datac.getNick());
-        System.out.println("Nombre Cliente: " + datac.getNombre());
-        System.out.println("Apellido Cliente: " + datac.getApellido());
-        System.out.println("Avatar Cliente: " + datac.getAvatar());
-        
-        //op3
-        //depende de otros casos de uso, 
-        
-    }
     /*
     public static void TestVerInfoProveedor(String nick){
         //Sigo el DSS de TestVerInfoCliente
@@ -201,21 +169,112 @@ public class help5test {
         //Usa otro caso de uso asi que la wea fome 50%
     }
 */
+    public static void TestActualizarReserva (){
+        ControladorReserva CR = new ControladorReserva();
+        ArrayList<DtReserva> ar = CR.listarReservas();
+        for (int i = 0; i < ar.size(); i++) {
+            System.out.println(ar.get(i).GetId() + " " + ar.get(i).getPrecio());
+        }
+        CR.actualizarEstado(Estado.Facturada, ar.get(1).GetId());
+    }
+    
+      public static void TestVerInfoCliente(){
+        ControladorUsuario CU = new ControladorUsuario();
+        List<String> listCli = CU.listarClientes();
+        
+        DtCliente datosCli = CU.datosCliente(listCli.get(0));
+        System.out.println("Nick Proveedor " + datosCli.getNick());
+        System.out.println("Nombre Provee: " + datosCli.getNombre());
+        System.out.println("Apellido Prove: " + datosCli.getApellido());
+        System.out.println("Email: " + datosCli.getEmail());
+        
+        System.out.println("Reservas: " + datosCli.getReservas());
+        
+       /* System.out.println("\nURL " + datosCli.getUrl());
+        System.out.println("Nombre Emp: " + datosCli.getNombreEmpresa());
+        System.out.println("Nombre serv 1: " + datosCli.getServicio().get(0).getNombre());
+        */
+        
+        ControladorReserva CR = new ControladorReserva();
+        DtReserva dtRes = CR.datosReservas(datosCli.getReservas().get(0));
+        
+        System.out.println("Reserva" + datosCli.getReservas().get(0) + " : " + dtRes.GetId());
+        System.out.println("Reserva" + datosCli.getReservas().get(0) + " : " + dtRes.GetCliente());
+        System.out.println("Reserva" + datosCli.getReservas().get(0) + " : " + dtRes.GetEstado());
+        System.out.println("Reserva" + datosCli.getReservas().get(0) + " : " + dtRes.getPrecio());
+        System.out.println("Reserva" + datosCli.getReservas().get(0) + " : " + dtRes.GetFecha().getAnio() + "/" + dtRes.GetFecha().getMes() + "/" + dtRes.GetFecha().getDia());
+        
+        
+        ArrayList<DtInfoReserva> arrayInfoRes= CR.ObtenerInfoArticulosReservados(datosCli.getReservas().get(1));
+        
+        for (int i = 0; i < arrayInfoRes.size(); i++) {
+            System.out.println("InfoRes  " + arrayInfoRes.get(i).GetNombreArticulo() + " : " + arrayInfoRes.get(i).GetNombreArticulo());
+            System.out.println("InfoRes  " + arrayInfoRes.get(i).GetNombreArticulo() + " : " + arrayInfoRes.get(i).GetCantidad());
+            System.out.println("InfoRes  " + arrayInfoRes.get(i).GetNombreArticulo() + " : " + arrayInfoRes.get(i).getNickProveedor());
+            System.out.println("InfoRes  " + arrayInfoRes.get(i).GetNombreArticulo() + " : " + arrayInfoRes.get(i).getPrecioArticulo());
+        }
+        
+    }
+      
+    public static void TestVerInfoProveedor(){
+        ControladorUsuario CU = new ControladorUsuario();
+        List<String> listCli = CU.listarProveedores();
+        
+        DtProveedor datosCli = CU.datosProveedor(listCli.get(0));
+        System.out.println("Nick: " + datosCli.getNick());
+        System.out.println("Nombre: " + datosCli.getNombre());
+        System.out.println("Apellido: " + datosCli.getApellido());
+        System.out.println("Email: " + datosCli.getEmail());
+        
+        //System.out.println("Reservas: " + datosCli.getReservas());
+        
+        System.out.println("\nURL " + datosCli.getUrl());
+        System.out.println("Nombre Emp: " + datosCli.getNombreEmpresa());
+        System.out.println("Nombre serv 1: " + datosCli.getServicio().get(0).getNombre());
+        
+        ControladorArticulo CA = new ControladorArticulo();
+        
+        for (int i = 0; i < datosCli.getServicio().size(); i++) {
+            System.out.println("\nServicios" );
+            DtServicio dtServ = CA.datosServicio(datosCli.getServicio().get(i).getNombre(), datosCli.getNick());
+            System.out.println(dtServ.getNombre());
+            System.out.println(dtServ.getDescripcion());
+            System.out.println(dtServ.getPrecio());
+            System.out.println(dtServ.getCiudadOrigen());
+            System.out.println(dtServ.getCiudadDestino());
+        }
+        
+        
+    }
+    
+    public static void TestVerInfoServicio(){
+        ControladorCategoria CU = new ControladorCategoria();    
+    }
+    
     
     public static void main(String[] args) {
         
         if (ManejadorSQL.GetInstance().init("192.168.10.132") == true)
              System.out.println("init");
         
-        //TestAltaUsuario("ale4");
+        //CASO1//ok//TestAltaUsuario("ale4");
+        //CASO1//ok//TestAltaProvedor("ale5");
         
-        //ok//TestAltaCategoria();
+        //CASO2//ok//TestAltaCategoria();
         
-        //ok//TestAltaProvedor("ale5");
+        //CASO3//ok//TestAltaServicio();
         
-        TestAltaReserva();
+        //CASO6//ok//TestAltaReserva();
         
-        //ok//TestAltaServicio();
+        //CASO7//ok//TestActualizarReserva();
+        
+        //CASO9//ok//TestVerInfoCliente();
+        
+        //CASO10//ok//TestVerInfoProveedor();
+        
+        //CASO11//
+        TestVerInfoServicio();
+        
         
         // TestVerInfoProveedor("Mr Proveedor");
         

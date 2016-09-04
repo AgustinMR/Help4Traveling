@@ -25,6 +25,7 @@ public class DtInfoReserva {
         this.nickProveedor = nickProv;
         this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;
+        this.precioArticulo = precio;
     }
     
     public DtFecha GetFechaIni(){

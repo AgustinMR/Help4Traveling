@@ -3,9 +3,6 @@ package help4travelling;
 import java.util.ArrayList;
 import java.util.Set;
 
-/**
- * @author Bruno
- */
 public class ControladorReserva implements IControladorReserva{
  
     private int nroRes;
@@ -18,11 +15,6 @@ public class ControladorReserva implements IControladorReserva{
         
     }
          
-    public boolean actualizarEstado(Estado e,String r){
-        //esto es temporal con tal de evitar que el programa explote
-        return true;
-    }
-    
    public boolean CrearReserva(DtReserva dtRes){ 
         this.dtRes = dtRes;
         Cliente cli = ManejadorUsuario.getinstance().ObtenerCliente(dtRes.GetCliente());
@@ -58,13 +50,19 @@ public class ControladorReserva implements IControladorReserva{
         return ManejadorReserva.GetInstance().ObtenerDatosReserva(idReserva);
     }
     
-    public Set<DtInfoReserva> ObtenerInfoArticulosReservados(){
-        System.out.println("Bandera2 " + this.nroRes);
-        Reserva resret = ManejadorReserva.GetInstance().ObtenerReserva(this.nroRes);
-        
-        Set<DtInfoReserva> test = resret.GetArticulosReservados();
-        //test.foreach( i -> System.out.println(/* ((DtInfoReserva)i).GetNombreArticulo()*/ ) )
-        
-        return resret.GetArticulosReservados();
+    public ArrayList<DtInfoReserva> ObtenerInfoArticulosReservados(int id){
+        return ManejadorReserva.GetInstance().ObtenerInfoArticulosReservados(id);
+    }
+    
+    public ArrayList<DtReserva> listarReservas(){
+        return ManejadorReserva.GetInstance().listarReservas();
+    }
+    
+    public boolean actualizarEstado(Estado e, int idRes){
+        return ManejadorReserva.GetInstance().modReserva(e, idRes);
+    }
+    
+    public DtReserva datosReservas(int idRes){
+        return ManejadorReserva.GetInstance().ObtenerDatosReserva(idRes);
     }
 }

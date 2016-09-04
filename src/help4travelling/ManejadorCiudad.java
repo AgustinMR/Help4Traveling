@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class ManejadorCiudad {
     
-    private static HashMap ciudades = new HashMap<String, Ciudad>();
+    private static HashMap<String, Ciudad> ciudades = new HashMap<String, Ciudad>();
     private static ManejadorCiudad instance = null;
     
     public static ManejadorCiudad GetInstance(){
@@ -32,5 +32,13 @@ public class ManejadorCiudad {
     
     public Ciudad BuscarCiudad(String City){
         return (Ciudad)this.ciudades.get(City);
+    }
+    
+    public ArrayList<String> listaDeCiudades(){
+        ArrayList<String> arrayCiu = new ArrayList<String>();
+        for (String name: ciudades.keySet()) { 
+            arrayCiu.add(name);
+        }
+        return arrayCiu;
     }
 }

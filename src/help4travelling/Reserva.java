@@ -17,9 +17,8 @@ public class Reserva {
     private String cli;;
     private float precio;
 
-    public Reserva(int id, String cli) {
+    public Reserva(int id) {
         this.id = id;
-        this.cli = cli;
     }
 
     public float getPrecio() {
@@ -65,11 +64,12 @@ public class Reserva {
     }
     
     public DtReserva GetDtReserva(){
-        ArrayList<DtInfoReserva> arrayDtInfo = new ArrayList<DtInfoReserva>();
+        /*ArrayList<DtInfoReserva> arrayDtInfo = new ArrayList<DtInfoReserva>();
         for (int i = 0; i < infoReserva.size(); i++) {
             arrayDtInfo.add(infoReserva.get(i).GetDtInfoReserva());
-        }
-        return new DtReserva(this.id, this.estado, this.date, arrayDtInfo , this.cli, this.precio);
+        }*/
+        return ManejadorSQL.GetInstance().devolverReserva(this.id);
+        //return new DtReserva(this.id, this.estado, this.date, arrayDtInfo , this.cli, this.precio);
     }
     
     public Set<DtInfoReserva> GetArticulosReservados(){

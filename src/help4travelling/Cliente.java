@@ -22,16 +22,13 @@ public class Cliente extends Usuario{
     }
 
     public DtCliente getDtCliente(){
-        ArrayList<Integer> ArrayReservas = new ArrayList<Integer>();
+        /*ArrayList<Integer> ArrayReservas = new ArrayList<Integer>();
         for (String name: reservas.keySet()) {
              ArrayReservas.add(reservas.get(name).GetId());
         }
         return new DtCliente(nick, nombre, apellido, email, fechaN, avatar, ArrayReservas);
-        
-    }
-
-    public Cliente() {
-        
+        */
+        return ManejadorSQL.GetInstance().devolverCliente(this.nick);
     }
     
     public Cliente(String nick, String nombre){
@@ -39,15 +36,15 @@ public class Cliente extends Usuario{
         this.nombre = nombre;
     }
     
-    public HashMap<String, Reserva> getReservas() {
+    /*public HashMap<String, Reserva> getReservas() {
         return reservas;
-    }
+    }*/
 
     public String getNick() {
         return nick;
     }
 
-    public String getNombre() {
+    /*public String getNombre() {
         return nombre;
     }
 
@@ -65,13 +62,13 @@ public class Cliente extends Usuario{
 
     public Blob[] getAvatar() {
         return avatar;
-    }
+    }*/
 
     public void setReservas(HashMap<String, Reserva> reservas) {
         this.reservas = reservas;
     }
 
-    public void setNick(String nick) {
+   /* public void setNick(String nick) {
         this.nick = nick;
     }
 
@@ -94,7 +91,7 @@ public class Cliente extends Usuario{
     public void setAvatar(Blob[] avatar) {
         this.avatar = avatar;
     }
-
+*/
     public String getNickCliente() {
         return this.nick;
     }

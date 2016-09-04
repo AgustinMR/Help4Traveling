@@ -24,25 +24,22 @@ public class Proveedor extends Usuario{
         this.nick = nick;
     }
 
-
-    @Override
     public String getNickCliente(){
         return null;
     }
 
-    @Override
     public String getNickProveedor(){
         return this.nick;
     }
 
-
     public DtProveedor getDtProveedor(){
-        ArrayList<DtServicio> ArrayServicios = new ArrayList<DtServicio>();
+        return ManejadorSQL.GetInstance().devolverProveedor(this.nick);
+       /* ArrayList<DtServicio> ArrayServicios = new ArrayList<DtServicio>();
         for (String name: servicios.keySet()) {
             ArrayServicios.add(new DtServicio(servicios.get(name)));
         }
         return new DtProveedor(nick, nombre, apellido, email, fechaN, avatar, nombreEmpresa, url, ArrayServicios);
-        
+        */
         
     }
 }

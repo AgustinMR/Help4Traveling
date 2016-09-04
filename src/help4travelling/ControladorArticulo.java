@@ -84,4 +84,8 @@ public class ControladorArticulo implements IControladorArticulo{
     public void QuitarCategoria(String catName){
         ManejadorCategoria.GetInstance().QuitarCategoria(catName);
     }   
+    
+    public ArrayList<String> listaDeCiudades(){
+        return ManejadorCiudad.GetInstance().listaDeCiudades();
+    }
 }

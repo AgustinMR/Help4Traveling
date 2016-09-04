@@ -22,10 +22,18 @@ public class DtFecha {
     
     //Contruye la fecha con un string de esta forma "yyyy/mm/dd"
     DtFecha(String bdformato){
-        String[] parts = bdformato.split("/");
-        this.anio = Integer.parseInt(parts[0]);
-        this.mes = Integer.parseInt(parts[1]);
-        this.dia = Integer.parseInt(parts[2]);
+        try{        
+            String[] parts = bdformato.split("/");
+            this.anio = Integer.parseInt(parts[0]);
+            this.mes = Integer.parseInt(parts[1]);
+            this.dia = Integer.parseInt(parts[2]);  
+        } catch (Exception ex) {
+            String[] parts = bdformato.split("-");
+            this.anio = Integer.parseInt(parts[0]);
+            this.mes = Integer.parseInt(parts[1]);
+            this.dia = Integer.parseInt(parts[2]); 
+        }
+
     }
 
     public int getAnio() {

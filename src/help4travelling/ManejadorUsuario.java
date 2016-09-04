@@ -20,63 +20,45 @@ public class ManejadorUsuario {
             //cargar HashMap usuarios de la base de datos
         }
         usuarios.clear();
-        ArrayList<String> arrayUsu = ManejadorSQL.GetInstance().cargarClientes();
-        for (int i = 0; i < arrayUsu .size(); i++) {
-            Usuario u = new Cliente(arrayUsu.get(i));
+        ArrayList<String> arrayCli = ManejadorSQL.GetInstance().cargarClientes();
+        for (int i = 0; i < arrayCli .size(); i++) {
+            Usuario u = new Cliente(arrayCli.get(i));
             usuarios.put(u.getNickCliente(),u);
+        }
+        ArrayList<String> arrayProv = ManejadorSQL.GetInstance().cargarProveedores();
+        for (int i = 0; i < arrayProv .size(); i++) {
+            Usuario p = new Proveedor(arrayProv.get(i));
+            usuarios.put(p.getNickProveedor(),p);
         }
         return instancia;
     }
      
      public List<String> listarClientes(){
-         //Creo la lista a para devolver
-         List<String> userCi = new ArrayList<String>();      
-         //creo un iterador para recorrer las claves del mapa
-         Iterator it = usuarios.keySet().iterator();
-         
-         while(it.hasNext())
-            {
-                //pide elemento
-                String key = it.next().toString();
-                //si es null lo descarta, si es algo lo guarda
-                if(null==usuarios.get(key).getNickCliente())
-                {
-                    //nada
-                }else {
-                    userCi.add(usuarios.get(key).getNickCliente());
-                    //agrega a la lista
-                }
-
-                }
-         
-      return  userCi;
+        List<String> userCi = new ArrayList<String>();      
+        for (String name: usuarios.keySet()){
+            String nombre = usuarios.get(name).getNickCliente();
+            if (nombre != null)
+                userCi.add(nombre);
+        }
+        return  userCi;
   }
      
      public List<String> listarProveedores(){
-         //Creo la lista a para devolver
-         List<String> userCi = new ArrayList<String>();      
-         //creo un iterador para recorrer las claves del mapa
-         Iterator it = usuarios.keySet().iterator();
-         
-         while(it.hasNext())
-            {
-                //pide elemento
-                String key = it.next().toString();
-                //si es null lo descarta, si es algo lo guarda
-                if(null==usuarios.get(key).getNickProveedor())
-                {
-                    //nada
-                }else {
-                    userCi.add(usuarios.get(key).getNickProveedor());
-                    //agrega a la lista
-                }
-
-                }
-         
-      return  userCi;
+        List<String> userCi = new ArrayList<String>();      
+        for (String name: usuarios.keySet()){
+System.out.println("ManejUsu " + name);
+            String nombre = usuarios.get(name).getNickProveedor();
+            if (nombre != null)
+                userCi.add(nombre);
+        }
+        return  userCi;
   }
     public Cliente ObtenerCliente(String nameCli){
         return (Cliente)this.usuarios.get(nameCli);         
+    }
+    
+    public Proveedor ObtenerProveedor(String nameProv){
+        return (Proveedor)this.usuarios.get(nameProv);         
     }
     
    /* public void InstertarUsuario(Usuario u){

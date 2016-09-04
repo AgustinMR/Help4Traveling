@@ -7,44 +7,32 @@ public class ControladorUsuario implements IControladorUsuario{
     private Usuario usuMem;
 
     public List<String> listarClientes(){
-        ManejadorUsuario manejuser = ManejadorUsuario.getinstance();
-        return manejuser.listarClientes();
+        List<String> manejuser = ManejadorUsuario.getinstance().listarClientes();
+        return manejuser;
     }
 
     public List<String> listarProveedores(){
-        ManejadorUsuario manejuser = ManejadorUsuario.getinstance();
-        return manejuser.listarProveedores();
+        List<String> manejuser = ManejadorUsuario.getinstance().listarProveedores();
+        return manejuser;
     }
 
-    @Override
     public DtCliente datosCliente(String nick) {
         ManejadorUsuario manejuser = ManejadorUsuario.getinstance();
         return manejuser.ObtenerCliente(nick).getDtCliente();
     }
 
-    @Override
     public DtProveedor datosProveedor(String nick) {
         ManejadorUsuario manejuser = ManejadorUsuario.getinstance();
-       // return manejuser.obtenerDtProveedor(nick);
-       return null;
+        return manejuser.ObtenerProveedor(nick).getDtProveedor();
     }
 
-    @Override
     public DtReserva datosReserva(int num) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public DtServicio datosServicio(int num) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-    
-    
-    
-    //chequear que estas funciones estan en IControladorUsuario
-    
     
     public boolean VerificarUsuario(String nickUsaurio, String email){
         return ManejadorUsuario.getinstance().ExisteUsuario(nickUsaurio, email);
@@ -58,13 +46,11 @@ public class ControladorUsuario implements IControladorUsuario{
         ManejadorUsuario.getinstance().InstertarProveedor(dataProv);
     }
 
-    @Override
-    public void ingresarUsuario(DtCliente cliente) {
+   /* public void ingresarUsuario(DtCliente cliente) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public void ingresarUsuario(DtProveedor proveedor) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }*/
 }

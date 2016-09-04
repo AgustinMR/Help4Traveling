@@ -16,7 +16,6 @@ import javafx.util.Pair;
 public class ManejadorArticulo {
     
     private static ArrayList<Articulo> articulos = new ArrayList<Articulo>();
-    private Articulo promo;
     private static ManejadorArticulo instance = null;
     
     
@@ -78,20 +77,21 @@ public class ManejadorArticulo {
     public DtPromocion datosPromociones(String nombreProm, String nomProv){
          for (int i = 0; i < articulos.size(); i++) {
              if (articulos.get(i).GetNombre() == nombreProm && articulos.get(i).getProv() == nomProv)
-                 promo = articulos.get(i);
+                 return articulos.get(i).getDtPromocion();
          }
-         return promo.getDtPromocion();
+         return null;
     }
     
     public DtServicio datosServicio(String nombreServ, String nomProv){
-         return promo.getDatosServProm(nombreServ, nomProv);
+         return this.BuscarServicio(nombreServ, nomProv).GetDtServicio();
     }
     
     public Servicio BuscarServicio(String nameServ, String nomProv){
         Articulo serv = null; 
         for (int i = 0; i < articulos.size(); i++) {
-            if (articulos.get(i).GetNombre() == nameServ && articulos.get(i).IsServicio())
+            if (articulos.get(i).GetNombre().equals(nameServ) && articulos.get(i).IsServicio()){
                 serv = articulos.get(i);
+            }
         }
         return (Servicio)serv;
     }

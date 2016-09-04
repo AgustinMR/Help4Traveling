@@ -70,5 +70,8 @@ public class DtProveedor {
       public String getUrl(){
         return this.url;
     }
-    
+         
+    public ArrayList<DtServicio> getServicio() {
+        return servicio;
+    }
 }
