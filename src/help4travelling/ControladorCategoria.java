@@ -12,7 +12,7 @@ public class ControladorCategoria implements IControladorCategoria{
         return ManejadorCategoria.GetInstance().listarCategorias();
     }
     
-    public ArrayList<String> listarServicios(String nombre){
+    public ArrayList<DtServicio> listarServicios(String nombre){
         return ManejadorCategoria.GetInstance().listarServicios(nombre);
     }
     

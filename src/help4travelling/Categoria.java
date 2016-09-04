@@ -19,10 +19,6 @@ public class Categoria {
     public Categoria(String Nombre){
         this.nombre = Nombre;
     }
-
-    Categoria(Categoria nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
         
     public String getNombre(){
         return this.nombre;
@@ -32,12 +28,8 @@ public class Categoria {
         cathijas.put(hija.getNombre(), hija);
     }
     
-    public ArrayList<String> listarServicios(){
-       ArrayList<String> ArrayServicios = new ArrayList<String>();
-       for (String name: servicios.keySet()) {
-           ArrayServicios.add(servicios.get(name).GetNombre());
-       }
-       return ArrayServicios;
+    public ArrayList<DtServicio> listarServicios(){
+       return ManejadorSQL.GetInstance().devolverSerPorCat(this.nombre);
     }
     
     public DtServicio listarServicios(String nombreServ){

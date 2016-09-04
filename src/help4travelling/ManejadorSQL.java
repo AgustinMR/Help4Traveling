@@ -496,6 +496,28 @@ public class ManejadorSQL {
         return ret;
     }
 
+    // DEVOLVER SERVICIOS POR CATEGORIA
+    public ArrayList<DtServicio> devolverSerPorCat(String nombreCat){
+        String sql1 = "SELECT nicknameProveedor,nombreArticulo FROM POSEEN WHERE nombreCategoria = '" + nombreCat + "';";
+        String nombre, nick;
+        ArrayList<DtServicio> ret = new ArrayList<DtServicio>();
+        try {
+            Connection conex = getConex();
+            Statement usuario = conex.createStatement();
+            ResultSet rs = usuario.executeQuery(sql1);
+            while(rs.next()){
+                nombre = rs.getString("nombreArticulo");
+                nick = rs.getString("nicknameProveedor");
+                DtServicio ser = this.devolverServicio(nick, nombre);
+                ret.add(ser);
+            }            
+            conex.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ret;
+    }
+    
         // DEVOLVER PROMOCIONES
     public DtServicio devolverPromocion(String nickProveedor, String nombre){
         String sql1 = "SELECT descripcion, precio, ciudadO, ciudadD FROM SERVICIOS WHERE nicknameProveedor = " + nickProveedor + " AND nombreArticulo = "+ nombre + ";";

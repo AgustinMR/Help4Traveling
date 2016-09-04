@@ -109,9 +109,9 @@ public class ManejadorCategoria {
        
     }
     
-    public ArrayList<String> listarServicios(String nombre){
-         categ = categorias.get(nombre);
-         return categ.listarServicios();
+    public ArrayList<DtServicio> listarServicios(String nombre){
+        categ = categorias.get(nombre);
+        return categ.listarServicios();
     }
      
     public DtServicio datosServicio(String nombreServ){

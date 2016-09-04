@@ -248,9 +248,25 @@ public class help5test {
     }
     
     public static void TestVerInfoServicio(){
-        ControladorCategoria CU = new ControladorCategoria();    
+        ControladorCategoria CC = new ControladorCategoria();
+        ArrayList<DtCategoria> arrayCat = CC.listarCategorias();
+        //for (int j = 0; j < arrayCat.size(); j++) {
+            ArrayList<DtServicio> arraySer = CC.listarServicios(arrayCat.get(0).getNombre());
+            for (int i = 0; i < arraySer.size(); i++) {
+                System.out.println(arraySer.get(i).getNombre());
+            }       
     }
     
+    public static void TestVerInfoReserva(){
+        ControladorReserva CR = new ControladorReserva();
+        ArrayList<DtReserva> arrayRes = CR.listarReservas();
+        for (int j = 0; j < arrayRes.size(); j++) {
+            ArrayList<DtInfoReserva> arrayInfoRes = CR.ObtenerInfoArticulosReservados(j);
+            for (int i = 0; i < arrayInfoRes.size(); i++) {
+                System.out.println(arrayInfoRes.get(i).GetNombreArticulo() + "    " + arrayInfoRes.get(i).getNickProveedor());
+            }   
+        }
+    }
     
     public static void main(String[] args) {
         
@@ -272,10 +288,10 @@ public class help5test {
         
         //CASO10//ok//TestVerInfoProveedor();
         
-        //CASO11//
-        TestVerInfoServicio();
+        //CASO11//ok//TestVerInfoServicio();
         
-        
+        //CASO13//ok//TestVerInfoReserva();
+
         // TestVerInfoProveedor("Mr Proveedor");
         
         
