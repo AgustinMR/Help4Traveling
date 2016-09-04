@@ -16,6 +16,10 @@ public class Cliente extends Usuario{
         this.fechaN= u.getFechaN();
         this.avatar= u.getAvatar();
     }
+    
+    public Cliente (String nick){
+        this.nick= nick;
+    }
 
     public DtCliente getDtCliente(){
         ArrayList<Integer> ArrayReservas = new ArrayList<Integer>();

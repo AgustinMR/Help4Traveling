@@ -19,6 +19,10 @@ public class Proveedor extends Usuario{
         this.nombreEmpresa= u.getNombreEmpresa();
         this.url= u.getUrl();
     }
+    
+     public Proveedor (String nick){
+        this.nick = nick;
+    }
 
 
     @Override

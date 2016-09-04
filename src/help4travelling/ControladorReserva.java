@@ -12,6 +12,7 @@ public class ControladorReserva implements IControladorReserva{
     private Reserva res;
     private Articulo artmem;
     private infoReserva irmem;
+    private DtReserva dtRes;
     
     public ControladorReserva(){
         
@@ -22,10 +23,11 @@ public class ControladorReserva implements IControladorReserva{
         return true;
     }
     
-   public Reserva CrearReserva(DtReserva dtRes){        
+   public boolean CrearReserva(DtReserva dtRes){ 
+        this.dtRes = dtRes;
         Cliente cli = ManejadorUsuario.getinstance().ObtenerCliente(dtRes.GetCliente());
-        res = ManejadorReserva.GetInstance().CrearReserva(dtRes, cli);
-        return res;
+        /*esta reserva no tiene id*/res = ManejadorReserva.GetInstance().CrearReserva(dtRes, cli);
+        return true;
     }
     
     public void ReservarArticulo(DtInfoReserva dtir){
@@ -36,15 +38,14 @@ public class ControladorReserva implements IControladorReserva{
     }
     
     public void ConfirmarReserva(boolean ok){
-        if(ok==true){
-            this.res.EnlazarReserva(this.irmem);
+        if(ok == true){
             this.artmem.EnlazarReserva(irmem);
-            this.irmem.EnlazarReserva(this.res);
-            ManejadorReserva.GetInstance().AgregarReserva(res);
+            ManejadorReserva.GetInstance().GuardarReserva(this.res, this.irmem);
         }
         else{
             this.res.DesenlazarReserva(this.irmem);
         }
+        System.out.println(ManejadorSQL.GetInstance().agregarReserva(dtRes));
     }
     
     //Lista todas las key de las reservas en el sistema

@@ -27,6 +27,11 @@ public class Servicio extends Articulo{
         this.precio = precio;
     }
     
+    public Servicio(String nickProv, String nombre){
+        this.SetNombre(nombre);
+        this.setProv(nickProv);
+    }
+    
     public Servicio(DtServicio dtSer){
         this.nombre = dtSer.getNombre();
         this.descripcion = dtSer.getDescripcion();
@@ -68,7 +73,7 @@ public class Servicio extends Articulo{
     }
     
     public DtServicio GetDtServicio(){
-        return new DtServicio(this);        
+        return ManejadorSQL.GetInstance().devolverServicio(this.getProv(), this.GetNombre());        
     }
     
     public DtServicio getDatosServProm(String nombreServ , String nomProv){

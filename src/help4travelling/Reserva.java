@@ -14,8 +14,13 @@ public class Reserva {
     private DtFecha date;
     private Estado estado;
     private ArrayList<infoReserva> infoReserva = new  ArrayList<infoReserva>();
-    private Cliente cli;;
+    private String cli;;
     private float precio;
+
+    public Reserva(int id, String cli) {
+        this.id = id;
+        this.cli = cli;
+    }
 
     public float getPrecio() {
         return precio;
@@ -41,32 +46,13 @@ public class Reserva {
         return this.infoReserva;
     }
     
-    public Cliente GetCliente(){
+    public String GetCliente(){
         return this.cli;
-    }
-    
-    public Reserva(DtReserva dtres, Cliente c, int id, ArrayList<infoReserva> infoRes){
-        this.id = id;
-        this.date = dtres.GetFecha();
-        this.estado = dtres.GetEstado();
-        this.precio = dtres.getPrecio();
-        this.infoReserva = infoRes;
-        this.cli = c;        
-    }
-    
-    public Reserva(DtReserva dtres, Cliente c, int id){
-        this.id = id;
-        this.date = dtres.GetFecha();
-        this.estado = dtres.GetEstado();
-        this.precio = dtres.getPrecio();
-        this.infoReserva = null;
-        this.cli = c;        
-    }
-    
+    }  
     
     
     public infoReserva ReservarArticulo(DtInfoReserva dtir, Articulo a){
-        return new infoReserva(dtir, a, this);
+        return new infoReserva(a.getProv(), a.GetNombre(), dtir.GetIdReserva());
     }
     
     public void EnlazarReserva(infoReserva ir){
@@ -83,7 +69,7 @@ public class Reserva {
         for (int i = 0; i < infoReserva.size(); i++) {
             arrayDtInfo.add(infoReserva.get(i).GetDtInfoReserva());
         }
-        return new DtReserva(this.id, this.estado, this.date, arrayDtInfo , this.cli.getNick(), this.precio);
+        return new DtReserva(this.id, this.estado, this.date, arrayDtInfo , this.cli, this.precio);
     }
     
     public Set<DtInfoReserva> GetArticulosReservados(){

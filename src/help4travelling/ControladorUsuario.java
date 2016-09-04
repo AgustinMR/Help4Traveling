@@ -57,4 +57,14 @@ public class ControladorUsuario implements IControladorUsuario{
     public void AltaProveedor(DtProveedor dataProv){
         ManejadorUsuario.getinstance().InstertarProveedor(dataProv);
     }
+
+    @Override
+    public void ingresarUsuario(DtCliente cliente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void ingresarUsuario(DtProveedor proveedor) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

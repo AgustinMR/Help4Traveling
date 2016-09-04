@@ -15,12 +15,18 @@ import java.util.Map;
  */
 public class ManejadorCiudad {
     
-    private Map ciudades = new HashMap<String, Ciudad>();
+    private static HashMap ciudades = new HashMap<String, Ciudad>();
     private static ManejadorCiudad instance = null;
     
     public static ManejadorCiudad GetInstance(){
-        if (instance==null)
+        if (instance==null){
             instance = new ManejadorCiudad();
+        }
+        ciudades.clear();
+        ArrayList<String> arrayCiu = ManejadorSQL.GetInstance().cargarCiudades();
+        for (int i = 0; i < arrayCiu.size(); i++) {
+            ciudades.put(arrayCiu.get(i),new Ciudad(arrayCiu.get(i)));
+        }
         return instance;
     }
     

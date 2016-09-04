@@ -35,12 +35,7 @@ public class ManejadorCategoria {
             categorias.put(cat.getNombre(), cat);
             catpad.AgregarCatHija(cat);
             ManejadorSQL.GetInstance().agregarCategoria(nombre, "todas");
-        }else{
-            System.out.println("La categoria padre no existe");
         }
-        
-        
-        
         Categoria cat = new Categoria(nombre);
         categorias.put(cat.getNombre(), cat);
     }
@@ -52,8 +47,6 @@ public class ManejadorCategoria {
             categorias.put(cat.getNombre(), cat);
             catpad.AgregarCatHija(cat);
             ManejadorSQL.GetInstance().agregarCategoria(nombre, padre);
-        }else{
-            System.out.println("La categoria padre no existe");
         }
     }
 
@@ -84,11 +77,9 @@ public class ManejadorCategoria {
                 }
             }
             if(enc==false){
-                System.out.println("La categoria no existe");
                 return null;
             }
         }else{
-            System.out.println("No hay categorias");
             return null;
         }
         return ret;

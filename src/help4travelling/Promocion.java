@@ -18,6 +18,11 @@ public class Promocion extends Articulo {
         this.precioTotal = DtProm.GetPrecioTotal();
     }
     
+    public Promocion(String nick, String nombre){
+        this.nombre = nombre;
+        this.prov = nick;
+    }
+    
     public boolean isPromocion(){
         return true;
     }

@@ -11,8 +11,8 @@ import java.util.HashSet;
 public abstract class Articulo {
     
     protected String nombre; 
-    private Set infoReservas = new HashSet<infoReserva>();
-    private String prov;    // "
+    protected Set infoReservas = new HashSet<infoReserva>();
+    protected String prov;    // "
     //private InfoReserva info; //Luego de crearse InfoReserva decomentar
     
     protected String GetNombre(){

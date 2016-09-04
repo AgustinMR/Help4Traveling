@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.JOptionPane;
+import javax.swing.tree.TreeSelectionModel;
 
 
 public class Help4Travelling extends javax.swing.JFrame {
@@ -2476,6 +2477,18 @@ public class Help4Travelling extends javax.swing.JFrame {
         panel_consultas_servicios.add(jLabel149);
         jLabel149.setBounds(290, 80, 220, 20);
 
+        tree_servicios.addTreeExpansionListener(new javax.swing.event.TreeExpansionListener() {
+            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
+            }
+            public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
+                tree_serviciosTreeExpanded(evt);
+            }
+        });
+        tree_servicios.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+            public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+                tree_serviciosValueChanged(evt);
+            }
+        });
         jScrollPane5.setViewportView(tree_servicios);
 
         panel_consultas_servicios.add(jScrollPane5);
@@ -3796,6 +3809,16 @@ public class Help4Travelling extends javax.swing.JFrame {
             cmb_destinoS.setVisible(false);
         }
     }//GEN-LAST:event_chek_destinoSItemStateChanged
+
+    private void tree_serviciosValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_tree_serviciosValueChanged
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode)tree_servicios.getLastSelectedPathComponent();
+        String nameCat = (String)node.getUserObject();
+        System.out.println(nameCat);
+    }//GEN-LAST:event_tree_serviciosValueChanged
+
+    private void tree_serviciosTreeExpanded(javax.swing.event.TreeExpansionEvent evt) {//GEN-FIRST:event_tree_serviciosTreeExpanded
+        
+    }//GEN-LAST:event_tree_serviciosTreeExpanded
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

@@ -8,7 +8,7 @@ import java.util.Iterator;
 
 public class ManejadorUsuario {
     private static ManejadorUsuario instancia=null;
-    private final HashMap<String, Usuario> usuarios;
+    private static HashMap<String, Usuario> usuarios;
     
      private ManejadorUsuario(){
        usuarios=new HashMap<String, Usuario>();
@@ -18,6 +18,12 @@ public class ManejadorUsuario {
         if (instancia==null){
             instancia = new ManejadorUsuario();
             //cargar HashMap usuarios de la base de datos
+        }
+        usuarios.clear();
+        ArrayList<String> arrayUsu = ManejadorSQL.GetInstance().cargarClientes();
+        for (int i = 0; i < arrayUsu .size(); i++) {
+            Usuario u = new Cliente(arrayUsu.get(i));
+            usuarios.put(u.getNickCliente(),u);
         }
         return instancia;
     }
@@ -48,7 +54,7 @@ public class ManejadorUsuario {
      
      public List<String> listarProveedores(){
          //Creo la lista a para devolver
-        /*        List<String> userCi = new ArrayList<String>();      
+         List<String> userCi = new ArrayList<String>();      
          //creo un iterador para recorrer las claves del mapa
          Iterator it = usuarios.keySet().iterator();
          
@@ -67,8 +73,7 @@ public class ManejadorUsuario {
 
                 }
          
-      return  userCi;*/
-      return ManejadorSQL.GetInstance().cargarProveedores();
+      return  userCi;
   }
     public Cliente ObtenerCliente(String nameCli){
         return (Cliente)this.usuarios.get(nameCli);         
@@ -78,14 +83,26 @@ public class ManejadorUsuario {
         this.usuarios.put(u.getNickCliente(), u);
     }*/
     
-    public void InstertarProveedor(DtProveedor p){
+   /* public void InstertarProveedor(DtProveedor p){
         Proveedor newprov = new Proveedor(p);
+        this.usuarios.put(p.getNick(), newprov);
+        ManejadorSQL.GetInstance().agregarUsuario(p);
+    }*/
+    
+    public void InstertarProveedor(DtProveedor p){
+        Proveedor newprov = new Proveedor(p.getNick());
         this.usuarios.put(p.getNick(), newprov);
         ManejadorSQL.GetInstance().agregarUsuario(p);
     }
      
-    public void InstertarCliente(DtCliente c){
+    /*public void InstertarCliente(DtCliente c){
         Cliente newcli = new Cliente(c);
+        this.usuarios.put(c.getNick(), newcli);
+        ManejadorSQL.GetInstance().agregarUsuario(c);
+    }*/
+    
+    public void InstertarCliente(DtCliente c){
+        Cliente newcli = new Cliente(c.getNick());
         this.usuarios.put(c.getNick(), newcli);
         ManejadorSQL.GetInstance().agregarUsuario(c);
     }

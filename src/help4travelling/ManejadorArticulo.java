@@ -11,17 +11,31 @@ import java.util.HashSet;
 
 import java.util.HashMap;
 import java.util.Map;
+import javafx.util.Pair;
 
 public class ManejadorArticulo {
     
-    private ArrayList<Articulo> articulos = new ArrayList<Articulo>();
+    private static ArrayList<Articulo> articulos = new ArrayList<Articulo>();
     private Articulo promo;
     private static ManejadorArticulo instance = null;
     
     
     public static ManejadorArticulo GetInstance(){
-        if (instance==null)
+        if (instance==null){
             instance = new ManejadorArticulo();
+        }
+        articulos.clear();
+        Map<Pair<String,String>,Promocion> arrayProm = ManejadorSQL.GetInstance().cargarPromociones();
+        Map<Pair<String,String>,Servicio> arrayServ = ManejadorSQL.GetInstance().cargarServicios();
+        for (Pair<String,String> name: arrayProm.keySet()) {
+            Promocion prom = new Promocion(name.getKey(),name.getValue());
+            articulos.add((Articulo)prom);
+        }
+        for (Pair<String,String> name2: arrayServ.keySet()) {
+            Servicio ser = new Servicio(name2.getKey(),name2.getValue());
+            articulos.add((Articulo)ser);
+            
+        }
         return instance;
     }
     
@@ -96,8 +110,10 @@ public class ManejadorArticulo {
     public Articulo ObtenerArticulo(String nameArti, String nomProv){
         Articulo Art = null; 
         for (int i = 0; i < articulos.size(); i++) {
-            if (articulos.get(i).GetNombre() == nameArti && articulos.get(i).getProv() == nomProv )
+           // System.out.println("LA PUTA QUE TE PARIO");
+            if (articulos.get(i).GetNombre().equals(nameArti) && articulos.get(i).getProv().equals(nomProv)){
                 Art = articulos.get(i);
+            }
         }
         return Art;
     }
@@ -107,7 +123,8 @@ public class ManejadorArticulo {
             if (articulos.get(i).GetNombre() == DtServ.getNombre() && articulos.get(i).getProv() == DtServ.getNickProveedor() )
                 return false;
        }
-       Servicio serv = new Servicio(DtServ.getNombre(), DtServ.getNickProveedor(), DtServ.getDescripcion(), ciudadO, ciudadD, DtServ.getPrecio());
+       Servicio serv = new Servicio(DtServ.getNombre(), DtServ.getNickProveedor());
+       //Servicio serv = new Servicio(DtServ.getNombre(), DtServ.getNickProveedor(), DtServ.getDescripcion(), ciudadO, ciudadD, DtServ.getPrecio());
        articulos .add((Articulo)serv);
        //mandar datos a la base de datos
        return ManejadorSQL.GetInstance().agregarServicio(DtServ, DtServ.getNickProveedor(), DtServ.getCategorias());

@@ -107,23 +107,25 @@ public class help5test {
         DtReserva dataProv = new DtReserva(Estado.Registrada, fech, arrayInfoRes , "eWatson", 2600);
         ControladorReserva CR = new ControladorReserva();
         
-       /* CR.AltaProvedor(dataProv);
-        
-        //D)Verifico que fuera insertado efectivamente el cliente de la parte C
-        if (CU.VerificarUsuario(dataProv.getNick(), dataProv.getEmail()) == true){
-            System.out.println("El usuario ya existe en el sistema");
-        }*/
+        CR.CrearReserva(dataProv);
+        System.out.println("Crear 1");
+        CR.ReservarArticulo(arrayInfoRes.get(0));
+        System.out.println("Crear 2");
+        CR.ReservarArticulo(arrayInfoRes.get(1));
+        System.out.println("Crear 3");
+        CR.ConfirmarReserva(true);
+        System.out.println("Done");
     }
      
      
      
-     public static void TestAltaServicio (String nombre, String nombrePadre){
+     public static void TestAltaServicio (){
         ControladorArticulo CA = new ControladorArticulo();
         //CC.IngresarCategoria(nombre, nombrePadre);
         ArrayList<String> arrayCat = new ArrayList<String>();
         arrayCat.add("Automóviles");
         arrayCat.add("Cruceros");
-        DtServicio serv = new DtServicio("nombre2", "tCook", 500, "hola que tal", arrayCat, "Montevideo", "Valencia");
+        DtServicio serv = new DtServicio("nombre4", "tCook", 500, "hola que tal", arrayCat, "Montevideo", "Valencia");
         boolean b = CA.insertarServicio(serv);
         System.out.println(b);
         for (int i = 0; i < CA.ListarServicios().size(); i++) {
@@ -133,7 +135,7 @@ public class help5test {
      
      public static void TestAltaCategoria (){
         ControladorCategoria CC = new ControladorCategoria();
-        //CC.IngresarCategoria(nombre, nombrePadre);
+        //CC.IngresarCategoria("holaaaaaaa", "todas");
         ArrayList<DtCategoria> ac = CC.listarCategorias();
         for (int i = 0; i < ac.size(); i++) {
             System.out.println(ac.get(i).getNombre() + " " + ac.get(i).getNombrePadre());
@@ -207,14 +209,20 @@ public class help5test {
         
         //TestAltaUsuario("ale4");
         
-        //TestAltaProvedor("ale5");
+        //ok//TestAltaCategoria();
+        
+        //ok//TestAltaProvedor("ale5");
         
         TestAltaReserva();
         
-        //TestAltaServicio("holaaaa", "todas");
+        //ok//TestAltaServicio();
         
         // TestVerInfoProveedor("Mr Proveedor");
         
+        
+        /*ManejadorCiudad.GetInstance();
+        System.out.println(ManejadorCiudad.GetInstance().BuscarCiudad("Montevideo").getNombre());
+*/
         
     }
 }
