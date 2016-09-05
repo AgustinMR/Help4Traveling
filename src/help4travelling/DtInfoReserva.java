@@ -18,6 +18,15 @@ public class DtInfoReserva {
         this.idReserva = idReserva;
         this.precioArticulo = precioArticulo;
     }
+    
+    public DtInfoReserva(DtFecha fechaIni, DtFecha fechaFin, int cantidad, String nameArticulo, String nickProveedor, float precioArticulo) {
+        this.fechaIni = fechaIni;
+        this.fechaFin = fechaFin;
+        this.cantidad = cantidad;
+        this.nameArticulo = nameArticulo;
+        this.nickProveedor = nickProveedor;
+        this.precioArticulo = precioArticulo;
+    }
       
     public DtInfoReserva(String nombreArticulo, int cantidad, String nickProv, DtFecha fechaFin, DtFecha fechaIni, float precio){
         this.nameArticulo = nombreArticulo;

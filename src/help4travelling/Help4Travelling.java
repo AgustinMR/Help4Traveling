@@ -1,5 +1,7 @@
 package help4travelling;
 import java.awt.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.swing.*;
 import java.util.ArrayList;
@@ -285,16 +287,15 @@ public class Help4Travelling extends javax.swing.JFrame {
         cmb_promocion = new javax.swing.JComboBox<>();
         jLabel125 = new javax.swing.JLabel();
         jLabel126 = new javax.swing.JLabel();
-        tex_precioT = new javax.swing.JTextField();
+        tex_precio = new javax.swing.JTextField();
         tex_precioU = new javax.swing.JTextField();
         cmb_servicio = new javax.swing.JComboBox<>();
-        tex_cantidad = new javax.swing.JTextField();
         lab_cantidad1 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_ingreso_reservas = new javax.swing.JTable();
         jLabel90 = new javax.swing.JLabel();
         jLabel225 = new javax.swing.JLabel();
         cmb_mes1 = new javax.swing.JComboBox<>();
@@ -313,6 +314,11 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel232 = new javax.swing.JLabel();
         jLabel233 = new javax.swing.JLabel();
         jLabel234 = new javax.swing.JLabel();
+        cmb_cantidad = new javax.swing.JComboBox<>();
+        jButton10 = new javax.swing.JButton();
+        lab_cantidad2 = new javax.swing.JLabel();
+        lab_cantidad3 = new javax.swing.JLabel();
+        tex_precioU1 = new javax.swing.JTextField();
         panel_ingreso_servicios = new javax.swing.JPanel();
         jLabel92 = new javax.swing.JLabel();
         jLabel94 = new javax.swing.JLabel();
@@ -2368,22 +2374,22 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel109.setBounds(-2, 0, 1310, 40);
 
         jLabel112.setBackground(java.awt.Color.darkGray);
-        jLabel112.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
+        jLabel112.setFont(new java.awt.Font("FreeSans", 1, 18)); // NOI18N
         jLabel112.setForeground(java.awt.Color.darkGray);
         jLabel112.setText("Precio total");
         panel_ingreso_reservas.add(jLabel112);
-        jLabel112.setBounds(710, 500, 80, 20);
+        jLabel112.setBounds(740, 510, 120, 20);
 
         jLabel120.setBackground(java.awt.Color.darkGray);
         jLabel120.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel120.setForeground(java.awt.Color.darkGray);
         jLabel120.setText("Cliente");
         panel_ingreso_reservas.add(jLabel120);
-        jLabel120.setBounds(10, 50, 90, 40);
+        jLabel120.setBounds(10, 50, 60, 20);
 
         jLabel76.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/confirmar.png"))); // NOI18N
         jLabel76.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel76.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel76.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel76.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel76.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         jLabel76.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2392,11 +2398,11 @@ public class Help4Travelling extends javax.swing.JFrame {
             }
         });
         panel_ingreso_reservas.add(jLabel76);
-        jLabel76.setBounds(980, 540, 45, 46);
+        jLabel76.setBounds(980, 500, 45, 46);
 
         cmb_cliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         panel_ingreso_reservas.add(cmb_cliente);
-        cmb_cliente.setBounds(110, 55, 390, 20);
+        cmb_cliente.setBounds(10, 80, 340, 20);
 
         cmb_proveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmb_proveedor.addItemListener(new java.awt.event.ItemListener() {
@@ -2405,18 +2411,23 @@ public class Help4Travelling extends javax.swing.JFrame {
             }
         });
         panel_ingreso_reservas.add(cmb_proveedor);
-        cmb_proveedor.setBounds(110, 110, 390, 20);
+        cmb_proveedor.setBounds(10, 150, 340, 20);
 
         jLabel123.setBackground(java.awt.Color.darkGray);
         jLabel123.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel123.setForeground(java.awt.Color.darkGray);
         jLabel123.setText("Proveedor");
         panel_ingreso_reservas.add(jLabel123);
-        jLabel123.setBounds(10, 100, 90, 40);
+        jLabel123.setBounds(10, 120, 90, 20);
 
         cmb_promocion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmb_promocion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cmb_promocionMouseClicked(evt);
+            }
+        });
         panel_ingreso_reservas.add(cmb_promocion);
-        cmb_promocion.setBounds(10, 230, 370, 20);
+        cmb_promocion.setBounds(10, 290, 270, 20);
         cmb_promocion.setEnabled(false);
 
         jLabel125.setBackground(java.awt.Color.darkGray);
@@ -2424,30 +2435,33 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel125.setForeground(java.awt.Color.darkGray);
         jLabel125.setText("Servicios y promociones del proveedor");
         panel_ingreso_reservas.add(jLabel125);
-        jLabel125.setBounds(10, 150, 310, 40);
+        jLabel125.setBounds(10, 190, 260, 20);
 
         jLabel126.setBackground(java.awt.Color.darkGray);
-        jLabel126.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
+        jLabel126.setFont(new java.awt.Font("FreeSans", 1, 16)); // NOI18N
         jLabel126.setForeground(java.awt.Color.darkGray);
         jLabel126.setText("Incluidos actualmente en la reserva");
         panel_ingreso_reservas.add(jLabel126);
-        jLabel126.setBounds(540, 60, 310, 20);
+        jLabel126.setBounds(360, 60, 310, 20);
 
-        tex_precioT.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
-        tex_precioT.addActionListener(new java.awt.event.ActionListener() {
+        tex_precio.setFont(new java.awt.Font("DejaVu Sans", 2, 14)); // NOI18N
+        tex_precio.setForeground(new java.awt.Color(153, 0, 0));
+        tex_precio.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
+        tex_precio.setBorder(null);
+        tex_precio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tex_precioTActionPerformed(evt);
+                tex_precioActionPerformed(evt);
             }
         });
-        panel_ingreso_reservas.add(tex_precioT);
-        tex_precioT.setBounds(790, 500, 80, 30);
+        panel_ingreso_reservas.add(tex_precio);
+        tex_precio.setBounds(850, 510, 100, 20);
 
         tex_precioU.setEditable(false);
         tex_precioU.setBackground(java.awt.Color.white);
         tex_precioU.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         tex_precioU.setBorder(null);
         panel_ingreso_reservas.add(tex_precioU);
-        tex_precioU.setBounds(120, 283, 69, 17);
+        tex_precioU.setBounds(200, 240, 69, 17);
 
         cmb_servicio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmb_servicio.addItemListener(new java.awt.event.ItemListener() {
@@ -2456,23 +2470,17 @@ public class Help4Travelling extends javax.swing.JFrame {
             }
         });
         panel_ingreso_reservas.add(cmb_servicio);
-        cmb_servicio.setBounds(10, 190, 370, 20);
+        cmb_servicio.setBounds(10, 220, 270, 20);
         cmb_servicio.setEnabled(false);
-
-        tex_cantidad.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
-        tex_cantidad.setText("1");
-        tex_cantidad.setToolTipText("");
-        panel_ingreso_reservas.add(tex_cantidad);
-        tex_cantidad.setBounds(300, 260, 80, 30);
 
         lab_cantidad1.setBackground(java.awt.Color.darkGray);
         lab_cantidad1.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         lab_cantidad1.setForeground(java.awt.Color.darkGray);
-        lab_cantidad1.setText("Cantidad:");
+        lab_cantidad1.setText("Precio Unitario de la Prom.:");
         panel_ingreso_reservas.add(lab_cantidad1);
-        lab_cantidad1.setBounds(220, 260, 70, 19);
+        lab_cantidad1.setBounds(20, 310, 180, 19);
 
-        jButton4.setText("-->");
+        jButton4.setText("<--");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton4MouseClicked(evt);
@@ -2484,7 +2492,7 @@ public class Help4Travelling extends javax.swing.JFrame {
             }
         });
         panel_ingreso_reservas.add(jButton4);
-        jButton4.setBounds(420, 230, 80, 23);
+        jButton4.setBounds(450, 500, 49, 23);
 
         jButton8.setText("Limpiar");
         jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2498,7 +2506,7 @@ public class Help4Travelling extends javax.swing.JFrame {
             }
         });
         panel_ingreso_reservas.add(jButton8);
-        jButton8.setBounds(540, 500, 80, 23);
+        jButton8.setBounds(360, 500, 80, 23);
 
         jButton5.setText("-->");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2512,14 +2520,12 @@ public class Help4Travelling extends javax.swing.JFrame {
             }
         });
         panel_ingreso_reservas.add(jButton5);
-        jButton5.setBounds(420, 190, 80, 23);
+        jButton5.setBounds(300, 220, 49, 23);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_ingreso_reservas.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
+        table_ingreso_reservas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Cantidad", "Nombre", "Nickname Proveedor", "FechaIni", "FechaFin", "Precio Uni", "Precio Total"
@@ -2533,29 +2539,29 @@ public class Help4Travelling extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane7.setViewportView(jTable1);
+        jScrollPane7.setViewportView(table_ingreso_reservas);
 
         panel_ingreso_reservas.add(jScrollPane7);
-        jScrollPane7.setBounds(540, 90, 470, 402);
+        jScrollPane7.setBounds(360, 90, 660, 402);
 
         jLabel90.setBackground(java.awt.Color.darkGray);
         jLabel90.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel90.setForeground(java.awt.Color.darkGray);
         jLabel90.setText("Fecha Inicio");
         panel_ingreso_reservas.add(jLabel90);
-        jLabel90.setBounds(10, 330, 130, 20);
+        jLabel90.setBounds(10, 410, 80, 20);
 
         jLabel225.setBackground(java.awt.Color.darkGray);
         jLabel225.setFont(new java.awt.Font("FreeSans", 1, 12)); // NOI18N
         jLabel225.setForeground(java.awt.Color.darkGray);
         jLabel225.setText("año");
         panel_ingreso_reservas.add(jLabel225);
-        jLabel225.setBounds(330, 310, 30, 20);
+        jLabel225.setBounds(300, 390, 30, 20);
 
         cmb_mes1.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         cmb_mes1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         panel_ingreso_reservas.add(cmb_mes1);
-        cmb_mes1.setBounds(210, 330, 60, 20);
+        cmb_mes1.setBounds(190, 410, 60, 20);
         cmb_mes.removeAllItems();
         for(int x = 1; x <= 12; x++){
             cmb_mes.addItem(""+x);
@@ -2564,7 +2570,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         cmb_anio1.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         cmb_anio1.setToolTipText("");
         panel_ingreso_reservas.add(cmb_anio1);
-        cmb_anio1.setBounds(310, 330, 70, 20);
+        cmb_anio1.setBounds(280, 410, 70, 20);
         cmb_anio.removeAllItems();
         for(int x = 2020; x >= 1950; x--){
             cmb_anio1.addItem(""+x);
@@ -2574,7 +2580,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         cmb_dia1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", " " }));
         cmb_dia1.setAutoscrolls(true);
         panel_ingreso_reservas.add(cmb_dia1);
-        cmb_dia1.setBounds(110, 330, 60, 20);
+        cmb_dia1.setBounds(100, 410, 60, 20);
         cmb_dia.removeAllItems();
         for(int x = 1; x <= 31; x++){
             cmb_dia.addItem(""+x);
@@ -2585,47 +2591,47 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel226.setForeground(java.awt.Color.darkGray);
         jLabel226.setText("dia");
         panel_ingreso_reservas.add(jLabel226);
-        jLabel226.setBounds(130, 310, 30, 20);
+        jLabel226.setBounds(120, 390, 30, 20);
 
         jLabel227.setBackground(java.awt.Color.darkGray);
         jLabel227.setFont(new java.awt.Font("FreeSans", 1, 14)); // NOI18N
         jLabel227.setForeground(java.awt.Color.darkGray);
         jLabel227.setText("/");
         panel_ingreso_reservas.add(jLabel227);
-        jLabel227.setBounds(290, 330, 10, 20);
+        jLabel227.setBounds(260, 410, 10, 20);
 
         jLabel228.setBackground(java.awt.Color.darkGray);
         jLabel228.setFont(new java.awt.Font("FreeSans", 1, 12)); // NOI18N
         jLabel228.setForeground(java.awt.Color.darkGray);
         jLabel228.setText("mes");
         panel_ingreso_reservas.add(jLabel228);
-        jLabel228.setBounds(230, 310, 30, 20);
+        jLabel228.setBounds(210, 390, 30, 20);
 
         jLabel229.setBackground(java.awt.Color.darkGray);
         jLabel229.setFont(new java.awt.Font("FreeSans", 1, 14)); // NOI18N
         jLabel229.setForeground(java.awt.Color.darkGray);
         jLabel229.setText("/");
         panel_ingreso_reservas.add(jLabel229);
-        jLabel229.setBounds(190, 330, 10, 20);
+        jLabel229.setBounds(170, 410, 10, 20);
 
         jLabel91.setBackground(java.awt.Color.darkGray);
         jLabel91.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel91.setForeground(java.awt.Color.darkGray);
         jLabel91.setText("Fecha Fin");
         panel_ingreso_reservas.add(jLabel91);
-        jLabel91.setBounds(10, 390, 130, 20);
+        jLabel91.setBounds(10, 470, 70, 20);
 
         jLabel230.setBackground(java.awt.Color.darkGray);
         jLabel230.setFont(new java.awt.Font("FreeSans", 1, 12)); // NOI18N
         jLabel230.setForeground(java.awt.Color.darkGray);
         jLabel230.setText("año");
         panel_ingreso_reservas.add(jLabel230);
-        jLabel230.setBounds(330, 370, 30, 20);
+        jLabel230.setBounds(300, 450, 30, 20);
 
         cmb_mes2.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         cmb_mes2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         panel_ingreso_reservas.add(cmb_mes2);
-        cmb_mes2.setBounds(210, 390, 60, 20);
+        cmb_mes2.setBounds(190, 470, 60, 20);
         cmb_mes.removeAllItems();
         for(int x = 1; x <= 12; x++){
             cmb_mes.addItem(""+x);
@@ -2634,7 +2640,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         cmb_anio2.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         cmb_anio2.setToolTipText("");
         panel_ingreso_reservas.add(cmb_anio2);
-        cmb_anio2.setBounds(310, 390, 70, 20);
+        cmb_anio2.setBounds(280, 470, 70, 20);
         cmb_anio.removeAllItems();
         for(int x = 2020; x >= 1950; x--){
             cmb_anio2.addItem(""+x);
@@ -2644,7 +2650,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         cmb_dia2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", " " }));
         cmb_dia2.setAutoscrolls(true);
         panel_ingreso_reservas.add(cmb_dia2);
-        cmb_dia2.setBounds(110, 390, 60, 20);
+        cmb_dia2.setBounds(100, 470, 60, 20);
         cmb_dia.removeAllItems();
         for(int x = 1; x <= 31; x++){
             cmb_dia.addItem(""+x);
@@ -2655,28 +2661,71 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel231.setForeground(java.awt.Color.darkGray);
         jLabel231.setText("dia");
         panel_ingreso_reservas.add(jLabel231);
-        jLabel231.setBounds(130, 370, 30, 20);
+        jLabel231.setBounds(130, 450, 30, 20);
 
         jLabel232.setBackground(java.awt.Color.darkGray);
         jLabel232.setFont(new java.awt.Font("FreeSans", 1, 14)); // NOI18N
         jLabel232.setForeground(java.awt.Color.darkGray);
         jLabel232.setText("/");
         panel_ingreso_reservas.add(jLabel232);
-        jLabel232.setBounds(290, 390, 10, 20);
+        jLabel232.setBounds(260, 470, 10, 20);
 
         jLabel233.setBackground(java.awt.Color.darkGray);
         jLabel233.setFont(new java.awt.Font("FreeSans", 1, 12)); // NOI18N
         jLabel233.setForeground(java.awt.Color.darkGray);
         jLabel233.setText("mes");
         panel_ingreso_reservas.add(jLabel233);
-        jLabel233.setBounds(230, 370, 30, 20);
+        jLabel233.setBounds(210, 450, 30, 20);
 
         jLabel234.setBackground(java.awt.Color.darkGray);
         jLabel234.setFont(new java.awt.Font("FreeSans", 1, 14)); // NOI18N
         jLabel234.setForeground(java.awt.Color.darkGray);
         jLabel234.setText("/");
         panel_ingreso_reservas.add(jLabel234);
-        jLabel234.setBounds(190, 390, 10, 20);
+        jLabel234.setBounds(170, 470, 10, 20);
+
+        cmb_cantidad.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        cmb_cantidad.setAutoscrolls(true);
+        panel_ingreso_reservas.add(cmb_cantidad);
+        cmb_cantidad.setBounds(290, 350, 60, 20);
+        for(int x = 1; x <= 1000; x++){
+            cmb_cantidad.addItem(""+x+"");
+        }
+
+        jButton10.setText("-->");
+        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton10MouseClicked(evt);
+            }
+        });
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        panel_ingreso_reservas.add(jButton10);
+        jButton10.setBounds(300, 290, 49, 23);
+
+        lab_cantidad2.setBackground(java.awt.Color.darkGray);
+        lab_cantidad2.setFont(new java.awt.Font("FreeSans", 1, 16)); // NOI18N
+        lab_cantidad2.setForeground(new java.awt.Color(204, 51, 0));
+        lab_cantidad2.setText("Cantidad:");
+        panel_ingreso_reservas.add(lab_cantidad2);
+        lab_cantidad2.setBounds(210, 350, 80, 21);
+
+        lab_cantidad3.setBackground(java.awt.Color.darkGray);
+        lab_cantidad3.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
+        lab_cantidad3.setForeground(java.awt.Color.darkGray);
+        lab_cantidad3.setText("Precio Unitario del Servicio:");
+        panel_ingreso_reservas.add(lab_cantidad3);
+        lab_cantidad3.setBounds(20, 240, 180, 19);
+
+        tex_precioU1.setEditable(false);
+        tex_precioU1.setBackground(java.awt.Color.white);
+        tex_precioU1.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        tex_precioU1.setBorder(null);
+        panel_ingreso_reservas.add(tex_precioU1);
+        tex_precioU1.setBounds(200, 310, 69, 20);
 
         getContentPane().add(panel_ingreso_reservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 220, 150, 100));
         getContentPane().remove(panel_ingreso_reservas);
@@ -3776,8 +3825,8 @@ public class Help4Travelling extends javax.swing.JFrame {
         cmb_proveedor.setModel(new DefaultComboBoxModel(ICUsuario.listarProveedores().toArray()));
         //cmb_proveedor.setModel(new DefaultComboBoxModel(ICUsuario.listarProveedores().toArray()));
         
-        tex_cantidad.setText("");
-        tex_precioT.setText("");
+        cmb_cantidad.setSelectedItem(1);
+        tex_precio.setText("");
         tex_precioU.setText("");
         list2.clear();
         //for (int i = 0; i < .size(); i++){
@@ -4324,10 +4373,18 @@ public class Help4Travelling extends javax.swing.JFrame {
 
     private void jLabel76MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel76MouseClicked
         tex_precioU.setText("");
-        tex_cantidad.setText("");
-        tex_precioT.setText("");
+        cmb_cantidad.setSelectedItem(1);
+        tex_precio.setText("");
         list2.clear();
-        
+        if(table_ingreso_reservas.getModel().getRowCount() != 0){
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            Calendar cal = Calendar.getInstance();
+            ArrayList<DtInfoReserva> res = new ArrayList();
+            for(int x = 0; x < table_ingreso_reservas.getModel().getRowCount(); x++){
+                res.add(new DtInfoReserva(new DtFecha(table_ingreso_reservas.getValueAt(x,3).toString()), new DtFecha(table_ingreso_reservas.getValueAt(x,4).toString()), (int)table_ingreso_reservas.getValueAt(x,0), table_ingreso_reservas.getValueAt(x,1).toString(), table_ingreso_reservas.getValueAt(x,2).toString(),x, (float) table_ingreso_reservas.getValueAt(x,5))); 
+            }
+            DtReserva ing = new DtReserva(Estado.Registrada, new DtFecha(dateFormat.format(cal.getTime())), res ,cmb_cliente.getSelectedItem().toString(), Float.parseFloat(tex_precio.getText()));
+        }
     }//GEN-LAST:event_jLabel76MouseClicked
 
     private void cmb_proveedorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmb_proveedorItemStateChanged
@@ -4336,7 +4393,14 @@ public class Help4Travelling extends javax.swing.JFrame {
             cmb_promocion.setEnabled(true);
             cmb_servicio.removeAllItems();
             cmb_promocion.removeAllItems();
-            tex_cantidad.setText("1");
+            cmb_cantidad.setSelectedItem(1);
+            tex_precio.setText("");
+            if(table_ingreso_reservas.getModel().getRowCount() != 0){
+                for(int e = 1; e <= table_ingreso_reservas.getModel().getRowCount(); e++){
+                    ((DefaultTableModel)table_ingreso_reservas.getModel()).removeRow(e);
+                }
+            }
+            
             ArrayList<DtServicio> ret =  ICArticulo.ListarServiciosProv(cmb_proveedor.getSelectedItem().toString());
             for(int i = 0; i < ret.size(); i++){
                 cmb_servicio.addItem(ret.get(i).getNombre());
@@ -4345,12 +4409,15 @@ public class Help4Travelling extends javax.swing.JFrame {
             for(int i = 0; i < ret2.size(); i++){
                 cmb_promocion.addItem(ret2.get(i).GetNombre());
             }
+            for(int e = 0; e < table_ingreso_reservas.getModel().getRowCount(); e++){
+                ((DefaultTableModel)table_ingreso_reservas.getModel()).removeRow(e);
+            }
         }
     }//GEN-LAST:event_cmb_proveedorItemStateChanged
 
-    private void tex_precioTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tex_precioTActionPerformed
+    private void tex_precioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tex_precioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tex_precioTActionPerformed
+    }//GEN-LAST:event_tex_precioActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -4369,36 +4436,60 @@ public class Help4Travelling extends javax.swing.JFrame {
     }//GEN-LAST:event_cmb_servicioItemStateChanged
 
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
-
+        if(table_ingreso_reservas.getModel().getRowCount() != 0){
+                for(int e = 0; e < table_ingreso_reservas.getModel().getRowCount(); e++){
+                    ((DefaultTableModel)table_ingreso_reservas.getModel()).removeRow(e);
+                }
+        }
     }//GEN-LAST:event_jButton8MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        /*DefaultListModel<String> list3 = (DefaultListModel<String>) lis_articulos.getModel();
-        if(!list3.contains(cmb_promocion.getSelectedItem()) && (cmb_servicio.isEnabled())){
-            list3.addElement(tex_cantidad.getText() + "x " + cmb_promocion.getSelectedItem().toString());
-            tex_cantidad.setText("1");
-        }*/
+        if(table_ingreso_reservas.getSelectedRowCount() == 1){
+            ((DefaultTableModel)table_ingreso_reservas.getModel()).removeRow(table_ingreso_reservas.getSelectedRow());
+            float precioT = 0;
+            for(int x = 0; x < table_ingreso_reservas.getRowCount(); x++){
+                precioT += (float)table_ingreso_reservas.getValueAt(x, 6);
+            }
+            tex_precio.setText(""+precioT);
+        }
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        /*
-        DtFecha ini, fin;
-        ini = 
-        DefaultTableModel tm = (DefaultTableModel)table_reservas.getModel();
-        Object[] row = new Object[2];
-        for(int x = 0; x < r.size(); x++){
-            if(r.get(x).GetEstado() == Estado.Registrada){
-                row[0] = r.get(x).GetCliente();
-                row[1] = r.get(x).GetId();
-                tm.addRow(row);
+        if(cmb_servicio.isEnabled()){
+            DtFecha ini, fin;
+            ini = new DtFecha(cmb_anio1.getSelectedItem().toString() + "/" + cmb_mes1.getSelectedItem().toString() + "/" + cmb_dia1.getSelectedItem().toString());
+            fin = new DtFecha(cmb_anio2.getSelectedItem().toString() + "/" + cmb_mes2.getSelectedItem().toString() + "/" + cmb_dia2.getSelectedItem().toString());
+            DefaultTableModel tm = (DefaultTableModel)table_ingreso_reservas.getModel();
+            Object[] row = new Object[7];
+            row[0] = cmb_cantidad.getSelectedIndex()+1;
+            row[1] = cmb_servicio.getSelectedItem().toString();
+            row[2] = cmb_proveedor.getSelectedItem().toString();
+            row[3] = (ini.getAnio() + "/" + ini.getMes() + "/" + ini.getDia());
+            row[4] = (fin.getAnio() + "/" + fin.getMes() + "/" + fin.getDia());
+            DtServicio selected = ICArticulo.datosServicio(cmb_servicio.getSelectedItem().toString(), cmb_proveedor.getSelectedItem().toString());
+            row[5] = selected.getPrecio();
+            row[6] = ((cmb_cantidad.getSelectedIndex()+1)*selected.getPrecio());
+
+            boolean exists = false;
+            for (int i = 0; i < table_ingreso_reservas.getRowCount(); i++) {
+                if (cmb_cantidad.getSelectedItem().toString().equals(table_ingreso_reservas.getValueAt(i, 0)) && cmb_servicio.getSelectedItem().toString().equals(table_ingreso_reservas.getValueAt(i, 1)) && cmb_proveedor.getSelectedItem().toString().equals(table_ingreso_reservas.getValueAt(i, 2))){
+                    if((ini.getAnio() + "/" + ini.getMes() + "/" + ini.getDia()).equals(table_ingreso_reservas.getValueAt(i, 3)) && (fin.getAnio() + "/" + fin.getMes() + "/" + fin.getDia()).equals(table_ingreso_reservas.getValueAt(i, 4))){
+                        if(selected.getPrecio().equals(table_ingreso_reservas.getValueAt(i, 5)) && ((cmb_cantidad.getSelectedIndex()*selected.getPrecio()) == (float)table_ingreso_reservas.getValueAt(i, 6))){
+                            exists = true;
+                        }
+                    }
+                }
             }
-        }*/
-        
-        /*DefaultListModel<String> list3 = (DefaultListModel<String>) lis_articulos.getModel();
-        if(!list3.contains(cmb_servicio.getSelectedItem()) && (cmb_servicio.isEnabled())){
-            list3.addElement(tex_cantidad.getText() + "x " +cmb_servicio.getSelectedItem().toString());
-            tex_cantidad.setText("1");
-        }*/
+            if(!exists){
+                tm.addRow(row);
+                float precioT = 0;
+                for(int x = 0; x < table_ingreso_reservas.getRowCount(); x++){
+                    precioT += (float)table_ingreso_reservas.getValueAt(x, 6);
+                }
+                tex_precio.setText(""+precioT);
+            }
+        }
+
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -4419,7 +4510,7 @@ public class Help4Travelling extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel92MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:u
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jLabel72MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel72MouseClicked
@@ -4802,7 +4893,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         tex_origen.setVisible(true);
         tex_destino.setVisible(true);
         txt_DescripcionP.setVisible(true);
-        String NameServ = jList_ServiciosP.getSelectedValue().toString();
+        String NameServ = jList_ServiciosP.getSelectedValue();
         String prov = cmb_proveedorP.getSelectedItem().toString();
         DtServicio DtServ = ICArticulo.datosServicio(NameServ, prov);
         txt_DescripcionP.setText(DtServ.getDescripcion());
@@ -4810,6 +4901,45 @@ public class Help4Travelling extends javax.swing.JFrame {
 
         tex_destino.setText(DtServ.getCiudadDestino());
     }//GEN-LAST:event_jList_ServiciosPMouseClicked
+
+    private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
+        if(cmb_promocion.isEnabled()){
+            if(cmb_promocion.getSelectedItem() != null){
+                DtFecha ini, fin;
+                ini = new DtFecha(cmb_anio1.getSelectedItem().toString() + "/" + cmb_mes1.getSelectedItem().toString() + "/" + cmb_dia1.getSelectedItem().toString());
+                fin = new DtFecha(cmb_anio2.getSelectedItem().toString() + "/" + cmb_mes2.getSelectedItem().toString() + "/" + cmb_dia2.getSelectedItem().toString());
+                DefaultTableModel tm = (DefaultTableModel)table_ingreso_reservas.getModel();
+                Object[] row = new Object[7];
+                row[0] = cmb_cantidad.getSelectedIndex()+1;
+                row[1] = cmb_promocion.getSelectedItem().toString();
+                row[2] = cmb_proveedor.getSelectedItem().toString();
+                row[3] = (ini.getAnio() + "/" + ini.getMes() + "/" + ini.getDia());
+                row[4] = (fin.getAnio() + "/" + fin.getMes() + "/" + fin.getDia());
+                DtPromocion selected = ICArticulo.datosPromociones(cmb_promocion.getSelectedItem().toString(), cmb_proveedor.getSelectedItem().toString());
+                row[5] = selected.GetPrecio();
+                row[6] = ((cmb_cantidad.getSelectedIndex()+1)*selected.GetPrecio());
+                
+                tm.addRow(row);
+                float precioT = 0;
+                for(int x = 0; x < table_ingreso_reservas.getRowCount(); x++){
+                    precioT += (float)table_ingreso_reservas.getValueAt(x, 6);
+                }
+                tex_precio.setText(""+precioT);
+                
+            }
+        }
+    }//GEN-LAST:event_jButton10MouseClicked
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void cmb_promocionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmb_promocionMouseClicked
+        if (cmb_promocion.getSelectedItem() != null){
+                DtPromocion prom = ICArticulo.datosPromociones(cmb_promocion.getSelectedItem().toString(), cmb_proveedor.getSelectedItem().toString());
+                tex_precioU1.setText(""+prom.GetPrecio());
+        }
+    }//GEN-LAST:event_cmb_promocionMouseClicked
 
     /**
      *
@@ -4850,6 +4980,7 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmb_anio;
     private javax.swing.JComboBox<String> cmb_anio1;
     private javax.swing.JComboBox<String> cmb_anio2;
+    private javax.swing.JComboBox<String> cmb_cantidad;
     private javax.swing.JComboBox<String> cmb_categoria;
     private javax.swing.JComboBox<String> cmb_cliente;
     private javax.swing.JComboBox<String> cmb_destinoS;
@@ -4880,6 +5011,7 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JPanel ingreso_servicios;
     private javax.swing.JPanel ingreso_usuarios;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -5135,7 +5267,6 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
@@ -5148,6 +5279,8 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JTextPane jTextPane2;
     private javax.swing.JTextPane jTextPane4;
     private javax.swing.JLabel lab_cantidad1;
+    private javax.swing.JLabel lab_cantidad2;
+    private javax.swing.JLabel lab_cantidad3;
     private javax.swing.JLabel lab_categoria;
     private javax.swing.JLabel lab_destinoS;
     private javax.swing.JLabel lab_origenS;
@@ -5192,15 +5325,16 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JPanel panel_izq_actualizaciones;
     private javax.swing.JPanel panel_izq_consultas;
     private javax.swing.JPanel panel_izq_eliminaciones;
+    private javax.swing.JTable table_ingreso_reservas;
     private javax.swing.JTable table_reservas;
     private javax.swing.JTextField tex_anio;
-    private javax.swing.JTextField tex_cantidad;
     private javax.swing.JTextField tex_destino;
     private javax.swing.JTextField tex_dia;
     private javax.swing.JTextField tex_mes;
     private javax.swing.JTextField tex_origen;
-    private javax.swing.JTextField tex_precioT;
+    private javax.swing.JTextField tex_precio;
     private javax.swing.JTextField tex_precioU;
+    private javax.swing.JTextField tex_precioU1;
     private javax.swing.JTree tree_servicios;
     private javax.swing.JTree tree_servicios2;
     private javax.swing.JTextField txt_ApellidoP;

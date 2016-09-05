@@ -5,17 +5,21 @@
             <url>src/help4travelling/Help4Travelling.java</url>
             <bookmark id="1">
                 <name/>
-                <line>3965</line>
+                <line>3955</line>
                 <key/>
             </bookmark>
             <bookmark id="2">
                 <name/>
-                <line>4384</line>
+                <line>4387</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Agustin/Documents/Help4Traveling/src/help4travelling/DtServicio.java</file>
+            <file>file:/C:/Users/Agustin/Documents/Help4Traveling/src/help4travelling/Help4Travelling.java</file>
+            <file>file:/C:/Users/Agustin/Documents/Help4Traveling/src/help4travelling/ManejadorArticulo.java</file>
+        </group>
     </open-files>
 </project-private>

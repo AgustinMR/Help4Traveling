@@ -95,10 +95,10 @@ public class ManejadorArticulo {
      
     public DtPromocion datosPromociones(String nombreProm, String nomProv){
          for (int i = 0; i < articulos.size(); i++) {
-             if (articulos.get(i).GetNombre() == nombreProm && articulos.get(i).getProv() == nomProv)
+             if (articulos.get(i).GetNombre().equals(nombreProm) && articulos.get(i).getProv().equals(nomProv))
                  return articulos.get(i).getDtPromocion();
          }
-         return null;
+         return ManejadorSQL.GetInstance().devolverPromocion(nomProv, nombreProm);
     }
     
     public DtServicio datosServicio(String nombreServ, String nomProv){
