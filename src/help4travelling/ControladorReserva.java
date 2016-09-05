@@ -10,10 +10,6 @@ public class ControladorReserva implements IControladorReserva{
     private Articulo artmem;
     private infoReserva irmem;
     private DtReserva dtRes;
-    
-    public ControladorReserva(){
-        
-    }
          
    public boolean CrearReserva(DtReserva dtRes){ 
         this.dtRes = dtRes;

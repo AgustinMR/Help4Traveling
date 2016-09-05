@@ -54,11 +54,11 @@ public class ManejadorArticulo {
         return false;
     }
     
-     public ArrayList<String> listarPromociones(){
-        ArrayList<String> ArrayPromociones = new ArrayList<String>();
+     public ArrayList<DtPromocion> listarPromociones(){
+        ArrayList<DtPromocion> ArrayPromociones = new ArrayList<DtPromocion>();
         for (int i = 0; i < articulos.size(); i++) {
             if (articulos.get(i).isPromocion())
-                ArrayPromociones.add(articulos.get(i).GetNombre());
+                ArrayPromociones.add(articulos.get(i).getDtPromocion());
         }
         return ArrayPromociones;
     }
@@ -67,6 +67,25 @@ public class ManejadorArticulo {
         ArrayList<DtServicio> ret = new ArrayList<DtServicio>();
         for (int i = 0; i < articulos.size(); i++) {
             if(articulos.get(i).IsServicio()){
+                ret.add(articulos.get(i).GetDtServicio());
+            }
+        }
+        return ret;
+    }
+    
+    public ArrayList<DtPromocion> listarPromocionesProv(String nick){
+        ArrayList<DtPromocion> ArrayPromociones = new ArrayList<DtPromocion>();
+        for (int i = 0; i < articulos.size(); i++) {
+            if (articulos.get(i).isPromocion() && articulos.get(i).getProv().equals(nick))
+                ArrayPromociones.add(articulos.get(i).getDtPromocion());
+        }
+        return ArrayPromociones;
+    }
+     
+    public ArrayList<DtServicio> ListarServiciosProv(String nick){
+        ArrayList<DtServicio> ret = new ArrayList<DtServicio>();
+        for (int i = 0; i < articulos.size(); i++) {
+            if(articulos.get(i).IsServicio() && articulos.get(i).getProv().equals(nick)){
                 ret.add(articulos.get(i).GetDtServicio());
             }
         }

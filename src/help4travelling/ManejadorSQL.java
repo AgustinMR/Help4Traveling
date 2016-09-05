@@ -284,7 +284,7 @@ public class ManejadorSQL {
     public boolean agregarServicio(DtServicio s, String nickProveedor, ArrayList<String> categorias){
         String sql1 = "INSERT INTO ARTICULOS(nicknameProveedor, nombre) VALUES ('" + nickProveedor + "','" + s.getNombre() + "');";
         String sql2, sql3;
-        if(s.getCiudadDestino().isEmpty())
+        if(s.getCiudadDestino() == null )
             sql2 = "INSERT INTO SERVICIOS(nicknameProveedor,nombreArticulo,descripcion,precio,ciudadO) VALUES ('" + nickProveedor + "','" + s.getNombre() + "','" + s.getDescripcion() + "'," + s.getPrecio() + ",'" + s.getCiudadOrigen() + "');";
         else
             sql2 = "INSERT INTO SERVICIOS(nicknameProveedor,nombreArticulo,descripcion,precio,ciudadO,ciudadD) VALUES ('" + nickProveedor + "','" + s.getNombre() + "','" + s.getDescripcion() + "'," + s.getPrecio() + ",'" + s.getCiudadOrigen() + "','" + s.getCiudadDestino() + "' );";
@@ -332,7 +332,7 @@ public class ManejadorSQL {
         // ALTA DE PROMOCION.
     public boolean agregarPromocion(DtPromocion p, String nickProveedor, ArrayList<String> servicios){
         String sql1 = "INSERT INTO ARTICULOS(nicknameProveedor, nombre) VALUES (" + nickProveedor + "," + p.GetNombre()+ " );";
-        String sql2 = "INSERT INTO PROMOCIONES(nicknameProveedor, nombreArticulo, descuento, precio) VALUES (" + nickProveedor + ", " + p.GetNombre() + ", " + p.GetDescuento() + ", " + p.GetPrecioTotal() + " );";
+        String sql2 = "INSERT INTO PROMOCIONES(nicknameProveedor, nombreArticulo, descuento, precio) VALUES (" + nickProveedor + ", " + p.GetNombre() + ", " + p.GetDescuento() + ", " + p.GetPrecio() + " );";
         String sql3;
         Statement usuario;
         boolean ret = false;
@@ -519,27 +519,25 @@ public class ManejadorSQL {
     }
     
         // DEVOLVER PROMOCIONES
-    public DtServicio devolverPromocion(String nickProveedor, String nombre){
-        String sql1 = "SELECT descripcion, precio, ciudadO, ciudadD FROM SERVICIOS WHERE nicknameProveedor = " + nickProveedor + " AND nombreArticulo = "+ nombre + ";";
-        String sql2 = "SELECT nombreCategoria FROM POSEEN WHERE nicknameProveedor = " + nickProveedor + " AND nombreArticulo = "+ nombre + ";";
-        String desc, co, cd;
-        float p;
-        ArrayList<String> categorias = new ArrayList<String>();
+    public DtPromocion devolverPromocion(String nickProveedor, String nombre){
+        String sql1 = "SELECT precio, descuento FROM PROMOCIONES WHERE nicknameProveedor = '" + nickProveedor + "' AND nombreArticulo = '"+ nombre + "';";
+        String sql2 = "SELECT nombreArticuloServ FROM COMPUESTOS WHERE nicknameProvProm = '" + nickProveedor + "' AND nombreArticuloProm = '"+ nombre + "';";
+        ArrayList<String> servicios = new ArrayList<String>();
         Statement usuario;
-        DtServicio ret = null;
+        Float p, descu;
+        DtPromocion ret = null;
         try{
             try (Connection conex = getConex()) {
                 usuario = conex.createStatement();
-                ResultSet rs = usuario.executeQuery(sql1);
-                desc = rs.getString("descripcion");
+                ResultSet rs = usuario.executeQuery(sql1), rs2;
+                rs.next();
+                descu = rs.getFloat("descuento");
                 p = rs.getFloat("precio");
-                co = rs.getString("ciudadO");
-                cd = rs.getString("ciudadD");
-                rs = usuario.executeQuery(sql2);
-                while(rs.next()){
-                    categorias.add(rs.getString("nombreCategoria"));
+                rs2 = usuario.executeQuery(sql2);
+                while(rs2.next()){
+                    servicios.add(rs2.getString("nombreArticuloServ"));
                 }
-                ret = new DtServicio(nombre,nickProveedor, p, desc, categorias, co, cd);
+                ret = new DtPromocion(nombre,nickProveedor, descu, p, servicios);
                 conex.close();
             }
         } catch (SQLException ex) {
@@ -659,6 +657,7 @@ public class ManejadorSQL {
     public ManejadorSQL getInstance() {
         return instance;
     }
+    
     
     
 }

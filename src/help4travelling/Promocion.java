@@ -15,7 +15,7 @@ public class Promocion extends Articulo {
         String name = DtProm.GetNombre();
         this.SetNombre(name);
         this.descuento = DtProm.GetDescuento();
-        this.precioTotal = DtProm.GetPrecioTotal();
+        this.precioTotal = DtProm.GetPrecio();
     }
     
     public Promocion(String nick, String nombre){
@@ -32,17 +32,13 @@ public class Promocion extends Articulo {
     }
     
     public DtPromocion getDtPromocion(){
-        float precioT = 0;
-        for (int i = 0; i < servicios.size(); i++) {
-             precioT = precioT + servicios.get(i).getPrecio();
-        }
-        return new DtPromocion(nombre, descuento, precioT, servicios);
+        return ManejadorSQL.GetInstance().devolverPromocion(this.getProv(), this.GetNombre());
     }
     
     public DtServicio getDatosServProm(String nombreServ, String nombreProv){
         for (int i = 0; i < servicios.size(); i++) {
               if (servicios.get(i).GetNombre() == nombreServ && servicios.get(i).getProv() == nombreProv);
-                    return servicios.get(i).getDtServicio();                    
+                    return servicios.get(i).GetDtServicio();                    
         }
         return null;
     }

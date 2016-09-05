@@ -1,6 +1,7 @@
 package help4travelling;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -26,7 +27,7 @@ public class ControladorArticulo implements IControladorArticulo{
     public boolean CrearPromocion(DtPromocion DtProm){
         String nameProm = DtProm.GetNombre();
         ManejadorArticulo manArt = ManejadorArticulo.GetInstance();
-        boolean ok = manArt.IsPromocion(nameProm, DtProm.GetServicios().get(0).getProv());
+        boolean ok = manArt.IsPromocion(nameProm, DtProm.getNickProv());
         
         //Si la instancia no existe ya en el sistema puedo crearla
         if(ok == false){
@@ -37,13 +38,20 @@ public class ControladorArticulo implements IControladorArticulo{
         return !ok;
     }
     
-    public ArrayList<String> listarPromociones(){
+    public ArrayList<DtPromocion> listarPromociones(){
         return ManejadorArticulo.GetInstance().listarPromociones();
     }
     
-    public ArrayList<DtServicio> ListarServicios()
-    {
+    public ArrayList<DtServicio> ListarServicios(){
         return ManejadorArticulo.GetInstance().ListarServicios();
+    }
+    
+    public ArrayList<DtPromocion> listarPromocionesProv(String nick){
+        return ManejadorArticulo.GetInstance().listarPromocionesProv(nick);
+    }
+    
+    public ArrayList<DtServicio> ListarServiciosProv(String nick){
+        return ManejadorArticulo.GetInstance().ListarServiciosProv(nick);
     }
     
     public void PublicarServicio(String nameServ, String nameProv){
@@ -85,7 +93,7 @@ public class ControladorArticulo implements IControladorArticulo{
         ManejadorCategoria.GetInstance().QuitarCategoria(catName);
     }   
     
-    public ArrayList<String> listaDeCiudades(){
+    public List<String> listaDeCiudades(){
         return ManejadorCiudad.GetInstance().listaDeCiudades();
     }
 }

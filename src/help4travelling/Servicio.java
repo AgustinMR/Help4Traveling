@@ -39,14 +39,7 @@ public class Servicio extends Articulo{
     }
     
     public void AddImage(Blob Image){}
-    
-    public DtServicio getDtServicio(){
-        ArrayList<String> ArrayCategorias = new ArrayList<String>();
-        for (String name: categorias.keySet()) {
-            ArrayCategorias.add(categorias.get(name).getNombre());
-        }
-        return new DtServicio(nombre, precio,image, descripcion, ArrayCategorias, ciudadOrigen.getNombre(), ciudadDestino.getNombre());
-    }
+   
     
       public Blob[] GetImage(){
         return this.image;

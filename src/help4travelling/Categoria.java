@@ -33,7 +33,7 @@ public class Categoria {
     }
     
     public DtServicio listarServicios(String nombreServ){
-       return servicios.get(nombreServ).getDtServicio();
+       return servicios.get(nombreServ).GetDtServicio();
     }
    
     /*public DtCategoria getDtCategoria(String nombrePadre){

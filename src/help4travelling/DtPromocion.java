@@ -8,15 +8,17 @@ import java.util.ArrayList;
 
 public class DtPromocion {
     private String nombre;
+    private String nickProv;
     private float descuento;
-    private float precioTotal;
-    private ArrayList<Servicio> servicios;
+    private float precio;
+    private ArrayList<String> servicios;
         
     
-     public DtPromocion(String nombre, float descuento, float precioTotal, ArrayList<Servicio> servicios){
+     public DtPromocion(String nombre, String nickProv, float descuento, float precio, ArrayList<String> servicios){
         this.nombre=nombre;
+        this.nickProv=nickProv;
         this.descuento=descuento;
-        this.precioTotal=precioTotal;
+        this.precio=precio;
         this.servicios=servicios;
      }
     
@@ -28,11 +30,15 @@ public class DtPromocion {
         return this.descuento;
     }     
     
-    public float GetPrecioTotal() {
-        return this.precioTotal;
+    public float GetPrecio() {
+        return this.precio;
     }
 
-    public ArrayList<Servicio> GetServicios() {
+    public ArrayList<String> GetServicios() {
         return this.servicios;
-    }      
+    } 
+    
+      public String getNickProv() {
+        return nickProv;
+    }
 }
