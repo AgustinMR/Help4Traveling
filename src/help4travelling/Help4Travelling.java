@@ -350,6 +350,8 @@ public class Help4Travelling extends javax.swing.JFrame {
         but_add = new javax.swing.JButton();
         jScrollPane19 = new javax.swing.JScrollPane();
         lis_categoriaS = new javax.swing.JList<>();
+        jLabel103 = new javax.swing.JLabel();
+        jLabel107 = new javax.swing.JLabel();
         panel_consultas_reservas = new javax.swing.JPanel();
         jLabel134 = new javax.swing.JLabel();
         jLabel138 = new javax.swing.JLabel();
@@ -2444,9 +2446,8 @@ public class Help4Travelling extends javax.swing.JFrame {
         panel_ingreso_reservas.add(jLabel126);
         jLabel126.setBounds(360, 60, 310, 20);
 
-        tex_precio.setFont(new java.awt.Font("DejaVu Sans", 2, 14)); // NOI18N
+        tex_precio.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
         tex_precio.setForeground(new java.awt.Color(153, 0, 0));
-        tex_precio.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
         tex_precio.setBorder(null);
         tex_precio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2750,46 +2751,46 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel94.setBackground(new java.awt.Color(33, 33, 33));
         jLabel94.setOpaque(true);
         panel_ingreso_servicios.add(jLabel94);
-        jLabel94.setBounds(-2, 0, 1310, 40);
+        jLabel94.setBounds(-2, 0, 1310, 30);
 
         jLabel95.setBackground(java.awt.Color.darkGray);
         jLabel95.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel95.setForeground(java.awt.Color.darkGray);
         jLabel95.setText("Imagen(opcional)");
         panel_ingreso_servicios.add(jLabel95);
-        jLabel95.setBounds(490, 440, 150, 40);
+        jLabel95.setBounds(470, 370, 120, 30);
 
         jLabel96.setBackground(java.awt.Color.darkGray);
-        jLabel96.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
+        jLabel96.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         jLabel96.setForeground(java.awt.Color.darkGray);
         jLabel96.setText("Nombre");
         panel_ingreso_servicios.add(jLabel96);
-        jLabel96.setBounds(470, 80, 80, 40);
+        jLabel96.setBounds(470, 80, 80, 17);
 
         txt_precioS.setText("0");
         panel_ingreso_servicios.add(txt_precioS);
-        txt_precioS.setBounds(540, 130, 90, 20);
+        txt_precioS.setBounds(560, 120, 90, 20);
 
         lab_destinoS.setBackground(java.awt.Color.darkGray);
-        lab_destinoS.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
+        lab_destinoS.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lab_destinoS.setForeground(java.awt.Color.darkGray);
-        lab_destinoS.setText("- Destino(opcional)");
+        lab_destinoS.setText("- Destino");
         panel_ingreso_servicios.add(lab_destinoS);
-        lab_destinoS.setBounds(700, 190, 160, 40);
+        lab_destinoS.setBounds(720, 190, 70, 17);
 
         jLabel98.setBackground(java.awt.Color.darkGray);
-        jLabel98.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
+        jLabel98.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         jLabel98.setForeground(java.awt.Color.darkGray);
         jLabel98.setText("Descripcion");
         panel_ingreso_servicios.add(jLabel98);
-        jLabel98.setBounds(490, 280, 100, 40);
+        jLabel98.setBounds(470, 230, 100, 17);
 
         jLabel99.setBackground(java.awt.Color.darkGray);
-        jLabel99.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
+        jLabel99.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         jLabel99.setForeground(java.awt.Color.darkGray);
-        jLabel99.setText("Proveedor");
+        jLabel99.setText("Categorias seleccionadas");
         panel_ingreso_servicios.add(jLabel99);
-        jLabel99.setBounds(470, 40, 90, 40);
+        jLabel99.setBounds(270, 50, 180, 17);
 
         jButton2.setFont(new java.awt.Font("FreeSans", 0, 18)); // NOI18N
         jButton2.setText("Seleccionar");
@@ -2799,15 +2800,15 @@ public class Help4Travelling extends javax.swing.JFrame {
             }
         });
         panel_ingreso_servicios.add(jButton2);
-        jButton2.setBounds(480, 390, 140, 30);
+        jButton2.setBounds(590, 370, 140, 30);
 
         jLabel59.setText("Aqui se mostrara imagen");
         panel_ingreso_servicios.add(jLabel59);
-        jLabel59.setBounds(640, 380, 410, 200);
+        jLabel59.setBounds(470, 410, 220, 130);
 
         jLabel72.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/confirmar.png"))); // NOI18N
         jLabel72.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel72.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel72.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel72.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel72.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         jLabel72.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2816,30 +2817,30 @@ public class Help4Travelling extends javax.swing.JFrame {
             }
         });
         panel_ingreso_servicios.add(jLabel72);
-        jLabel72.setBounds(510, 500, 45, 46);
+        jLabel72.setBounds(960, 480, 45, 46);
 
         jLabel102.setBackground(java.awt.Color.darkGray);
-        jLabel102.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
+        jLabel102.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         jLabel102.setForeground(java.awt.Color.darkGray);
         jLabel102.setText("Ciudad");
         panel_ingreso_servicios.add(jLabel102);
-        jLabel102.setBounds(470, 160, 60, 40);
+        jLabel102.setBounds(470, 160, 60, 17);
 
         cmb_proveedorS.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         panel_ingreso_servicios.add(cmb_proveedorS);
-        cmb_proveedorS.setBounds(540, 50, 250, 20);
+        cmb_proveedorS.setBounds(560, 40, 250, 20);
 
         lab_origenS.setBackground(java.awt.Color.darkGray);
-        lab_origenS.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
+        lab_origenS.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lab_origenS.setForeground(java.awt.Color.darkGray);
         lab_origenS.setText("- Origen");
         panel_ingreso_servicios.add(lab_origenS);
-        lab_origenS.setBounds(470, 190, 80, 40);
+        lab_origenS.setBounds(490, 190, 80, 20);
 
         jScrollPane1.setViewportView(txt_descripcionS);
 
         panel_ingreso_servicios.add(jScrollPane1);
-        jScrollPane1.setBounds(580, 260, 380, 100);
+        jScrollPane1.setBounds(470, 260, 380, 100);
 
         tree_servicios2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2856,19 +2857,20 @@ public class Help4Travelling extends javax.swing.JFrame {
         panel_ingreso_servicios.add(jScrollPane16);
         jScrollPane16.setBounds(150, 710, 230, 130);
 
+        lbl_precio.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lbl_precio.setText("Precio");
         panel_ingreso_servicios.add(lbl_precio);
-        lbl_precio.setBounds(480, 130, 40, 20);
+        lbl_precio.setBounds(470, 120, 70, 20);
         panel_ingreso_servicios.add(txt_nombreS);
-        txt_nombreS.setBounds(540, 90, 250, 20);
+        txt_nombreS.setBounds(560, 80, 250, 20);
 
         cmb_destinoS.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         panel_ingreso_servicios.add(cmb_destinoS);
-        cmb_destinoS.setBounds(840, 200, 150, 20);
+        cmb_destinoS.setBounds(800, 190, 150, 20);
 
         cmb_origenS.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         panel_ingreso_servicios.add(cmb_origenS);
-        cmb_origenS.setBounds(540, 200, 150, 20);
+        cmb_origenS.setBounds(550, 190, 150, 20);
 
         chek_destinoS.setLabel("Ingresar destino");
         chek_destinoS.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2882,12 +2884,12 @@ public class Help4Travelling extends javax.swing.JFrame {
             }
         });
         panel_ingreso_servicios.add(chek_destinoS);
-        chek_destinoS.setBounds(840, 170, 110, 20);
+        chek_destinoS.setBounds(710, 150, 110, 20);
 
         jScrollPane18.setViewportView(lis_categoria);
 
         panel_ingreso_servicios.add(jScrollPane18);
-        jScrollPane18.setBounds(40, 50, 170, 500);
+        jScrollPane18.setBounds(20, 70, 180, 470);
 
         but_quit.setText("<-");
         but_quit.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2901,7 +2903,7 @@ public class Help4Travelling extends javax.swing.JFrame {
             }
         });
         panel_ingreso_servicios.add(but_quit);
-        but_quit.setBounds(230, 360, 45, 23);
+        but_quit.setBounds(210, 220, 45, 23);
 
         but_add.setText("->");
         but_add.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2915,7 +2917,7 @@ public class Help4Travelling extends javax.swing.JFrame {
             }
         });
         panel_ingreso_servicios.add(but_add);
-        but_add.setBounds(230, 270, 45, 23);
+        but_add.setBounds(210, 170, 45, 23);
 
         lis_categoriaS.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
@@ -2925,7 +2927,21 @@ public class Help4Travelling extends javax.swing.JFrame {
         jScrollPane19.setViewportView(lis_categoriaS);
 
         panel_ingreso_servicios.add(jScrollPane19);
-        jScrollPane19.setBounds(300, 50, 170, 500);
+        jScrollPane19.setBounds(270, 70, 180, 470);
+
+        jLabel103.setBackground(java.awt.Color.darkGray);
+        jLabel103.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        jLabel103.setForeground(java.awt.Color.darkGray);
+        jLabel103.setText("Proveedor");
+        panel_ingreso_servicios.add(jLabel103);
+        jLabel103.setBounds(470, 40, 90, 17);
+
+        jLabel107.setBackground(java.awt.Color.darkGray);
+        jLabel107.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        jLabel107.setForeground(java.awt.Color.darkGray);
+        jLabel107.setText("Categorias disponibles");
+        panel_ingreso_servicios.add(jLabel107);
+        jLabel107.setBounds(20, 50, 170, 17);
 
         getContentPane().add(panel_ingreso_servicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 100, 160, 110));
         getContentPane().remove(panel_ingreso_servicios);
@@ -4372,18 +4388,20 @@ public class Help4Travelling extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel106MouseClicked
 
     private void jLabel76MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel76MouseClicked
-        tex_precioU.setText("");
-        cmb_cantidad.setSelectedItem(1);
-        tex_precio.setText("");
-        list2.clear();
+
         if(table_ingreso_reservas.getModel().getRowCount() != 0){
-            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-            Calendar cal = Calendar.getInstance();
             ArrayList<DtInfoReserva> res = new ArrayList();
             for(int x = 0; x < table_ingreso_reservas.getModel().getRowCount(); x++){
-                res.add(new DtInfoReserva(new DtFecha(table_ingreso_reservas.getValueAt(x,3).toString()), new DtFecha(table_ingreso_reservas.getValueAt(x,4).toString()), (int)table_ingreso_reservas.getValueAt(x,0), table_ingreso_reservas.getValueAt(x,1).toString(), table_ingreso_reservas.getValueAt(x,2).toString(),x, (float) table_ingreso_reservas.getValueAt(x,5))); 
-            }
-            DtReserva ing = new DtReserva(Estado.Registrada, new DtFecha(dateFormat.format(cal.getTime())), res ,cmb_cliente.getSelectedItem().toString(), Float.parseFloat(tex_precio.getText()));
+                res.add(new DtInfoReserva(new DtFecha(table_ingreso_reservas.getValueAt(x,3).toString().trim()), new DtFecha(table_ingreso_reservas.getValueAt(x,4).toString().trim()), Integer.valueOf(table_ingreso_reservas.getValueAt(x,0).toString().trim()), table_ingreso_reservas.getValueAt(x,1).toString().trim(), table_ingreso_reservas.getValueAt(x,2).toString().trim(), Float.valueOf(table_ingreso_reservas.getValueAt(x,5).toString().trim()))); 
+            } //                                                       FECHA INI                                              FECHA FIN                                                             CANTIDAD                                                                    NOMBRE ARTICULO                                          NICK PROVEEDOR                                               PRECIO TOTAL POR ARTICULO
+            DtReserva ing = new DtReserva(Estado.Registrada, new DtFecha(), res ,cmb_cliente.getSelectedItem().toString().trim(), Float.valueOf(tex_precio.getText().trim()));
+            ManejadorSQL.GetInstance().agregarReserva(ing);
+            tex_precioU.setText("");
+            cmb_cantidad.setSelectedItem(1);
+            tex_precio.setText("");
+            list2.clear();
+            JOptionPane.showMessageDialog(null, "Reserva ingresada correctamente!");
+            
         }
     }//GEN-LAST:event_jLabel76MouseClicked
 
@@ -4395,12 +4413,7 @@ public class Help4Travelling extends javax.swing.JFrame {
             cmb_promocion.removeAllItems();
             cmb_cantidad.setSelectedItem(1);
             tex_precio.setText("");
-            if(table_ingreso_reservas.getModel().getRowCount() != 0){
-                for(int e = 1; e <= table_ingreso_reservas.getModel().getRowCount(); e++){
-                    ((DefaultTableModel)table_ingreso_reservas.getModel()).removeRow(e);
-                }
-            }
-            
+            ((DefaultTableModel)table_ingreso_reservas.getModel()).setRowCount(0);
             ArrayList<DtServicio> ret =  ICArticulo.ListarServiciosProv(cmb_proveedor.getSelectedItem().toString());
             for(int i = 0; i < ret.size(); i++){
                 cmb_servicio.addItem(ret.get(i).getNombre());
@@ -4436,11 +4449,7 @@ public class Help4Travelling extends javax.swing.JFrame {
     }//GEN-LAST:event_cmb_servicioItemStateChanged
 
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
-        if(table_ingreso_reservas.getModel().getRowCount() != 0){
-                for(int e = 0; e < table_ingreso_reservas.getModel().getRowCount(); e++){
-                    ((DefaultTableModel)table_ingreso_reservas.getModel()).removeRow(e);
-                }
-        }
+        ((DefaultTableModel)table_ingreso_reservas.getModel()).setRowCount(0);
     }//GEN-LAST:event_jButton8MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
@@ -4457,24 +4466,28 @@ public class Help4Travelling extends javax.swing.JFrame {
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         if(cmb_servicio.isEnabled()){
             DtFecha ini, fin;
-            ini = new DtFecha(cmb_anio1.getSelectedItem().toString() + "/" + cmb_mes1.getSelectedItem().toString() + "/" + cmb_dia1.getSelectedItem().toString());
-            fin = new DtFecha(cmb_anio2.getSelectedItem().toString() + "/" + cmb_mes2.getSelectedItem().toString() + "/" + cmb_dia2.getSelectedItem().toString());
+            ini = new DtFecha(cmb_anio1.getSelectedItem().toString().trim() + "/" + cmb_mes1.getSelectedItem().toString().trim() + "/" + cmb_dia1.getSelectedItem().toString().trim());
+            fin = new DtFecha(cmb_anio2.getSelectedItem().toString().trim() + "/" + cmb_mes2.getSelectedItem().toString().trim() + "/" + cmb_dia2.getSelectedItem().toString().trim());
             DefaultTableModel tm = (DefaultTableModel)table_ingreso_reservas.getModel();
             Object[] row = new Object[7];
-            row[0] = cmb_cantidad.getSelectedIndex()+1;
-            row[1] = cmb_servicio.getSelectedItem().toString();
-            row[2] = cmb_proveedor.getSelectedItem().toString();
+            row[0] = Integer.valueOf(cmb_cantidad.getSelectedItem().toString().trim());
+            row[1] = cmb_servicio.getSelectedItem().toString().trim();
+            row[2] = cmb_proveedor.getSelectedItem().toString().trim();
             row[3] = (ini.getAnio() + "/" + ini.getMes() + "/" + ini.getDia());
             row[4] = (fin.getAnio() + "/" + fin.getMes() + "/" + fin.getDia());
-            DtServicio selected = ICArticulo.datosServicio(cmb_servicio.getSelectedItem().toString(), cmb_proveedor.getSelectedItem().toString());
+            DtServicio selected = ICArticulo.datosServicio(cmb_servicio.getSelectedItem().toString().trim(), cmb_proveedor.getSelectedItem().toString().trim());
             row[5] = selected.getPrecio();
-            row[6] = ((cmb_cantidad.getSelectedIndex()+1)*selected.getPrecio());
+            row[6] = (Integer.valueOf(cmb_cantidad.getSelectedItem().toString().trim())*selected.getPrecio());
 
             boolean exists = false;
             for (int i = 0; i < table_ingreso_reservas.getRowCount(); i++) {
-                if (cmb_cantidad.getSelectedItem().toString().equals(table_ingreso_reservas.getValueAt(i, 0)) && cmb_servicio.getSelectedItem().toString().equals(table_ingreso_reservas.getValueAt(i, 1)) && cmb_proveedor.getSelectedItem().toString().equals(table_ingreso_reservas.getValueAt(i, 2))){
-                    if((ini.getAnio() + "/" + ini.getMes() + "/" + ini.getDia()).equals(table_ingreso_reservas.getValueAt(i, 3)) && (fin.getAnio() + "/" + fin.getMes() + "/" + fin.getDia()).equals(table_ingreso_reservas.getValueAt(i, 4))){
-                        if(selected.getPrecio().equals(table_ingreso_reservas.getValueAt(i, 5)) && ((cmb_cantidad.getSelectedIndex()*selected.getPrecio()) == (float)table_ingreso_reservas.getValueAt(i, 6))){
+                if (Integer.valueOf(cmb_cantidad.getSelectedItem().toString().trim()).equals(Integer.valueOf(table_ingreso_reservas.getValueAt(i, 0).toString().trim())) && cmb_servicio.getSelectedItem().toString().trim().equals(table_ingreso_reservas.getValueAt(i, 1).toString().trim()) && cmb_proveedor.getSelectedItem().toString().trim().equals(table_ingreso_reservas.getValueAt(i, 2).toString().trim())){
+                    if((ini.getAnio() + "/" + ini.getMes() + "/" + ini.getDia()).equals(table_ingreso_reservas.getValueAt(i, 3).toString().trim()) && (fin.getAnio() + "/" + fin.getMes() + "/" + fin.getDia()).equals(table_ingreso_reservas.getValueAt(i, 4).toString().trim())){
+                        float f1, f2, f3;
+                        f1 = Integer.valueOf(cmb_cantidad.getSelectedItem().toString().trim())*selected.getPrecio();
+                        f2 = Float.valueOf(table_ingreso_reservas.getValueAt(i, 6).toString().trim());
+                        f3 = Float.valueOf(table_ingreso_reservas.getValueAt(i, 5).toString().trim());
+                        if((Float.compare(f3, selected.getPrecio()) == 0) && (Float.compare(f1, f2) == 0)){
                             exists = true;
                         }
                     }
@@ -4484,7 +4497,7 @@ public class Help4Travelling extends javax.swing.JFrame {
                 tm.addRow(row);
                 float precioT = 0;
                 for(int x = 0; x < table_ingreso_reservas.getRowCount(); x++){
-                    precioT += (float)table_ingreso_reservas.getValueAt(x, 6);
+                    precioT += Float.valueOf(table_ingreso_reservas.getValueAt(x, 6).toString().trim());
                 }
                 tex_precio.setText(""+precioT);
             }
@@ -4906,26 +4919,40 @@ public class Help4Travelling extends javax.swing.JFrame {
         if(cmb_promocion.isEnabled()){
             if(cmb_promocion.getSelectedItem() != null){
                 DtFecha ini, fin;
-                ini = new DtFecha(cmb_anio1.getSelectedItem().toString() + "/" + cmb_mes1.getSelectedItem().toString() + "/" + cmb_dia1.getSelectedItem().toString());
-                fin = new DtFecha(cmb_anio2.getSelectedItem().toString() + "/" + cmb_mes2.getSelectedItem().toString() + "/" + cmb_dia2.getSelectedItem().toString());
+                ini = new DtFecha(cmb_anio1.getSelectedItem().toString().trim() + "/" + cmb_mes1.getSelectedItem().toString().trim() + "/" + cmb_dia1.getSelectedItem().toString().trim());
+                fin = new DtFecha(cmb_anio2.getSelectedItem().toString().trim() + "/" + cmb_mes2.getSelectedItem().toString().trim() + "/" + cmb_dia2.getSelectedItem().toString().trim());
                 DefaultTableModel tm = (DefaultTableModel)table_ingreso_reservas.getModel();
                 Object[] row = new Object[7];
-                row[0] = cmb_cantidad.getSelectedIndex()+1;
-                row[1] = cmb_promocion.getSelectedItem().toString();
-                row[2] = cmb_proveedor.getSelectedItem().toString();
+                row[0] = Integer.valueOf(cmb_cantidad.getSelectedItem().toString().trim());
+                row[1] = cmb_promocion.getSelectedItem().toString().trim();
+                row[2] = cmb_proveedor.getSelectedItem().toString().trim();
                 row[3] = (ini.getAnio() + "/" + ini.getMes() + "/" + ini.getDia());
                 row[4] = (fin.getAnio() + "/" + fin.getMes() + "/" + fin.getDia());
-                DtPromocion selected = ICArticulo.datosPromociones(cmb_promocion.getSelectedItem().toString(), cmb_proveedor.getSelectedItem().toString());
+                DtPromocion selected = ICArticulo.datosPromociones(cmb_promocion.getSelectedItem().toString().trim(), cmb_proveedor.getSelectedItem().toString().trim());
                 row[5] = selected.GetPrecio();
-                row[6] = ((cmb_cantidad.getSelectedIndex()+1)*selected.GetPrecio());
-                
-                tm.addRow(row);
-                float precioT = 0;
-                for(int x = 0; x < table_ingreso_reservas.getRowCount(); x++){
-                    precioT += (float)table_ingreso_reservas.getValueAt(x, 6);
+                row[6] = (Integer.valueOf(cmb_cantidad.getSelectedItem().toString().trim())*selected.GetPrecio());
+                boolean exists = false;
+                for (int i = 0; i < table_ingreso_reservas.getRowCount(); i++) {
+                    if (Integer.valueOf(cmb_cantidad.getSelectedItem().toString().trim()).equals(Integer.valueOf(table_ingreso_reservas.getValueAt(i, 0).toString().trim())) && cmb_promocion.getSelectedItem().toString().trim().equals(table_ingreso_reservas.getValueAt(i, 1).toString().trim()) && cmb_proveedor.getSelectedItem().toString().trim().equals(table_ingreso_reservas.getValueAt(i, 2).toString().trim())){
+                        if((ini.getAnio() + "/" + ini.getMes() + "/" + ini.getDia()).equals(table_ingreso_reservas.getValueAt(i, 3).toString().trim()) && (fin.getAnio() + "/" + fin.getMes() + "/" + fin.getDia()).equals(table_ingreso_reservas.getValueAt(i, 4).toString().trim())){
+                            float f1, f2, f3;
+                            f1 = Integer.valueOf(cmb_cantidad.getSelectedItem().toString().trim())*selected.GetPrecio();
+                            f2 = Float.valueOf(table_ingreso_reservas.getValueAt(i, 6).toString().trim());
+                            f3 = Float.valueOf(table_ingreso_reservas.getValueAt(i, 5).toString().trim());
+                            if((Float.compare(f3, selected.GetPrecio()) == 0) && (Float.compare(f1, f2) == 0)){
+                                exists = true;
+                            }
+                        }
+                    }
                 }
-                tex_precio.setText(""+precioT);
-                
+                if(!exists){
+                    tm.addRow(row);
+                    float precioT = 0;
+                    for(int x = 0; x < table_ingreso_reservas.getRowCount(); x++){
+                        precioT += Float.valueOf(table_ingreso_reservas.getValueAt(x, 6).toString().trim());
+                    }
+                    tex_precio.setText(""+precioT);
+                }
             }
         }
     }//GEN-LAST:event_jButton10MouseClicked
@@ -5034,9 +5061,11 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel100;
     private javax.swing.JLabel jLabel101;
     private javax.swing.JLabel jLabel102;
+    private javax.swing.JLabel jLabel103;
     private javax.swing.JLabel jLabel104;
     private javax.swing.JLabel jLabel105;
     private javax.swing.JLabel jLabel106;
+    private javax.swing.JLabel jLabel107;
     private javax.swing.JLabel jLabel108;
     private javax.swing.JLabel jLabel109;
     private javax.swing.JLabel jLabel11;

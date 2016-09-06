@@ -339,6 +339,7 @@ public class ManejadorSQL {
         try {
             Connection conex = getConex();
             usuario = conex.createStatement();
+            ManejadorSQL.GetInstance().setForeignKeysOff(usuario);
             usuario.executeUpdate(sql1);
             usuario.executeUpdate(sql2);
             for(int x = 0; x < servicios.size(); x++){
@@ -346,6 +347,7 @@ public class ManejadorSQL {
                 usuario.executeUpdate(sql3); // ingreso las categorias, asumo que estas ya existen debido a que fueron seleccionadas.
             }
             ret = true;
+            ManejadorSQL.GetInstance().setForeignKeysOn(usuario);
             conex.close();
         } catch (SQLException ex) {
             Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
@@ -363,6 +365,7 @@ public class ManejadorSQL {
         try {
             Connection conex = getConex();
             usuario = conex.createStatement();
+            ManejadorSQL.GetInstance().setForeignKeysOff(usuario);
             ResultSet rs = usuario.executeQuery(sql2);
             rs.next();
             int id = rs.getInt("MAX(id)")+1;
@@ -378,6 +381,7 @@ public class ManejadorSQL {
                 //System.out.println(sql3);
                 usuario.executeUpdate(sql3);
             }
+            ManejadorSQL.GetInstance().setForeignKeysOn(usuario);
             conex.close();
             ret = true;
         } catch(SQLException ex){
@@ -639,7 +643,7 @@ public class ManejadorSQL {
     public void setForeignKeysOff(Statement usuario){
         try {
             String sql1 = "SET FOREIGN_KEY_CHECKS=0;";
-            usuario.executeUpdate(sql1);
+            usuario.execute(sql1);
         } catch (SQLException ex) {
             Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -648,7 +652,7 @@ public class ManejadorSQL {
     public void setForeignKeysOn(Statement usuario){
         try {
             String sql1 = "SET FOREIGN_KEY_CHECKS=1;";
-            usuario.executeUpdate(sql1);
+            usuario.execute(sql1);
         } catch (SQLException ex) {
             Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
