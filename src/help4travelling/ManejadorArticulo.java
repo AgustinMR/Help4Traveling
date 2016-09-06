@@ -129,7 +129,6 @@ public class ManejadorArticulo {
     public Articulo ObtenerArticulo(String nameArti, String nomProv){
         Articulo Art = null; 
         for (int i = 0; i < articulos.size(); i++) {
-           // System.out.println("LA PUTA QUE TE PARIO");
             if (articulos.get(i).GetNombre().equals(nameArti) && articulos.get(i).getProv().equals(nomProv)){
                 Art = articulos.get(i);
             }

@@ -46,7 +46,6 @@ public class ManejadorUsuario {
      public List<String> listarProveedores(){
         List<String> userCi = new ArrayList<String>();      
         for (String name: usuarios.keySet()){
-System.out.println("ManejUsu " + name);
             String nombre = usuarios.get(name).getNickProveedor();
             if (nombre != null)
                 userCi.add(nombre);

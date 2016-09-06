@@ -33,7 +33,6 @@ public class ControladorReserva implements IControladorReserva{
         else{
             this.res.DesenlazarReserva(this.irmem);
         }
-        System.out.println(ManejadorSQL.GetInstance().agregarReserva(dtRes));
     }
     
     //Lista todas las key de las reservas en el sistema
