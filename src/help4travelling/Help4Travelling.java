@@ -192,24 +192,24 @@ public class Help4Travelling extends javax.swing.JFrame {
         panel_actualizar_servicio = new javax.swing.JPanel();
         jLabel110 = new javax.swing.JLabel();
         jLabel113 = new javax.swing.JLabel();
-        jTextField13 = new javax.swing.JTextField();
         jLabel122 = new javax.swing.JLabel();
         jLabel127 = new javax.swing.JLabel();
         jLabel128 = new javax.swing.JLabel();
         jLabel77 = new javax.swing.JLabel();
         jLabel129 = new javax.swing.JLabel();
-        jComboBox8 = new javax.swing.JComboBox<>();
+        cmb_destino = new javax.swing.JComboBox<>();
         jLabel130 = new javax.swing.JLabel();
-        jTextField20 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane2 = new javax.swing.JTextPane();
+        txt_desc = new javax.swing.JTextPane();
         jLabel131 = new javax.swing.JLabel();
         jLabel79 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
         jLabel199 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jLabel206 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
+        jButton13 = new javax.swing.JButton();
+        cmb_serv = new javax.swing.JComboBox<>();
+        cmb_origen = new javax.swing.JComboBox<>();
         panel_actualizar_reserva = new javax.swing.JPanel();
         jLabel114 = new javax.swing.JLabel();
         jLabel121 = new javax.swing.JLabel();
@@ -1346,7 +1346,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         panel_izq_actualizaciones.add(jLabel28);
         jLabel28.setBounds(0, 0, 430, 40);
 
-        getContentPane().add(panel_izq_actualizaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 190, 150));
+        getContentPane().add(panel_izq_actualizaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 180, 180));
         getContentPane().remove(panel_izq_actualizaciones);
         getContentPane().add(panel_izq_actualizaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 430, 590));
         panel_izq_actualizaciones.setVisible(false);
@@ -1772,7 +1772,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         getContentPane().add(panel_ingreso_promociones, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 1030, 590));
         panel_ingreso_promociones.setVisible(false);
 
-        panel_actualizar_servicio.setBackground(java.awt.Color.lightGray);
+        panel_actualizar_servicio.setBackground(new java.awt.Color(255, 255, 255));
         panel_actualizar_servicio.setLayout(null);
 
         jLabel110.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/salir.png"))); // NOI18N
@@ -1785,35 +1785,33 @@ public class Help4Travelling extends javax.swing.JFrame {
             }
         });
         panel_actualizar_servicio.add(jLabel110);
-        jLabel110.setBounds(995, 5, 30, 30);
+        jLabel110.setBounds(1000, 0, 30, 30);
 
         jLabel113.setBackground(new java.awt.Color(33, 33, 33));
         jLabel113.setOpaque(true);
         panel_actualizar_servicio.add(jLabel113);
-        jLabel113.setBounds(-2, 0, 1310, 40);
-        panel_actualizar_servicio.add(jTextField13);
-        jTextField13.setBounds(170, 170, 300, 20);
+        jLabel113.setBounds(-2, 0, 1310, 30);
 
         jLabel122.setBackground(java.awt.Color.darkGray);
         jLabel122.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel122.setForeground(java.awt.Color.darkGray);
-        jLabel122.setText("- Destino(opcional)");
+        jLabel122.setText("- Destino");
         panel_actualizar_servicio.add(jLabel122);
-        jLabel122.setBounds(30, 160, 160, 40);
+        jLabel122.setBounds(30, 140, 60, 20);
 
         jLabel127.setBackground(java.awt.Color.darkGray);
         jLabel127.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel127.setForeground(java.awt.Color.darkGray);
         jLabel127.setText("Descripcion");
         panel_actualizar_servicio.add(jLabel127);
-        jLabel127.setBounds(10, 200, 100, 40);
+        jLabel127.setBounds(10, 180, 80, 20);
 
         jLabel128.setBackground(java.awt.Color.darkGray);
         jLabel128.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel128.setForeground(java.awt.Color.darkGray);
         jLabel128.setText("Imagenes");
         panel_actualizar_servicio.add(jLabel128);
-        jLabel128.setBounds(490, 50, 90, 40);
+        jLabel128.setBounds(10, 320, 70, 20);
 
         jLabel77.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/confirmar.png"))); // NOI18N
         jLabel77.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -1821,63 +1819,51 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel77.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel77.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         panel_actualizar_servicio.add(jLabel77);
-        jLabel77.setBounds(820, 440, 45, 46);
+        jLabel77.setBounds(980, 450, 45, 46);
 
         jLabel129.setBackground(java.awt.Color.darkGray);
         jLabel129.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel129.setForeground(java.awt.Color.darkGray);
         jLabel129.setText("Ciudad");
         panel_actualizar_servicio.add(jLabel129);
-        jLabel129.setBounds(10, 90, 60, 40);
+        jLabel129.setBounds(10, 90, 50, 20);
 
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        panel_actualizar_servicio.add(jComboBox8);
-        jComboBox8.setBounds(80, 60, 390, 20);
+        cmb_destino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        panel_actualizar_servicio.add(cmb_destino);
+        cmb_destino.setBounds(100, 140, 300, 20);
 
         jLabel130.setBackground(java.awt.Color.darkGray);
         jLabel130.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel130.setForeground(java.awt.Color.darkGray);
         jLabel130.setText("- Origen");
         panel_actualizar_servicio.add(jLabel130);
-        jLabel130.setBounds(30, 120, 80, 40);
-        panel_actualizar_servicio.add(jTextField20);
-        jTextField20.setBounds(170, 130, 300, 20);
+        jLabel130.setBounds(30, 110, 52, 20);
 
-        jScrollPane2.setViewportView(jTextPane2);
+        jScrollPane2.setViewportView(txt_desc);
 
         panel_actualizar_servicio.add(jScrollPane2);
-        jScrollPane2.setBounds(10, 240, 460, 150);
+        jScrollPane2.setBounds(10, 210, 610, 100);
 
         jLabel131.setBackground(java.awt.Color.darkGray);
         jLabel131.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel131.setForeground(java.awt.Color.darkGray);
         jLabel131.setText("Servicio");
         panel_actualizar_servicio.add(jLabel131);
-        jLabel131.setBounds(10, 50, 90, 40);
+        jLabel131.setBounds(10, 50, 60, 20);
 
         jLabel79.setBackground(java.awt.Color.gray);
         jLabel79.setText("Aqui se mostrara imagen");
         jLabel79.setOpaque(true);
         panel_actualizar_servicio.add(jLabel79);
-        jLabel79.setBounds(570, 60, 150, 100);
-
-        jButton3.setFont(new java.awt.Font("FreeSans", 0, 18)); // NOI18N
-        jButton3.setText("Seleccionar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        panel_actualizar_servicio.add(jButton3);
-        jButton3.setBounds(740, 90, 120, 30);
+        jLabel79.setBounds(430, 380, 190, 120);
 
         jLabel199.setBackground(java.awt.Color.gray);
         jLabel199.setText("Aqui se mostrara imagen");
         jLabel199.setOpaque(true);
         panel_actualizar_servicio.add(jLabel199);
-        jLabel199.setBounds(570, 170, 150, 100);
+        jLabel199.setBounds(10, 380, 190, 120);
 
-        jButton6.setFont(new java.awt.Font("FreeSans", 0, 18)); // NOI18N
+        jButton6.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jButton6.setText("Seleccionar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1885,23 +1871,41 @@ public class Help4Travelling extends javax.swing.JFrame {
             }
         });
         panel_actualizar_servicio.add(jButton6);
-        jButton6.setBounds(740, 200, 120, 30);
+        jButton6.setBounds(430, 350, 120, 30);
 
         jLabel206.setBackground(java.awt.Color.gray);
         jLabel206.setText("Aqui se mostrara imagen");
         jLabel206.setOpaque(true);
         panel_actualizar_servicio.add(jLabel206);
-        jLabel206.setBounds(570, 280, 150, 100);
+        jLabel206.setBounds(220, 380, 190, 120);
 
-        jButton7.setFont(new java.awt.Font("FreeSans", 0, 18)); // NOI18N
-        jButton7.setText("Seleccionar");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        jButton12.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
+        jButton12.setText("Seleccionar");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                jButton12ActionPerformed(evt);
             }
         });
-        panel_actualizar_servicio.add(jButton7);
-        jButton7.setBounds(740, 310, 120, 30);
+        panel_actualizar_servicio.add(jButton12);
+        jButton12.setBounds(10, 350, 120, 30);
+
+        jButton13.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
+        jButton13.setText("Seleccionar");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+        panel_actualizar_servicio.add(jButton13);
+        jButton13.setBounds(220, 350, 120, 30);
+
+        cmb_serv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        panel_actualizar_servicio.add(cmb_serv);
+        cmb_serv.setBounds(70, 50, 330, 20);
+
+        cmb_origen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        panel_actualizar_servicio.add(cmb_origen);
+        cmb_origen.setBounds(100, 110, 300, 20);
 
         getContentPane().add(panel_actualizar_servicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 460, 140, 100));
         getContentPane().remove(panel_actualizar_servicio);
@@ -4002,10 +4006,6 @@ public class Help4Travelling extends javax.swing.JFrame {
         lbl_acercaDe.setVisible(true);
     }//GEN-LAST:event_jLabel110MouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
     private void actualizacion_serviciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_actualizacion_serviciosMouseClicked
         panel_actualizar_servicio.setVisible(true);
         lbl_menu.setText("          Modificar servicio");
@@ -4015,7 +4015,16 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel12.setVisible(false);
         jLabel13.setVisible(false);
         lbl_acercaDe.setVisible(false);
-
+        List<String> c = ICArticulo.listaDeCiudades();  ArrayList<DtServicio> s = ICArticulo.ListarServicios(); DefaultComboBoxModel lm = new DefaultComboBoxModel(); DefaultComboBoxModel lm2 = new DefaultComboBoxModel();
+        for(int x = 0; x < s.size(); x++){
+            lm.addElement(s.get(x).getNickProveedor() + ", " + s.get(x).getNombre());
+        }
+        cmb_serv.setModel(lm);
+        for(int e = 0; e < c.size(); e++){
+            lm2.addElement(c.get(e));
+        }
+        cmb_origen.setModel(lm2);
+        cmb_destino.setModel(lm2);
     }//GEN-LAST:event_actualizacion_serviciosMouseClicked
 
     private void actualizacion_reservasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_actualizacion_reservasMouseClicked
@@ -4333,10 +4342,6 @@ public class Help4Travelling extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
 
     private void chk_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk_clienteActionPerformed
         txt_nombreEmpresa.setVisible(false);
@@ -5174,6 +5179,14 @@ public class Help4Travelling extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_rmPMouseClicked
 
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton13ActionPerformed
+
     /**
      *
      * @param args
@@ -5219,6 +5232,7 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmb_categoria;
     private javax.swing.JComboBox<String> cmb_cliente;
     private javax.swing.JComboBox<String> cmb_consultar_promociones;
+    private javax.swing.JComboBox<String> cmb_destino;
     private javax.swing.JComboBox<String> cmb_destinoS;
     private javax.swing.JComboBox<String> cmb_dia;
     private javax.swing.JComboBox<String> cmb_dia1;
@@ -5228,12 +5242,14 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmb_mes;
     private javax.swing.JComboBox<String> cmb_mes1;
     private javax.swing.JComboBox<String> cmb_mes2;
+    private javax.swing.JComboBox<String> cmb_origen;
     private javax.swing.JComboBox<String> cmb_origenS;
     private javax.swing.JComboBox<String> cmb_promocion;
     private javax.swing.JComboBox<String> cmb_proveedor;
     private javax.swing.JComboBox<String> cmb_proveedorP;
     private javax.swing.JComboBox<String> cmb_proveedorS;
     private javax.swing.JComboBox<String> cmb_reservasI;
+    private javax.swing.JComboBox<String> cmb_serv;
     private javax.swing.JComboBox<String> cmb_servicio;
     private javax.swing.JComboBox<String> cmb_serviciosXcat;
     private javax.swing.JPanel consultar_clientes;
@@ -5250,16 +5266,15 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox10;
-    private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
     private javax.swing.JFrame jFrame3;
@@ -5508,11 +5523,8 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextPane jTextPane2;
     private javax.swing.JLabel lab_cantidad1;
     private javax.swing.JLabel lab_cantidad2;
     private javax.swing.JLabel lab_cantidad3;
@@ -5590,6 +5602,7 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JTextField txt_cantidadR;
     private javax.swing.JTextField txt_categoria;
     private javax.swing.JTextField txt_creacionR;
+    private javax.swing.JTextPane txt_desc;
     private javax.swing.JTextPane txt_descripcionS;
     private javax.swing.JTextField txt_email;
     private javax.swing.JTextField txt_emailP;
