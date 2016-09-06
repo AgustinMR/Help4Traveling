@@ -249,32 +249,34 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel148 = new javax.swing.JLabel();
         jLabel150 = new javax.swing.JLabel();
         jLabel151 = new javax.swing.JLabel();
-        jTextField18 = new javax.swing.JTextField();
         jLabel152 = new javax.swing.JLabel();
         jLabel163 = new javax.swing.JLabel();
-        jComboBox14 = new javax.swing.JComboBox<>();
+        cmb_consultar_promociones = new javax.swing.JComboBox<>();
         jLabel164 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
         jList4 = new javax.swing.JList<>();
         jLabel165 = new javax.swing.JLabel();
-        jTextField22 = new javax.swing.JTextField();
         jLabel166 = new javax.swing.JLabel();
         jLabel167 = new javax.swing.JLabel();
         jLabel168 = new javax.swing.JLabel();
-        jTextField23 = new javax.swing.JTextField();
-        jTextField24 = new javax.swing.JTextField();
         jLabel170 = new javax.swing.JLabel();
         jLabel171 = new javax.swing.JLabel();
         jLabel172 = new javax.swing.JLabel();
         jLabel173 = new javax.swing.JLabel();
         jLabel174 = new javax.swing.JLabel();
-        jTextField25 = new javax.swing.JTextField();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        jTextPane4 = new javax.swing.JTextPane();
         jLabel176 = new javax.swing.JLabel();
         jLabel178 = new javax.swing.JLabel();
         jLabel207 = new javax.swing.JLabel();
         jLabel208 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        jLabel78 = new javax.swing.JLabel();
+        jLabel80 = new javax.swing.JLabel();
+        jLabel97 = new javax.swing.JLabel();
         panel_ingreso_reservas = new javax.swing.JPanel();
         jLabel106 = new javax.swing.JLabel();
         jLabel109 = new javax.swing.JLabel();
@@ -437,6 +439,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel205 = new javax.swing.JLabel();
         tex_destino = new javax.swing.JTextField();
         tex_origen = new javax.swing.JTextField();
+        jLabel124 = new javax.swing.JLabel();
 
         jLabel6.setText("jLabel6");
 
@@ -843,7 +846,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         panel_ingreso_usuarios.add(jLabel212);
         jLabel212.setBounds(250, 320, 10, 20);
 
-        chk_cliente.setBackground(java.awt.Color.lightGray);
+        chk_cliente.setBackground(java.awt.Color.white);
         buttonGroup1.add(chk_cliente);
         chk_cliente.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         chk_cliente.setSelected(true);
@@ -863,7 +866,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         panel_ingreso_usuarios.add(chk_cliente);
         chk_cliente.setBounds(70, 90, 69, 23);
 
-        chk_proveedor.setBackground(java.awt.Color.lightGray);
+        chk_proveedor.setBackground(java.awt.Color.white);
         buttonGroup1.add(chk_proveedor);
         chk_proveedor.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         chk_proveedor.setText("Proveedor");
@@ -1351,11 +1354,11 @@ public class Help4Travelling extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 consultar_proveedoresMouseClicked(evt);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                consultar_proveedoresMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 consultar_proveedoresMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                consultar_proveedoresMouseExited(evt);
             }
         });
         consultar_proveedores.setLayout(null);
@@ -2179,7 +2182,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         getContentPane().add(panel_consultas_servicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 1030, 590));
         panel_consultas_servicios.setVisible(false);
 
-        panel_consultas_promociones.setBackground(java.awt.Color.lightGray);
+        panel_consultas_promociones.setBackground(new java.awt.Color(255, 255, 255));
         panel_consultas_promociones.setLayout(null);
 
         jLabel148.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/salir.png"))); // NOI18N
@@ -2204,16 +2207,14 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel151.setForeground(java.awt.Color.darkGray);
         jLabel151.setText("Servicios asociados");
         panel_consultas_promociones.add(jLabel151);
-        jLabel151.setBounds(10, 250, 170, 40);
-        panel_consultas_promociones.add(jTextField18);
-        jTextField18.setBounds(100, 170, 60, 20);
+        jLabel151.setBounds(10, 260, 130, 20);
 
         jLabel152.setBackground(java.awt.Color.darkGray);
         jLabel152.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel152.setForeground(java.awt.Color.darkGray);
         jLabel152.setText("Promociones");
         panel_consultas_promociones.add(jLabel152);
-        jLabel152.setBounds(10, 50, 80, 20);
+        jLabel152.setBounds(10, 50, 100, 20);
 
         jLabel163.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/confirmar.png"))); // NOI18N
         jLabel163.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -2228,9 +2229,14 @@ public class Help4Travelling extends javax.swing.JFrame {
         panel_consultas_promociones.add(jLabel163);
         jLabel163.setBounds(970, 530, 45, 46);
 
-        jComboBox14.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        panel_consultas_promociones.add(jComboBox14);
-        jComboBox14.setBounds(100, 50, 280, 20);
+        cmb_consultar_promociones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmb_consultar_promociones.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmb_consultar_promocionesItemStateChanged(evt);
+            }
+        });
+        panel_consultas_promociones.add(cmb_consultar_promociones);
+        cmb_consultar_promociones.setBounds(110, 50, 250, 20);
 
         jLabel164.setBackground(java.awt.Color.darkGray);
         jLabel164.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
@@ -2247,7 +2253,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         jScrollPane8.setViewportView(jList4);
 
         panel_consultas_promociones.add(jScrollPane8);
-        jScrollPane8.setBounds(10, 290, 370, 290);
+        jScrollPane8.setBounds(10, 290, 350, 280);
 
         jLabel165.setBackground(java.awt.Color.darkGray);
         jLabel165.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
@@ -2255,8 +2261,6 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel165.setText("Nombre");
         panel_consultas_promociones.add(jLabel165);
         jLabel165.setBounds(10, 130, 60, 20);
-        panel_consultas_promociones.add(jTextField22);
-        jTextField22.setBounds(100, 90, 280, 20);
 
         jLabel166.setBackground(java.awt.Color.darkGray);
         jLabel166.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
@@ -2277,78 +2281,85 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel168.setForeground(java.awt.Color.darkGray);
         jLabel168.setText("%");
         panel_consultas_promociones.add(jLabel168);
-        jLabel168.setBounds(170, 160, 20, 40);
-        panel_consultas_promociones.add(jTextField23);
-        jTextField23.setBounds(100, 130, 280, 20);
-        panel_consultas_promociones.add(jTextField24);
-        jTextField24.setBounds(480, 160, 310, 20);
+        jLabel168.setBounds(150, 180, 20, 20);
 
         jLabel170.setBackground(java.awt.Color.darkGray);
         jLabel170.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel170.setForeground(java.awt.Color.darkGray);
         jLabel170.setText("- Destino");
         panel_consultas_promociones.add(jLabel170);
-        jLabel170.setBounds(410, 150, 60, 19);
+        jLabel170.setBounds(400, 390, 60, 19);
 
         jLabel171.setBackground(java.awt.Color.darkGray);
         jLabel171.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel171.setForeground(java.awt.Color.darkGray);
         jLabel171.setText("Descripcion");
         panel_consultas_promociones.add(jLabel171);
-        jLabel171.setBounds(390, 190, 100, 40);
+        jLabel171.setBounds(380, 420, 90, 20);
 
         jLabel172.setBackground(java.awt.Color.darkGray);
         jLabel172.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel172.setForeground(java.awt.Color.darkGray);
         jLabel172.setText("Imagenes");
         panel_consultas_promociones.add(jLabel172);
-        jLabel172.setBounds(390, 320, 90, 40);
+        jLabel172.setBounds(380, 110, 70, 20);
 
         jLabel173.setBackground(java.awt.Color.darkGray);
         jLabel173.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel173.setForeground(java.awt.Color.darkGray);
         jLabel173.setText("Nombre");
         panel_consultas_promociones.add(jLabel173);
-        jLabel173.setBounds(390, 50, 70, 19);
+        jLabel173.setBounds(380, 290, 70, 19);
 
         jLabel174.setBackground(java.awt.Color.darkGray);
         jLabel174.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel174.setForeground(java.awt.Color.darkGray);
         jLabel174.setText("- Origen");
         panel_consultas_promociones.add(jLabel174);
-        jLabel174.setBounds(410, 120, 60, 20);
-        panel_consultas_promociones.add(jTextField25);
-        jTextField25.setBounds(480, 120, 310, 20);
-
-        jScrollPane10.setViewportView(jTextPane4);
-
-        panel_consultas_promociones.add(jScrollPane10);
-        jScrollPane10.setBounds(390, 230, 620, 80);
+        jLabel174.setBounds(400, 360, 60, 20);
 
         jLabel176.setBackground(java.awt.Color.gray);
         jLabel176.setText("Aqui se mostrara imagen");
         jLabel176.setOpaque(true);
         panel_consultas_promociones.add(jLabel176);
-        jLabel176.setBounds(630, 360, 180, 140);
+        jLabel176.setBounds(780, 140, 180, 140);
 
         jLabel178.setBackground(java.awt.Color.darkGray);
         jLabel178.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel178.setForeground(java.awt.Color.darkGray);
         jLabel178.setText("Ciudad");
         panel_consultas_promociones.add(jLabel178);
-        jLabel178.setBounds(390, 90, 60, 20);
+        jLabel178.setBounds(380, 330, 60, 20);
 
         jLabel207.setBackground(java.awt.Color.gray);
         jLabel207.setText("Aqui se mostrara imagen");
         jLabel207.setOpaque(true);
         panel_consultas_promociones.add(jLabel207);
-        jLabel207.setBounds(830, 360, 180, 140);
+        jLabel207.setBounds(380, 140, 180, 140);
 
         jLabel208.setBackground(java.awt.Color.gray);
         jLabel208.setText("Aqui se mostrara imagen");
         jLabel208.setOpaque(true);
         panel_consultas_promociones.add(jLabel208);
-        jLabel208.setBounds(430, 360, 180, 140);
+        jLabel208.setBounds(580, 140, 180, 140);
+        panel_consultas_promociones.add(jLabel43);
+        jLabel43.setBounds(130, 90, 0, 0);
+        panel_consultas_promociones.add(jLabel46);
+        jLabel46.setBounds(90, 180, 50, 20);
+        panel_consultas_promociones.add(jLabel47);
+        jLabel47.setBounds(100, 90, 260, 20);
+        panel_consultas_promociones.add(jLabel50);
+        jLabel50.setBounds(90, 220, 110, 20);
+        panel_consultas_promociones.add(jLabel51);
+        jLabel51.setBounds(380, 450, 420, 120);
+        panel_consultas_promociones.add(jLabel52);
+        jLabel52.setBounds(70, 130, 290, 20);
+        panel_consultas_promociones.add(jLabel78);
+        jLabel78.setBounds(440, 290, 290, 20);
+        panel_consultas_promociones.add(jLabel80);
+        jLabel80.setBounds(470, 360, 290, 20);
+        panel_consultas_promociones.add(jLabel97);
+        jLabel97.setBounds(470, 390, 290, 20);
 
         getContentPane().add(panel_consultas_promociones, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 420, 160, 120));
         getContentPane().remove(panel_consultas_promociones);
@@ -2973,14 +2984,14 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel141.setForeground(java.awt.Color.darkGray);
         jLabel141.setText("Estado");
         panel_consultas_reservas.add(jLabel141);
-        jLabel141.setBounds(10, 180, 120, 40);
+        jLabel141.setBounds(10, 180, 90, 19);
 
         jLabel142.setBackground(java.awt.Color.darkGray);
         jLabel142.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel142.setForeground(java.awt.Color.darkGray);
         jLabel142.setText("Reservas");
         panel_consultas_reservas.add(jLabel142);
-        jLabel142.setBounds(10, 50, 90, 40);
+        jLabel142.setBounds(10, 60, 60, 19);
 
         jLabel143.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/confirmar.png"))); // NOI18N
         jLabel143.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -3007,59 +3018,75 @@ public class Help4Travelling extends javax.swing.JFrame {
             }
         });
         panel_consultas_reservas.add(cmb_reservasI);
-        cmb_reservasI.setBounds(90, 60, 390, 20);
+        cmb_reservasI.setBounds(90, 60, 120, 20);
 
         jLabel145.setBackground(java.awt.Color.darkGray);
         jLabel145.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel145.setForeground(java.awt.Color.darkGray);
         jLabel145.setText("Fecha de Creacion");
         panel_consultas_reservas.add(jLabel145);
-        jLabel145.setBounds(10, 100, 160, 40);
+        jLabel145.setBounds(10, 100, 130, 19);
 
         jLabel147.setBackground(java.awt.Color.darkGray);
         jLabel147.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel147.setForeground(java.awt.Color.darkGray);
         jLabel147.setText("Servicios y promociones asociados");
         panel_consultas_reservas.add(jLabel147);
-        jLabel147.setBounds(0, 230, 310, 40);
+        jLabel147.setBounds(10, 220, 230, 19);
 
         jScrollPane17.setViewportView(jList_reservasR);
 
         panel_consultas_reservas.add(jScrollPane17);
-        jScrollPane17.setBounds(60, 290, 350, 320);
+        jScrollPane17.setBounds(10, 250, 290, 320);
 
+        lbl_ffin.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lbl_ffin.setText("Fecha fin");
         panel_consultas_reservas.add(lbl_ffin);
-        lbl_ffin.setBounds(538, 400, 70, 14);
+        lbl_ffin.setBounds(310, 390, 70, 17);
 
+        lbl_finicio.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lbl_finicio.setText("Fecha inicio");
         panel_consultas_reservas.add(lbl_finicio);
-        lbl_finicio.setBounds(538, 350, 70, 14);
-        panel_consultas_reservas.add(txt_cantidadR);
-        txt_cantidadR.setBounds(630, 300, 120, 20);
-        panel_consultas_reservas.add(txt_finicio);
-        txt_finicio.setBounds(630, 350, 120, 20);
-        panel_consultas_reservas.add(txt_ffin);
-        txt_ffin.setBounds(630, 400, 120, 20);
-        panel_consultas_reservas.add(txt_creacionR);
-        txt_creacionR.setBounds(150, 110, 140, 20);
+        lbl_finicio.setBounds(310, 340, 90, 17);
 
+        txt_cantidadR.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        panel_consultas_reservas.add(txt_cantidadR);
+        txt_cantidadR.setBounds(380, 290, 120, 23);
+
+        txt_finicio.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        panel_consultas_reservas.add(txt_finicio);
+        txt_finicio.setBounds(400, 340, 120, 23);
+
+        txt_ffin.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        panel_consultas_reservas.add(txt_ffin);
+        txt_ffin.setBounds(380, 390, 120, 23);
+
+        txt_creacionR.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        txt_creacionR.setBorder(null);
+        panel_consultas_reservas.add(txt_creacionR);
+        txt_creacionR.setBounds(140, 100, 140, 23);
+
+        txt_precioR.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        txt_precioR.setBorder(null);
         txt_precioR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_precioRActionPerformed(evt);
             }
         });
         panel_consultas_reservas.add(txt_precioR);
-        txt_precioR.setBounds(150, 150, 140, 20);
+        txt_precioR.setBounds(90, 140, 140, 17);
+
+        txt_estadoR.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        txt_estadoR.setBorder(null);
         panel_consultas_reservas.add(txt_estadoR);
-        txt_estadoR.setBounds(150, 190, 140, 20);
+        txt_estadoR.setBounds(60, 180, 140, 17);
 
         jLabel221.setBackground(java.awt.Color.darkGray);
         jLabel221.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel221.setForeground(java.awt.Color.darkGray);
         jLabel221.setText("Precio total");
         panel_consultas_reservas.add(jLabel221);
-        jLabel221.setBounds(10, 140, 120, 40);
+        jLabel221.setBounds(10, 140, 90, 19);
 
         jButton9.setText("Seleccionar");
         jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -3068,11 +3095,12 @@ public class Help4Travelling extends javax.swing.JFrame {
             }
         });
         panel_consultas_reservas.add(jButton9);
-        jButton9.setBounds(410, 460, 110, 23);
+        jButton9.setBounds(310, 250, 110, 23);
 
+        lbl_cantidadR1.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         lbl_cantidadR1.setText("Cantidad");
         panel_consultas_reservas.add(lbl_cantidadR1);
-        lbl_cantidadR1.setBounds(548, 300, 60, 14);
+        lbl_cantidadR1.setBounds(310, 290, 70, 20);
 
         getContentPane().add(panel_consultas_reservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 500, 180, 110));
         getContentPane().remove(panel_consultas_reservas);
@@ -3289,7 +3317,7 @@ public class Help4Travelling extends javax.swing.JFrame {
 
         jLabel183.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/confirmar.png"))); // NOI18N
         jLabel183.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel183.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel183.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel183.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel183.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         jLabel183.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -3347,6 +3375,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         panel_consultas_proveedores.add(jLabel193);
         jLabel193.setBounds(410, 110, 80, 40);
 
+        txt_DescripcionP.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         jScrollPane12.setViewportView(txt_DescripcionP);
 
         panel_consultas_proveedores.add(jScrollPane12);
@@ -3383,8 +3412,11 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel198.setText("Fecha Nacimiento");
         panel_consultas_proveedores.add(jLabel198);
         jLabel198.setBounds(10, 170, 120, 19);
+
+        tex_anio.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        tex_anio.setBorder(null);
         panel_consultas_proveedores.add(tex_anio);
-        tex_anio.setBounds(290, 170, 50, 20);
+        tex_anio.setBounds(290, 170, 50, 17);
 
         jLabel200.setBackground(java.awt.Color.darkGray);
         jLabel200.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
@@ -3392,8 +3424,11 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel200.setText("Nombre");
         panel_consultas_proveedores.add(jLabel200);
         jLabel200.setBounds(10, 90, 50, 20);
+
+        txt_NombreP.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        txt_NombreP.setBorder(null);
         panel_consultas_proveedores.add(txt_NombreP);
-        txt_NombreP.setBounds(100, 90, 280, 20);
+        txt_NombreP.setBounds(100, 90, 280, 17);
 
         jLabel201.setBackground(java.awt.Color.darkGray);
         jLabel201.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
@@ -3401,12 +3436,21 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel201.setText("Apellido");
         panel_consultas_proveedores.add(jLabel201);
         jLabel201.setBounds(10, 130, 60, 19);
+
+        txt_ApellidoP.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        txt_ApellidoP.setBorder(null);
         panel_consultas_proveedores.add(txt_ApellidoP);
-        txt_ApellidoP.setBounds(100, 130, 280, 20);
+        txt_ApellidoP.setBounds(100, 130, 280, 17);
+
+        tex_dia.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        tex_dia.setBorder(null);
         panel_consultas_proveedores.add(tex_dia);
-        tex_dia.setBounds(150, 170, 50, 20);
+        tex_dia.setBounds(150, 170, 50, 17);
+
+        tex_mes.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        tex_mes.setBorder(null);
         panel_consultas_proveedores.add(tex_mes);
-        tex_mes.setBounds(220, 170, 50, 20);
+        tex_mes.setBounds(220, 170, 50, 17);
 
         jLabel202.setBackground(java.awt.Color.darkGray);
         jLabel202.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
@@ -3414,8 +3458,11 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel202.setText("E-mail");
         panel_consultas_proveedores.add(jLabel202);
         jLabel202.setBounds(10, 200, 50, 40);
+
+        txt_emailP.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        txt_emailP.setBorder(null);
         panel_consultas_proveedores.add(txt_emailP);
-        txt_emailP.setBounds(100, 210, 280, 20);
+        txt_emailP.setBounds(60, 210, 280, 17);
 
         jLabel73.setText("Aqui se mostrara imagen de usuario");
         panel_consultas_proveedores.add(jLabel73);
@@ -3427,10 +3474,16 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel204.setText("Nombre empresa");
         panel_consultas_proveedores.add(jLabel204);
         jLabel204.setBounds(10, 250, 110, 30);
+
+        txt_NombreEmpresaP.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        txt_NombreEmpresaP.setBorder(null);
         panel_consultas_proveedores.add(txt_NombreEmpresaP);
-        txt_NombreEmpresaP.setBounds(140, 250, 240, 20);
+        txt_NombreEmpresaP.setBounds(130, 260, 240, 20);
+
+        txt_LinkEmpresaP.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        txt_LinkEmpresaP.setBorder(null);
         panel_consultas_proveedores.add(txt_LinkEmpresaP);
-        txt_LinkEmpresaP.setBounds(140, 290, 240, 20);
+        txt_LinkEmpresaP.setBounds(110, 300, 240, 17);
 
         jLabel205.setBackground(java.awt.Color.darkGray);
         jLabel205.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
@@ -3438,15 +3491,25 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel205.setText("Link empresa");
         panel_consultas_proveedores.add(jLabel205);
         jLabel205.setBounds(10, 290, 150, 30);
+
+        tex_destino.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        tex_destino.setBorder(null);
         panel_consultas_proveedores.add(tex_destino);
-        tex_destino.setBounds(500, 150, 150, 20);
+        tex_destino.setBounds(500, 150, 150, 17);
+
+        tex_origen.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        tex_origen.setBorder(null);
         panel_consultas_proveedores.add(tex_origen);
-        tex_origen.setBounds(500, 120, 150, 20);
+        tex_origen.setBounds(500, 120, 150, 17);
 
         getContentPane().add(panel_consultas_proveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 580, 180, 90));
         getContentPane().remove(panel_consultas_proveedores);
         getContentPane().add(panel_consultas_proveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 1030, 590));
         panel_consultas_proveedores.setVisible(false);
+
+        jLabel124.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/Help4Travelling-logo1.png"))); // NOI18N
+        jLabel124.setText("jLabel124");
+        getContentPane().add(jLabel124, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 70, 440, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -3962,6 +4025,38 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel12.setVisible(false);
         jLabel13.setVisible(false);
         lbl_acercaDe.setVisible(false);
+        
+        ListaCli.setModel(new DefaultComboBoxModel(ICUsuario.listarClientes().toArray()));
+        
+        NomCli.setVisible(false);
+        ApeCli.setVisible(false);
+        AnioCli.setVisible(false);
+        MesCli.setVisible(false);
+        DiaCli.setVisible(false);
+        EmailCli.setVisible(false);
+        FCCli.setVisible(false);
+        PrecioCli.setVisible(false);
+        list2.clear();
+        
+        NomCli.setEnabled(false);
+        ApeCli.setEnabled(false);
+        AnioCli.setEnabled(false);
+        MesCli.setEnabled(false);
+        DiaCli.setEnabled(false);
+        EmailCli.setEnabled(false);
+        FCCli.setEnabled(false);
+        PrecioCli.setEnabled(false);
+        
+        NomCli.setText("");
+        ApeCli.setText("");
+        AnioCli.setText("");
+        MesCli.setText("");
+        DiaCli.setText("");
+        EmailCli.setText("");
+        FCCli.setText("");
+        PrecioCli.setText("");
+        list3.clear();
+        Articulo.setModel(list3);
     }//GEN-LAST:event_consultar_clientesMouseClicked
 
     private void jLabel144MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel144MouseClicked
@@ -4067,6 +4162,36 @@ public class Help4Travelling extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel148MouseClicked
 
     private void consultar_promocionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultar_promocionesMouseClicked
+        panel_consultas_promociones.setVisible(true);
+        lbl_menu.setText("          Consultar promociones");
+        panel_izq_consultas.setVisible(false);
+        jLabel9.setVisible(false);
+        jLabel11.setVisible(false);
+        jLabel12.setVisible(false);
+        jLabel13.setVisible(false);
+        lbl_acercaDe.setVisible(false);
+        
+        ArrayList<DtPromocion> promos = ICArticulo.listarPromociones();
+        DefaultComboBoxModel listModel = new DefaultComboBoxModel();
+        for(int x = 0; x < promos.size(); x++){
+            listModel.addElement(promos.get(x).GetNombre());
+        }
+        cmb_consultar_promociones.setModel(listModel);
+        
+    }//GEN-LAST:event_consultar_promocionesMouseClicked
+
+    private void jLabel163MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel163MouseClicked
+        lbl_menu.setText("          Consultas");
+        panel_consultas_promociones.setVisible(false);
+        panel_izq_consultas.setVisible(true);
+        jLabel9.setVisible(true);
+        jLabel11.setVisible(true);
+        jLabel12.setVisible(true);
+        jLabel13.setVisible(true);
+        lbl_acercaDe.setVisible(true);
+    }//GEN-LAST:event_jLabel163MouseClicked
+
+    private void consultar_proveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultar_proveedoresMouseClicked
         panel_consultas_proveedores.setVisible(true);
         lbl_menu.setText("          Consultar proveedor");
         panel_izq_consultas.setVisible(false);
@@ -4111,28 +4236,6 @@ public class Help4Travelling extends javax.swing.JFrame {
         tex_dia.setVisible(false);
         tex_origen.setVisible(false);
         tex_destino.setVisible(false);
-    }//GEN-LAST:event_consultar_promocionesMouseClicked
-
-    private void jLabel163MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel163MouseClicked
-        lbl_menu.setText("          Consultas");
-        panel_consultas_promociones.setVisible(false);
-        panel_izq_consultas.setVisible(true);
-        jLabel9.setVisible(true);
-        jLabel11.setVisible(true);
-        jLabel12.setVisible(true);
-        jLabel13.setVisible(true);
-        lbl_acercaDe.setVisible(true);
-    }//GEN-LAST:event_jLabel163MouseClicked
-
-    private void consultar_proveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultar_proveedoresMouseClicked
-        panel_consultas_proveedores.setVisible(true);
-        lbl_menu.setText("          Consultar proveedor");
-        panel_izq_consultas.setVisible(false);
-        jLabel9.setVisible(false);
-        jLabel11.setVisible(false);
-        jLabel12.setVisible(false);
-        jLabel13.setVisible(false);
-        lbl_acercaDe.setVisible(false);
     }//GEN-LAST:event_consultar_proveedoresMouseClicked
 
     private void lbl_cerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_cerrarMouseEntered
@@ -4365,7 +4468,8 @@ public class Help4Travelling extends javax.swing.JFrame {
             ICReserva.actualizarEstado(nuevo.Pagada, idSel);
         else if(cmb_estadoSel.getSelectedItem().equals("Facturada"))
             ICReserva.actualizarEstado(nuevo.Facturada, idSel);
-
+        
+        JOptionPane.showMessageDialog(null, "Reserva actualizada correctamente!");
     }//GEN-LAST:event_jLabel42MouseClicked
 
     private void cmb_serviciosXcatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmb_serviciosXcatMouseClicked
@@ -4968,6 +5072,10 @@ public class Help4Travelling extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cmb_promocionMouseClicked
 
+    private void cmb_consultar_promocionesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmb_consultar_promocionesItemStateChanged
+        
+    }//GEN-LAST:event_cmb_consultar_promocionesItemStateChanged
+
     /**
      *
      * @param args
@@ -5010,6 +5118,7 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmb_cantidad;
     private javax.swing.JComboBox<String> cmb_categoria;
     private javax.swing.JComboBox<String> cmb_cliente;
+    private javax.swing.JComboBox<String> cmb_consultar_promociones;
     private javax.swing.JComboBox<String> cmb_destinoS;
     private javax.swing.JComboBox<String> cmb_dia;
     private javax.swing.JComboBox<String> cmb_dia1;
@@ -5048,7 +5157,6 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox10;
-    private javax.swing.JComboBox<String> jComboBox14;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox8;
@@ -5084,6 +5192,7 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel121;
     private javax.swing.JLabel jLabel122;
     private javax.swing.JLabel jLabel123;
+    private javax.swing.JLabel jLabel124;
     private javax.swing.JLabel jLabel125;
     private javax.swing.JLabel jLabel126;
     private javax.swing.JLabel jLabel127;
@@ -5223,11 +5332,17 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
@@ -5255,8 +5370,10 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel75;
     private javax.swing.JLabel jLabel76;
     private javax.swing.JLabel jLabel77;
+    private javax.swing.JLabel jLabel78;
     private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel80;
     private javax.swing.JLabel jLabel81;
     private javax.swing.JLabel jLabel82;
     private javax.swing.JLabel jLabel83;
@@ -5274,6 +5391,7 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel94;
     private javax.swing.JLabel jLabel95;
     private javax.swing.JLabel jLabel96;
+    private javax.swing.JLabel jLabel97;
     private javax.swing.JLabel jLabel98;
     private javax.swing.JLabel jLabel99;
     private javax.swing.JList<String> jList1;
@@ -5281,7 +5399,6 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JList<String> jList_ServiciosP;
     private javax.swing.JList<String> jList_reservasR;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
@@ -5299,14 +5416,8 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField22;
-    private javax.swing.JTextField jTextField23;
-    private javax.swing.JTextField jTextField24;
-    private javax.swing.JTextField jTextField25;
     private javax.swing.JTextPane jTextPane2;
-    private javax.swing.JTextPane jTextPane4;
     private javax.swing.JLabel lab_cantidad1;
     private javax.swing.JLabel lab_cantidad2;
     private javax.swing.JLabel lab_cantidad3;
