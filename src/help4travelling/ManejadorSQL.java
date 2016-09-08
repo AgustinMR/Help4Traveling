@@ -1,7 +1,11 @@
 package help4travelling;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -296,8 +300,9 @@ public class ManejadorSQL {
             usuario.executeUpdate(sql1); // ingreso en articulos
             this.setForeignKeysOff(usuario);
             usuario.executeUpdate(sql2); // ingreso en servicios
+            System.out.println(""+categorias.size());
             for(int x = 0; x < categorias.size(); x++){
-                sql3 = "INSERT INTO POSEEN(nicknameProveedor, nombreArticulo, nombreCategoria) VALUES ('" + nickProveedor + "','" + s.getNombre() + "','" + categorias.get(x) + "');";
+                sql3 = "INSERT INTO POSEEN(nicknameProveedor, nombreArticulo, nombreCategoria) VALUES ('" + nickProveedor.trim() + "','" + s.getNombre().trim() + "','" + categorias.get(x).trim() + "');";
                 usuario.executeUpdate(sql3); // ingreso las categorias, asumo que estas ya existen debido a que fueron seleccionadas.
             }
             this.setForeignKeysOn(usuario);
@@ -661,6 +666,60 @@ public class ManejadorSQL {
         return instance;
     }
     
+    public void insertImgServicio(File f, String campo, String nickP, String nombreA) throws FileNotFoundException{
+        String sql1 = "UPDATE SERVICIOS SET "+ campo + " = ? WHERE nicknameProveedor = '" + nickP + "' AND nombreArticulo = '" + nombreA + "';";
+        try {
+            Connection conex = getConex();
+            PreparedStatement usuario = conex.prepareStatement(sql1);
+            //ruta puede ser: "/home/cmop/Desktop/1.jpg"
+            FileInputStream   fis = new FileInputStream(f);
+            //Lo convertimos en un Stream
+            usuario.setBinaryStream(1, fis, (int) f.length());
+            //Asignamos el Stream al Statement
+            usuario.executeUpdate();
+            usuario.close();
+        } catch (SQLException ex2) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex2);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
+    public void insertImgUsuario(File f, String nickU) throws FileNotFoundException{
+        String sql1 = "UPDATE USUARIOS SET imagen = ? WHERE nickname = '" + nickU + "';";
+        try {
+            Connection conex = getConex();
+            PreparedStatement usuario = conex.prepareStatement(sql1);
+            //ruta puede ser: "/home/cmop/Desktop/1.jpg"
+            FileInputStream   fis = new FileInputStream(f);
+            //Lo convertimos en un Stream
+            usuario.setBinaryStream(1, fis, (int) f.length());
+            //Asignamos el Stream al Statement
+            usuario.executeUpdate();
+            usuario.close();
+        } catch (SQLException ex2) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex2);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public byte[] selectImg () {
+        String sql1 = "SELECT imagen1 from SERVICIOS where nicknameProveedor='remus';";
+        try {
+            Connection conex = getConex();
+            Statement usuario = conex.createStatement();
+            ResultSet rs = usuario.executeQuery(sql1);
+            if (rs.next()) {
+                byte[] imgData = rs.getBytes("imagen1");//Here r1.getBytes() extract byte data from resultSet 
+                System.out.println(imgData);
+                return imgData;
+            }
+            usuario.close();
+        } catch (SQLException ex2) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex2);
+        }
+        return null;
+    }
     
 }
