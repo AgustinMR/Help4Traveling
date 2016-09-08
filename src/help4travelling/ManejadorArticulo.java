@@ -116,14 +116,8 @@ public class ManejadorArticulo {
     }
     
     public Servicio ModificarServicio(DtServicio modSer){
-        Servicio serv = null; 
-        for (int i = 0; i < articulos.size(); i++) {
-            if (articulos.get(i).GetNombre() == modSer.getNombre() && articulos.get(i).getProv() == modSer.getNickProveedor() && articulos.get(i).IsServicio())
-                serv = (Servicio)articulos.get(i);
-        }
-        //Servicio ser = (Servicio)this.articulos.get(modSer.getNombre());
-        serv.ModificarDatosServicio(modSer);
-        return serv;
+        ManejadorSQL.GetInstance().atualizarServicio(modSer);        
+        return new Servicio(modSer);
     }
     
     public Articulo ObtenerArticulo(String nameArti, String nomProv){

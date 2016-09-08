@@ -32,7 +32,9 @@ public class ControladorArticulo implements IControladorArticulo{
         //Si la instancia no existe ya en el sistema puedo crearla
         if(ok == false){
             Promocion p = new Promocion(DtProm);
-            manArt.AgregarPromocion(p);
+            manArt.AgregarPromocion(p);            
+            
+            ManejadorSQL.GetInstance().agregarPromocion(DtProm, nameProm, DtProm.GetServicios());
         }
         
         return !ok;
