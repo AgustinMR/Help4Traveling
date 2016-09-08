@@ -190,6 +190,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel192 = new javax.swing.JLabel();
         jButton11 = new javax.swing.JButton();
         panel_actualizar_servicio = new javax.swing.JPanel();
+        img_actualizar_servicios = new javax.swing.JFileChooser();
         jLabel110 = new javax.swing.JLabel();
         jLabel113 = new javax.swing.JLabel();
         jLabel122 = new javax.swing.JLabel();
@@ -202,14 +203,25 @@ public class Help4Travelling extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txt_desc = new javax.swing.JTextPane();
         jLabel131 = new javax.swing.JLabel();
-        jLabel79 = new javax.swing.JLabel();
         jLabel199 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jLabel206 = new javax.swing.JLabel();
         jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
-        cmb_serv = new javax.swing.JComboBox<>();
+        cmb_actualizar_servicio = new javax.swing.JComboBox<>();
         cmb_origen = new javax.swing.JComboBox<>();
+        jLabel135 = new javax.swing.JLabel();
+        txt_p = new javax.swing.JTextField();
+        jLabel203 = new javax.swing.JLabel();
+        jButton14 = new javax.swing.JButton();
+        jLabel218 = new javax.swing.JLabel();
+        jButton15 = new javax.swing.JButton();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        list_catServicio = new javax.swing.JList<>();
+        btn_addP1 = new javax.swing.JLabel();
+        btn_rmP1 = new javax.swing.JLabel();
+        jLabel117 = new javax.swing.JLabel();
+        jLabel206 = new javax.swing.JLabel();
+        jButton16 = new javax.swing.JButton();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        tree_actualizar_servicios = new javax.swing.JTree();
         panel_actualizar_reserva = new javax.swing.JPanel();
         jLabel114 = new javax.swing.JLabel();
         jLabel121 = new javax.swing.JLabel();
@@ -1775,6 +1787,18 @@ public class Help4Travelling extends javax.swing.JFrame {
         panel_actualizar_servicio.setBackground(new java.awt.Color(255, 255, 255));
         panel_actualizar_servicio.setLayout(null);
 
+        img_actualizar_servicios.setDialogType(javax.swing.JFileChooser.CUSTOM_DIALOG);
+        img_actualizar_servicios.setApproveButtonText("Seleccionar");
+        img_actualizar_servicios.setAutoscrolls(true);
+        img_actualizar_servicios.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, null, new java.awt.Color(102, 102, 102)));
+        img_actualizar_servicios.setOpaque(true);
+        panel_actualizar_servicio.add(img_actualizar_servicios);
+        img_actualizar_servicios.setBounds(410, 70, 130, 100);
+        getContentPane().remove(panel_actualizar_servicio);
+        panel_actualizar_servicio.add(img_actualizar_servicios);
+        img_actualizar_servicios.setBounds(0, 30, 1030, 560);
+        img_actualizar_servicios.setVisible(false);
+
         jLabel110.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/salir.png"))); // NOI18N
         jLabel110.setText("jLabel4");
         jLabel110.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -1797,115 +1821,227 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel122.setForeground(java.awt.Color.darkGray);
         jLabel122.setText("- Destino");
         panel_actualizar_servicio.add(jLabel122);
-        jLabel122.setBounds(30, 140, 60, 20);
+        jLabel122.setBounds(30, 120, 60, 20);
 
         jLabel127.setBackground(java.awt.Color.darkGray);
         jLabel127.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel127.setForeground(java.awt.Color.darkGray);
-        jLabel127.setText("Descripcion");
+        jLabel127.setText("Precio");
         panel_actualizar_servicio.add(jLabel127);
-        jLabel127.setBounds(10, 180, 80, 20);
+        jLabel127.setBounds(10, 157, 50, 20);
 
         jLabel128.setBackground(java.awt.Color.darkGray);
         jLabel128.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel128.setForeground(java.awt.Color.darkGray);
         jLabel128.setText("Imagenes");
         panel_actualizar_servicio.add(jLabel128);
-        jLabel128.setBounds(10, 320, 70, 20);
+        jLabel128.setBounds(10, 340, 70, 20);
 
         jLabel77.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/confirmar.png"))); // NOI18N
         jLabel77.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel77.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel77.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel77.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        jLabel77.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel77MouseClicked(evt);
+            }
+        });
         panel_actualizar_servicio.add(jLabel77);
-        jLabel77.setBounds(980, 450, 45, 46);
+        jLabel77.setBounds(983, 537, 45, 46);
 
         jLabel129.setBackground(java.awt.Color.darkGray);
         jLabel129.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel129.setForeground(java.awt.Color.darkGray);
         jLabel129.setText("Ciudad");
         panel_actualizar_servicio.add(jLabel129);
-        jLabel129.setBounds(10, 90, 50, 20);
+        jLabel129.setBounds(10, 70, 50, 20);
 
         cmb_destino.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         panel_actualizar_servicio.add(cmb_destino);
-        cmb_destino.setBounds(100, 140, 300, 20);
+        cmb_destino.setBounds(100, 120, 300, 20);
 
         jLabel130.setBackground(java.awt.Color.darkGray);
         jLabel130.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel130.setForeground(java.awt.Color.darkGray);
         jLabel130.setText("- Origen");
         panel_actualizar_servicio.add(jLabel130);
-        jLabel130.setBounds(30, 110, 52, 20);
+        jLabel130.setBounds(30, 90, 52, 20);
 
         jScrollPane2.setViewportView(txt_desc);
 
         panel_actualizar_servicio.add(jScrollPane2);
-        jScrollPane2.setBounds(10, 210, 610, 100);
+        jScrollPane2.setBounds(10, 220, 520, 110);
 
         jLabel131.setBackground(java.awt.Color.darkGray);
         jLabel131.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jLabel131.setForeground(java.awt.Color.darkGray);
         jLabel131.setText("Servicio");
         panel_actualizar_servicio.add(jLabel131);
-        jLabel131.setBounds(10, 50, 60, 20);
-
-        jLabel79.setBackground(java.awt.Color.gray);
-        jLabel79.setText("Aqui se mostrara imagen");
-        jLabel79.setOpaque(true);
-        panel_actualizar_servicio.add(jLabel79);
-        jLabel79.setBounds(430, 380, 190, 120);
+        jLabel131.setBounds(10, 40, 60, 20);
 
         jLabel199.setBackground(java.awt.Color.gray);
         jLabel199.setText("Aqui se mostrara imagen");
         jLabel199.setOpaque(true);
         panel_actualizar_servicio.add(jLabel199);
-        jLabel199.setBounds(10, 380, 190, 120);
-
-        jButton6.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
-        jButton6.setText("Seleccionar");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        panel_actualizar_servicio.add(jButton6);
-        jButton6.setBounds(430, 350, 120, 30);
-
-        jLabel206.setBackground(java.awt.Color.gray);
-        jLabel206.setText("Aqui se mostrara imagen");
-        jLabel206.setOpaque(true);
-        panel_actualizar_servicio.add(jLabel206);
-        jLabel206.setBounds(220, 380, 190, 120);
+        jLabel199.setBounds(10, 400, 310, 180);
 
         jButton12.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
         jButton12.setText("Seleccionar");
+        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton12MouseClicked(evt);
+            }
+        });
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
             }
         });
         panel_actualizar_servicio.add(jButton12);
-        jButton12.setBounds(10, 350, 120, 30);
+        jButton12.setBounds(10, 370, 120, 30);
 
-        jButton13.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
-        jButton13.setText("Seleccionar");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
+        cmb_actualizar_servicio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmb_actualizar_servicio.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmb_actualizar_servicioItemStateChanged(evt);
             }
         });
-        panel_actualizar_servicio.add(jButton13);
-        jButton13.setBounds(220, 350, 120, 30);
-
-        cmb_serv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        panel_actualizar_servicio.add(cmb_serv);
-        cmb_serv.setBounds(70, 50, 330, 20);
+        panel_actualizar_servicio.add(cmb_actualizar_servicio);
+        cmb_actualizar_servicio.setBounds(70, 40, 330, 20);
 
         cmb_origen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         panel_actualizar_servicio.add(cmb_origen);
-        cmb_origen.setBounds(100, 110, 300, 20);
+        cmb_origen.setBounds(100, 90, 300, 20);
+
+        jLabel135.setBackground(java.awt.Color.darkGray);
+        jLabel135.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
+        jLabel135.setForeground(java.awt.Color.darkGray);
+        jLabel135.setText("Descripcion");
+        panel_actualizar_servicio.add(jLabel135);
+        jLabel135.setBounds(10, 190, 80, 20);
+
+        txt_p.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        panel_actualizar_servicio.add(txt_p);
+        txt_p.setBounds(60, 157, 100, 30);
+
+        jLabel203.setBackground(java.awt.Color.gray);
+        jLabel203.setText("Aqui se mostrara imagen");
+        jLabel203.setOpaque(true);
+        panel_actualizar_servicio.add(jLabel203);
+        jLabel203.setBounds(330, 400, 310, 180);
+
+        jButton14.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
+        jButton14.setText("Seleccionar");
+        jButton14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton14MouseClicked(evt);
+            }
+        });
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+        panel_actualizar_servicio.add(jButton14);
+        jButton14.setBounds(330, 370, 120, 30);
+
+        jLabel218.setBackground(java.awt.Color.gray);
+        jLabel218.setText("Aqui se mostrara imagen");
+        jLabel218.setOpaque(true);
+        panel_actualizar_servicio.add(jLabel218);
+        jLabel218.setBounds(650, 400, 310, 180);
+
+        jButton15.setFont(new java.awt.Font("FreeSans", 0, 14)); // NOI18N
+        jButton15.setText("Seleccionar");
+        jButton15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton15MouseClicked(evt);
+            }
+        });
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+        panel_actualizar_servicio.add(jButton15);
+        jButton15.setBounds(650, 370, 120, 30);
+
+        jScrollPane10.setViewportView(list_catServicio);
+
+        panel_actualizar_servicio.add(jScrollPane10);
+        jScrollPane10.setBounds(820, 70, 190, 260);
+
+        btn_addP1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_addP1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/next.png"))); // NOI18N
+        btn_addP1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        btn_addP1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_addP1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_addP1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_addP1MouseEntered(evt);
+            }
+        });
+        panel_actualizar_servicio.add(btn_addP1);
+        btn_addP1.setBounds(770, 100, 36, 36);
+
+        btn_rmP1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btn_rmP1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/back.png"))); // NOI18N
+        btn_rmP1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        btn_rmP1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_rmP1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_rmP1MouseClicked(evt);
+            }
+        });
+        panel_actualizar_servicio.add(btn_rmP1);
+        btn_rmP1.setBounds(770, 150, 36, 36);
+
+        jLabel117.setBackground(java.awt.Color.darkGray);
+        jLabel117.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jLabel117.setForeground(java.awt.Color.darkGray);
+        jLabel117.setText("Categorias del servicio:");
+        panel_actualizar_servicio.add(jLabel117);
+        jLabel117.setBounds(820, 40, 210, 20);
+
+        jLabel206.setBackground(java.awt.Color.darkGray);
+        jLabel206.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
+        jLabel206.setForeground(java.awt.Color.darkGray);
+        jLabel206.setText("Categorias disponibles:");
+        panel_actualizar_servicio.add(jLabel206);
+        jLabel206.setBounds(560, 40, 200, 20);
+
+        jButton16.setBackground(java.awt.Color.white);
+        jButton16.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        jButton16.setText("Limpiar");
+        jButton16.setBorder(null);
+        jButton16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton16MouseClicked(evt);
+            }
+        });
+        panel_actualizar_servicio.add(jButton16);
+        jButton16.setBounds(820, 330, 80, 20);
+
+        tree_actualizar_servicios.setAutoscrolls(true);
+        tree_actualizar_servicios.addTreeExpansionListener(new javax.swing.event.TreeExpansionListener() {
+            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
+            }
+            public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
+                tree_actualizar_serviciosTreeExpanded(evt);
+            }
+        });
+        tree_actualizar_servicios.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+            public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+                tree_actualizar_serviciosValueChanged(evt);
+            }
+        });
+        jScrollPane14.setViewportView(tree_actualizar_servicios);
+
+        panel_actualizar_servicio.add(jScrollPane14);
+        jScrollPane14.setBounds(560, 70, 200, 260);
 
         getContentPane().add(panel_actualizar_servicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 460, 140, 100));
         getContentPane().remove(panel_actualizar_servicio);
@@ -3561,6 +3697,11 @@ public class Help4Travelling extends javax.swing.JFrame {
 
         tex_origen.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
         tex_origen.setBorder(null);
+        tex_origen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tex_origenActionPerformed(evt);
+            }
+        });
         panel_consultas_proveedores.add(tex_origen);
         tex_origen.setBounds(500, 120, 150, 17);
 
@@ -3996,14 +4137,19 @@ public class Help4Travelling extends javax.swing.JFrame {
     }//GEN-LAST:event_ingreso_reservasMouseClicked
 
     private void jLabel110MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel110MouseClicked
-        lbl_menu.setText("          Modificaciones");
-        panel_actualizar_servicio.setVisible(false);
-        panel_izq_actualizaciones.setVisible(true);
-        jLabel9.setVisible(true);
-        jLabel11.setVisible(true);
-        jLabel12.setVisible(true);
-        jLabel13.setVisible(true);
-        lbl_acercaDe.setVisible(true);
+        if(img_actualizar_servicios.isVisible()){
+            img_actualizar_servicios.setVisible(false);
+        }
+        else{
+            lbl_menu.setText("          Modificaciones");
+            panel_actualizar_servicio.setVisible(false);
+            panel_izq_actualizaciones.setVisible(true);
+            jLabel9.setVisible(true);
+            jLabel11.setVisible(true);
+            jLabel12.setVisible(true);
+            jLabel13.setVisible(true);
+            lbl_acercaDe.setVisible(true);
+        }
     }//GEN-LAST:event_jLabel110MouseClicked
 
     private void actualizacion_serviciosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_actualizacion_serviciosMouseClicked
@@ -4019,12 +4165,42 @@ public class Help4Travelling extends javax.swing.JFrame {
         for(int x = 0; x < s.size(); x++){
             lm.addElement(s.get(x).getNickProveedor() + ", " + s.get(x).getNombre());
         }
-        cmb_serv.setModel(lm);
+        cmb_actualizar_servicio.setModel(lm);
         for(int e = 0; e < c.size(); e++){
             lm2.addElement(c.get(e));
         }
         cmb_origen.setModel(lm2);
         cmb_destino.setModel(lm2);
+        DefaultMutableTreeNode tree = new DefaultMutableTreeNode("todas");
+        ArrayList<DtCategoria> categorias = ICCategoria.listarCategorias();
+
+        int max =0;
+        for (int i = 0; i < categorias.size(); i++){
+            if (max < categorias.get(i).getNivel()){
+                max =categorias.get(i).getNivel();
+            }
+        }
+        HashMap<String, DefaultMutableTreeNode> tree2 = new HashMap();
+        tree2.put("todas", tree);
+        for (int j = 0; j < max+1; j++){
+            for (DtCategoria categoria : categorias) {
+                if(j == categoria.getNivel()){
+                    DefaultMutableTreeNode cat = new DefaultMutableTreeNode();
+                    cat.setUserObject(categoria.getNombre());
+                    for(String name : tree2.keySet()){
+                        if(name.equals(categoria.getNombrePadre()))
+                            tree2.get(name).add(cat);
+                    }
+                    //tree.add(cat);
+                    tree2.put(categoria.getNombre(), cat);
+                }
+            }
+        }
+        DefaultTreeModel modeloTree = new DefaultTreeModel(tree);
+        tree_actualizar_servicios.setModel(modeloTree);
+        
+        
+
     }//GEN-LAST:event_actualizacion_serviciosMouseClicked
 
     private void actualizacion_reservasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_actualizacion_reservasMouseClicked
@@ -4338,10 +4514,6 @@ public class Help4Travelling extends javax.swing.JFrame {
         panel_izq_acerca_de.setVisible(true);
         lbl_menu.setText("          Acerca de");
     }//GEN-LAST:event_lbl_acercaDeMouseClicked
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
 
     private void chk_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk_clienteActionPerformed
         txt_nombreEmpresa.setVisible(false);
@@ -5183,9 +5355,112 @@ public class Help4Travelling extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton12ActionPerformed
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+    private void cmb_actualizar_servicioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmb_actualizar_servicioItemStateChanged
+        String nickP, nombreA;
+        if(cmb_actualizar_servicio.getModel().getSize() != 0){
+            if(!cmb_actualizar_servicio.getSelectedItem().toString().trim().isEmpty()){
+                nickP = cmb_actualizar_servicio.getSelectedItem().toString().substring(0, cmb_actualizar_servicio.getSelectedItem().toString().lastIndexOf(","));
+                nombreA = cmb_actualizar_servicio.getSelectedItem().toString().substring(cmb_actualizar_servicio.getSelectedItem().toString().lastIndexOf(",")+1);
+                DtServicio ret = ICArticulo.datosServicio(nombreA.trim(), nickP.trim());
+                if(cmb_origen.getModel().getSize() != 0){
+                    for(int x = 0; x < cmb_origen.getModel().getSize(); x++){
+                        if(cmb_origen.getModel().getElementAt(x).trim().equals(ret.getCiudadOrigen().trim())){
+                            cmb_origen.setSelectedItem(ret.getCiudadOrigen().trim());
+                        }
+                    }
+                }
+                if(cmb_destino.getModel().getSize() != 0){
+                    for(int x = 0; x < cmb_destino.getModel().getSize(); x++){
+                        if(ret.getCiudadDestino() != null){
+                            if(cmb_destino.getModel().getElementAt(x).trim().equals(ret.getCiudadDestino().trim())){
+                                cmb_destino.setSelectedItem(ret.getCiudadDestino());
+                            }
+                        }
+                    }
+                }
+                txt_desc.setText(ret.getDescripcion());
+                txt_p.setText(""+ret.getPrecio());
+                for(int x = 0; x < ret.getCategorias().size(); x++){
+                    ((DefaultListModel)list_catServicio.getModel()).addElement(ret.getCategorias().get(x).trim());
+                }
+            }
+        }
+    }//GEN-LAST:event_cmb_actualizar_servicioItemStateChanged
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton13ActionPerformed
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jLabel77MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel77MouseClicked
+        if((!txt_desc.getText().isEmpty()) && (!txt_desc.getText().isEmpty()) && (list_catServicio.getModel().getSize() != 0) ){
+            String nickP, nombreA;
+            nickP = cmb_actualizar_servicio.getSelectedItem().toString().substring(0, cmb_actualizar_servicio.getSelectedItem().toString().lastIndexOf(","));
+            nombreA = cmb_actualizar_servicio.getSelectedItem().toString().substring(cmb_actualizar_servicio.getSelectedItem().toString().lastIndexOf(",")+1);
+            ArrayList<String> categorias = new ArrayList();
+            for(int e = 0; e < list_catServicio.getModel().getSize(); e++){
+                categorias.add(list_catServicio.getModel().getElementAt(e).trim());
+            }
+            DtServicio mod = new DtServicio(nombreA.trim(), nickP.trim(), Float.valueOf(txt_p.getText().trim()), txt_desc.getText(), categorias, cmb_origen.getSelectedItem().toString().trim(), cmb_destino.getSelectedItem().toString().trim());
+            ICArticulo.ModificarServicio(mod);
+            JOptionPane.showMessageDialog(null, "Servicio actualizado correctamente!");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Error!. Compruebe que los campos mínimos requeridos no esten vacíos.");
+        }
+    }//GEN-LAST:event_jLabel77MouseClicked
+
+    private void jButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseClicked
+        img_actualizar_servicios.setVisible(true);
+    }//GEN-LAST:event_jButton12MouseClicked
+
+    private void jButton14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton14MouseClicked
+        img_actualizar_servicios.setVisible(true);
+    }//GEN-LAST:event_jButton14MouseClicked
+
+    private void jButton15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton15MouseClicked
+        img_actualizar_servicios.setVisible(true);
+    }//GEN-LAST:event_jButton15MouseClicked
+
+    private void btn_addP1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_addP1MouseClicked
+        if((DefaultMutableTreeNode)tree_actualizar_servicios.getLastSelectedPathComponent() != null){
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode)tree_actualizar_servicios.getLastSelectedPathComponent();
+            String nameCat = node.getUserObject().toString().trim();
+            if(!((DefaultListModel)list_catServicio.getModel()).contains(nameCat.trim())){
+                ((DefaultListModel)list_catServicio.getModel()).addElement(nameCat.trim());
+            }   
+        } 
+    }//GEN-LAST:event_btn_addP1MouseClicked
+
+    private void btn_rmP1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_rmP1MouseClicked
+        if(list_catServicio.getSelectedValue() != null){
+            ((DefaultListModel)list_catServicio.getModel()).removeElementAt(list_catServicio.getSelectedIndex());
+        }
+    }//GEN-LAST:event_btn_rmP1MouseClicked
+
+    private void tex_origenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tex_origenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tex_origenActionPerformed
+
+    private void jButton16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton16MouseClicked
+        if(list_catServicio.getModel().getSize() != 0)
+            ((DefaultListModel)list_catServicio.getModel()).removeAllElements();
+    }//GEN-LAST:event_jButton16MouseClicked
+
+    private void tree_actualizar_serviciosTreeExpanded(javax.swing.event.TreeExpansionEvent evt) {//GEN-FIRST:event_tree_actualizar_serviciosTreeExpanded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tree_actualizar_serviciosTreeExpanded
+
+    private void tree_actualizar_serviciosValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_tree_actualizar_serviciosValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tree_actualizar_serviciosValueChanged
+
+    private void btn_addP1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_addP1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_addP1MouseEntered
 
     /**
      *
@@ -5217,7 +5492,9 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JPanel actualizacion_reservas;
     private javax.swing.JPanel actualizacion_servicios;
     private javax.swing.JLabel btn_addP;
+    private javax.swing.JLabel btn_addP1;
     private javax.swing.JLabel btn_rmP;
+    private javax.swing.JLabel btn_rmP1;
     private javax.swing.JButton but_add;
     private javax.swing.JButton but_quit;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -5225,6 +5502,7 @@ public class Help4Travelling extends javax.swing.JFrame {
     private java.awt.Checkbox chek_padre;
     private javax.swing.JRadioButton chk_cliente;
     private javax.swing.JRadioButton chk_proveedor;
+    private javax.swing.JComboBox<String> cmb_actualizar_servicio;
     private javax.swing.JComboBox<String> cmb_anio;
     private javax.swing.JComboBox<String> cmb_anio1;
     private javax.swing.JComboBox<String> cmb_anio2;
@@ -5249,7 +5527,6 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmb_proveedorP;
     private javax.swing.JComboBox<String> cmb_proveedorS;
     private javax.swing.JComboBox<String> cmb_reservasI;
-    private javax.swing.JComboBox<String> cmb_serv;
     private javax.swing.JComboBox<String> cmb_servicio;
     private javax.swing.JComboBox<String> cmb_serviciosXcat;
     private javax.swing.JPanel consultar_clientes;
@@ -5258,6 +5535,7 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JPanel consultar_reservas;
     private javax.swing.JPanel consultar_servicios;
     private javax.swing.JPanel eliminacion_reservas;
+    private javax.swing.JFileChooser img_actualizar_servicios;
     private javax.swing.JPanel ingreso_categorias;
     private javax.swing.JPanel ingreso_promociones;
     private javax.swing.JPanel ingreso_reservas;
@@ -5267,11 +5545,12 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox10;
@@ -5299,6 +5578,7 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel114;
     private javax.swing.JLabel jLabel115;
     private javax.swing.JLabel jLabel116;
+    private javax.swing.JLabel jLabel117;
     private javax.swing.JLabel jLabel118;
     private javax.swing.JLabel jLabel119;
     private javax.swing.JLabel jLabel12;
@@ -5318,6 +5598,7 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel132;
     private javax.swing.JLabel jLabel133;
     private javax.swing.JLabel jLabel134;
+    private javax.swing.JLabel jLabel135;
     private javax.swing.JLabel jLabel136;
     private javax.swing.JLabel jLabel137;
     private javax.swing.JLabel jLabel138;
@@ -5393,6 +5674,7 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel200;
     private javax.swing.JLabel jLabel201;
     private javax.swing.JLabel jLabel202;
+    private javax.swing.JLabel jLabel203;
     private javax.swing.JLabel jLabel204;
     private javax.swing.JLabel jLabel205;
     private javax.swing.JLabel jLabel206;
@@ -5408,6 +5690,7 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel215;
     private javax.swing.JLabel jLabel216;
     private javax.swing.JLabel jLabel217;
+    private javax.swing.JLabel jLabel218;
     private javax.swing.JLabel jLabel219;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel220;
@@ -5482,7 +5765,6 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel76;
     private javax.swing.JLabel jLabel77;
     private javax.swing.JLabel jLabel78;
-    private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel80;
     private javax.swing.JLabel jLabel81;
@@ -5508,9 +5790,11 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JList<String> jList_ServiciosP;
     private javax.swing.JList<String> jList_reservasR;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane17;
     private javax.swing.JScrollPane jScrollPane18;
@@ -5560,6 +5844,7 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_proveedor1;
     private javax.swing.JList<String> lis_categoria;
     private javax.swing.JList<String> lis_categoriaS;
+    private javax.swing.JList<String> list_catServicio;
     private javax.swing.JList<String> list_serviciosInc;
     private javax.swing.JList<String> list_serviciosProv;
     private javax.swing.JList<String> list_servs;
@@ -5591,6 +5876,7 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JTextField tex_precio;
     private javax.swing.JTextField tex_precioU;
     private javax.swing.JTextField tex_precioU1;
+    private javax.swing.JTree tree_actualizar_servicios;
     private javax.swing.JTree tree_servicios;
     private javax.swing.JTree tree_servicios2;
     private javax.swing.JTextField txt_ApellidoP;
@@ -5614,6 +5900,7 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JTextField txt_nombre;
     private javax.swing.JTextField txt_nombreEmpresa;
     private javax.swing.JTextField txt_nombreS;
+    private javax.swing.JTextField txt_p;
     private javax.swing.JTextField txt_precioR;
     private javax.swing.JTextField txt_precioS;
     // End of variables declaration//GEN-END:variables
