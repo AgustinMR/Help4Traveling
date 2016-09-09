@@ -287,10 +287,11 @@ public class ManejadorSQL {
     public boolean agregarServicio(DtServicio s, String nickProveedor, ArrayList<String> categorias){
         String sql1 = "INSERT INTO ARTICULOS(nicknameProveedor, nombre) VALUES ('" + nickProveedor + "','" + s.getNombre() + "');";
         String sql2, sql3;
-        if(s.getCiudadDestino() == null )
+        if(s.getCiudadDestino() == null ){
             sql2 = "INSERT INTO SERVICIOS(nicknameProveedor,nombreArticulo,descripcion,precio,ciudadO) VALUES ('" + nickProveedor + "','" + s.getNombre() + "','" + s.getDescripcion() + "'," + s.getPrecio() + ",'" + s.getCiudadOrigen() + "');";
-        else
+        }else{
             sql2 = "INSERT INTO SERVICIOS(nicknameProveedor,nombreArticulo,descripcion,precio,ciudadO,ciudadD) VALUES ('" + nickProveedor + "','" + s.getNombre() + "','" + s.getDescripcion() + "'," + s.getPrecio() + ",'" + s.getCiudadOrigen() + "','" + s.getCiudadDestino() + "' );";
+        }
         Statement usuario;
         // para cuando se considere las imagenes, hacer un alter table por cada imagen. de esa manera, no hay que hacer if anidados, por ambos casos.
         boolean ret = false;
@@ -661,7 +662,7 @@ public class ManejadorSQL {
     
     public Connection getConex() {
         try {
-            Connection c = DriverManager.getConnection("jdbc:mysql://"+ this.ip +":3306/bd_help4traveling?useSSL=false", "root", "");
+            Connection c = DriverManager.getConnection("jdbc:mysql://"+ this.ip +":3306/bd_help4traveling?useSSL=false", "root", "tecnoDBweb2016");
             return c;
         } catch (SQLException ex) {
             Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
@@ -693,6 +694,7 @@ public class ManejadorSQL {
     
     public void insertImgServicio(File f, String campo, String nickP, String nombreA) throws FileNotFoundException{
         String sql1 = "UPDATE SERVICIOS SET "+ campo + " = ? WHERE nicknameProveedor = '" + nickP + "' AND nombreArticulo = '" + nombreA + "';";
+        //System.out.println(sql1);
         try {
             Connection conex = getConex();
             PreparedStatement usuario = conex.prepareStatement(sql1);
@@ -729,15 +731,33 @@ public class ManejadorSQL {
         }
     }
     
-    public byte[] selectImg () {
-        String sql1 = "SELECT imagen1 from SERVICIOS where nicknameProveedor='remus';";
+    public byte[] selectImgServicio(String campo, String nickP, String nombreA){
+        String sql1 = "SELECT "+ campo +" FROM SERVICIOS WHERE nicknameProveedor='" + nickP + "' AND nombreArticulo='"+ nombreA +"';";
         try {
             Connection conex = getConex();
             Statement usuario = conex.createStatement();
             ResultSet rs = usuario.executeQuery(sql1);
             if (rs.next()) {
-                byte[] imgData = rs.getBytes("imagen1");//Here r1.getBytes() extract byte data from resultSet 
-                System.out.println(imgData);
+                byte[] imgData = rs.getBytes(campo);//Here r1.getBytes() extract byte data from resultSet 
+                //System.out.println(imgData);
+                return imgData;
+            }
+            usuario.close();
+        } catch (SQLException ex2) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex2);
+        }
+        return null;
+    }
+    
+    public byte[] selectImgUsuario(String nickU){
+        String sql1 = "SELECT imagen FROM USUARIOS WHERE nickname='"+ nickU.trim() +"';";
+        try {
+            Connection conex = getConex();
+            Statement usuario = conex.createStatement();
+            ResultSet rs = usuario.executeQuery(sql1);
+            if (rs.next()) {
+                byte[] imgData = rs.getBytes("imagen");//Here r1.getBytes() extract byte data from resultSet 
+                //System.out.println(imgData);
                 return imgData;
             }
             usuario.close();

@@ -5,19 +5,17 @@
             <url>src/help4travelling/Help4Travelling.java</url>
             <bookmark id="1">
                 <name/>
-                <line>4042</line>
+                <line>4031</line>
                 <key/>
             </bookmark>
             <bookmark id="2">
                 <name/>
-                <line>4536</line>
+                <line>4525</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/Mis%20Programas/Tarea%20TINF/ProgApp2016/Help4Travelling/src/help4travelling/ConectarBD.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
