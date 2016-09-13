@@ -1,10 +1,9 @@
 package help4travelling;
 import java.awt.*;
-import static java.awt.JobAttributes.DestinationType.FILE;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.io.IOException;
 import java.time.MonthDay;
 import java.time.Year;
 import java.time.YearMonth;
@@ -14,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.JOptionPane;
@@ -244,6 +244,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel42 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         table_reservas = new javax.swing.JTable();
+        jLabel50 = new javax.swing.JLabel();
         panel_eliminar_reserva = new javax.swing.JPanel();
         jLabel132 = new javax.swing.JLabel();
         jLabel133 = new javax.swing.JLabel();
@@ -469,6 +470,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         tex_destino = new javax.swing.JTextField();
         tex_origen = new javax.swing.JTextField();
         jLabel124 = new javax.swing.JLabel();
+        lbl_menu1 = new javax.swing.JLabel();
 
         jLabel6.setText("jLabel6");
 
@@ -1004,11 +1006,11 @@ public class Help4Travelling extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ingreso_usuariosMouseClicked(evt);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                ingreso_usuariosMouseExited(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 ingreso_usuariosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                ingreso_usuariosMouseExited(evt);
             }
         });
         ingreso_usuarios.setLayout(null);
@@ -1367,7 +1369,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         panel_izq_actualizaciones.add(jLabel28);
         jLabel28.setBounds(0, 0, 430, 40);
 
-        getContentPane().add(panel_izq_actualizaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 180, 180));
+        getContentPane().add(panel_izq_actualizaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 140, 130));
         getContentPane().remove(panel_izq_actualizaciones);
         getContentPane().add(panel_izq_actualizaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 430, 590));
         panel_izq_actualizaciones.setVisible(false);
@@ -2104,7 +2106,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         cmb_estadoSel.setBounds(320, 110, 160, 30);
 
         jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/confirmar.png"))); // NOI18N
+        jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/error.png"))); // NOI18N
         jLabel42.setText("jLabel42");
         jLabel42.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel42.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -2114,7 +2116,7 @@ public class Help4Travelling extends javax.swing.JFrame {
             }
         });
         panel_actualizar_reserva.add(jLabel42);
-        jLabel42.setBounds(985, 545, 46, 46);
+        jLabel42.setBounds(930, 550, 46, 46);
 
         jScrollPane6.setAutoscrolls(true);
 
@@ -2152,6 +2154,19 @@ public class Help4Travelling extends javax.swing.JFrame {
 
         panel_actualizar_reserva.add(jScrollPane6);
         jScrollPane6.setBounds(20, 80, 280, 500);
+
+        jLabel50.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/confirmar.png"))); // NOI18N
+        jLabel50.setText("jLabel42");
+        jLabel50.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel50.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel50.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel50MouseClicked(evt);
+            }
+        });
+        panel_actualizar_reserva.add(jLabel50);
+        jLabel50.setBounds(985, 545, 46, 46);
 
         getContentPane().add(panel_actualizar_reserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, 160, 110));
         getContentPane().remove(panel_actualizar_reserva);
@@ -3731,6 +3746,14 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel124.setText("jLabel124");
         getContentPane().add(jLabel124, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 70, 440, -1));
 
+        lbl_menu1.setBackground(new java.awt.Color(1, 82, 160));
+        lbl_menu1.setFont(new java.awt.Font("FreeSans", 0, 36)); // NOI18N
+        lbl_menu1.setForeground(java.awt.Color.white);
+        lbl_menu1.setText("                                           ");
+        lbl_menu1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        lbl_menu1.setOpaque(true);
+        getContentPane().add(lbl_menu1, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 0, 1120, 80));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -3959,6 +3982,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel12.setVisible(false);
         jLabel13.setVisible(false);
         lbl_acercaDe.setVisible(false);
+        lbl_avatar.setIcon(null);
     }//GEN-LAST:event_ingreso_usuariosMouseClicked
 
     private void jLabel81MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel81MouseClicked
@@ -4000,6 +4024,11 @@ public class Help4Travelling extends javax.swing.JFrame {
         txt_nombreS.setText("");
         txt_precioS.setText("");
         txt_precioS.setText("");
+        //
+        lbl_imagen1.setIcon(null);
+        lbl_imagen2.setIcon(null);
+        lbl_imagen3.setIcon(null);
+        //
         //qwe
         lab_destinoS.setVisible(false);
         cmb_destinoS.setVisible(false);
@@ -4301,7 +4330,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         FCCli.setVisible(false);
         PrecioCli.setVisible(false);
         list2.clear();
-        
+        /*
         NomCli.setEnabled(false);
         ApeCli.setEnabled(false);
         AnioCli.setEnabled(false);
@@ -4310,7 +4339,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         EmailCli.setEnabled(false);
         FCCli.setEnabled(false);
         PrecioCli.setEnabled(false);
-        
+        */
         NomCli.setText("");
         ApeCli.setText("");
         AnioCli.setText("");
@@ -4343,7 +4372,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel12.setVisible(false);
         jLabel13.setVisible(false);
         lbl_acercaDe.setVisible(false);
-
+        lbl_avatarCliente.setIcon(null);
         DefaultMutableTreeNode tree = new DefaultMutableTreeNode("todas");
         ArrayList<DtCategoria> categorias = ICCategoria.listarCategorias();
 
@@ -4441,8 +4470,16 @@ public class Help4Travelling extends javax.swing.JFrame {
             listModel.addElement(promos.get(x).getNickProv() + ", " + promos.get(x).GetNombre());
         }
         cmb_consultar_promociones.setModel(listModel);
-        
+        jLabel78.setText("");
+        jLabel80.setText("");
+        jLabel51.setText("");
+        jLabel97.setText("");
+        lbl_prov.setText("");
+        lbl_nom.setText("");
+        lbl_desc.setText("");
+        lbl_precioP.setText("");
         list2.clear();
+        list_servs.setModel(list2);
     }//GEN-LAST:event_consultar_promocionesMouseClicked
 
     private void jLabel163MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel163MouseClicked
@@ -4466,7 +4503,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         jLabel13.setVisible(false);
         lbl_acercaDe.setVisible(false);
         cmb_proveedorP.setModel(new DefaultComboBoxModel(ICUsuario.listarProveedores().toArray()));
-        txt_NombreP.setEnabled(false);
+        /*txt_NombreP.setEnabled(false);
         txt_ApellidoP.setEnabled(false);
         txt_emailP.setEnabled(false);
         txt_NombreEmpresaP.setEnabled(false);
@@ -4476,7 +4513,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         tex_mes.setEnabled(false);
         tex_dia.setEnabled(false);
         tex_origen.setEnabled(false);
-        tex_destino.setEnabled(false);
+        tex_destino.setEnabled(false);*/
         list2.clear();
         txt_NombreP.setText("");
         txt_ApellidoP.setText("");
@@ -4541,6 +4578,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         txt_linkEmpresa.setVisible(false);
         lbl_nombreEmpresa.setVisible(false);
         lbl_linkEmpresa.setVisible(false);
+        lbl_avatar.setIcon(null);
     }//GEN-LAST:event_chk_clienteActionPerformed
 
     private void chk_proveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chk_proveedorActionPerformed
@@ -4562,6 +4600,7 @@ public class Help4Travelling extends javax.swing.JFrame {
         txt_linkEmpresa.setVisible(true);
         lbl_nombreEmpresa.setVisible(true);
         lbl_linkEmpresa.setVisible(true);
+        lbl_avatar.setIcon(null);
     }//GEN-LAST:event_chk_proveedorMouseClicked
 
     private void jLabel71KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel71KeyPressed
@@ -4590,6 +4629,7 @@ public class Help4Travelling extends javax.swing.JFrame {
                 txt_apellido.setText("");
                 txt_email.setText("");
                 JOptionPane.showMessageDialog(null, "Usuario ingresado");
+                lbl_avatar.setIcon(null);
             }
             else if(chk_proveedor.isSelected() && !txt_nickname.getText().isEmpty() && !txt_nombre.getText().isEmpty() && !txt_apellido.getText().isEmpty() && !txt_email.getText().isEmpty() && !txt_linkEmpresa.getText().isEmpty() && !txt_nombreEmpresa.getText().isEmpty()){
                 DtFecha nacimiento = new DtFecha(Integer.valueOf(cmb_anio_u.getSelectedItem().toString().trim()),Integer.valueOf(cmb_mes.getSelectedItem().toString().trim()),Integer.valueOf(cmb_dia.getSelectedItem().toString().trim()));
@@ -4606,6 +4646,7 @@ public class Help4Travelling extends javax.swing.JFrame {
                 txt_email.setText("");
                 txt_linkEmpresa.setText("");
                 JOptionPane.showMessageDialog(null, "Usuario ingresado");
+                lbl_avatar.setIcon(null);
             }
             else{
                 JOptionPane.showMessageDialog(null, "Faltan atributos sin completar, verifique y vuelva a intentar.","Compos sin completar",JOptionPane.WARNING_MESSAGE);
@@ -4664,13 +4705,17 @@ public class Help4Travelling extends javax.swing.JFrame {
     }//GEN-LAST:event_chek_padreItemStateChanged
 
     private void tree_serviciosValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_tree_serviciosValueChanged
+        lbl_proveedor1.setText("");
+        lbl_nombre1.setText("");
+        lbl_origen1.setText("");
+        lbl_destino1.setText("");
+        lbl_desc1.setText("");
+        cmb_serviciosXcat.removeAllItems();
+        lbl_img1.setIcon(null);
+        lbl_img2.setIcon(null);
+        lbl_img3.setIcon(null);
         try{
-            lbl_proveedor1.setText("");
-            lbl_nombre1.setText("");
-            lbl_origen1.setText("");
-            lbl_destino1.setText("");
-            lbl_desc1.setText("");
-            cmb_serviciosXcat.removeAllItems();
+            
             DefaultMutableTreeNode node = (DefaultMutableTreeNode)tree_servicios.getLastSelectedPathComponent();
             if(!node.equals(null)){
                 String nameCat = (String)node.getUserObject();
@@ -4691,12 +4736,15 @@ public class Help4Travelling extends javax.swing.JFrame {
     }//GEN-LAST:event_tree_serviciosValueChanged
 
     private void tree_serviciosTreeExpanded(javax.swing.event.TreeExpansionEvent evt) {//GEN-FIRST:event_tree_serviciosTreeExpanded
-        cmb_serviciosXcat.removeAllItems();
-        lbl_nombre1.setText("");
         lbl_proveedor1.setText("");
+        lbl_nombre1.setText("");
         lbl_origen1.setText("");
         lbl_destino1.setText("");
         lbl_desc1.setText("");
+        cmb_serviciosXcat.removeAllItems();
+        lbl_img1.setIcon(null);
+        lbl_img2.setIcon(null);
+        lbl_img3.setIcon(null);
     }//GEN-LAST:event_tree_serviciosTreeExpanded
 
     private void cmb_serviciosXcatItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmb_serviciosXcatItemStateChanged
@@ -4709,7 +4757,7 @@ public class Help4Travelling extends javax.swing.JFrame {
             lbl_img1.setIcon(null);
             if(ManejadorSQL.GetInstance().selectImgServicio("imagen1", nickP, nombreA) != null){
                 Image a =  new ImageIcon(ManejadorSQL.GetInstance().selectImgServicio("imagen1", nickP, nombreA)).getImage();
-                ImageIcon icon = new ImageIcon(a);
+                ImageIcon icon = new ImageIcon(ScaledImage(a,lbl_img1.getWidth(),lbl_img1.getHeight()));
                 lbl_img1.setIcon(icon);
             }
             
@@ -4967,6 +5015,13 @@ public class Help4Travelling extends javax.swing.JFrame {
                     }
                 }
                 //(String nombre, String nickProv, float precio, String descripcion, ArrayList<String> categorias, String ciudadOrigen, String ciudadDestino)
+                txt_nombreS.setText("");
+                txt_precioS.setText("");
+                txt_descripcionS.setText("");
+                lbl_imagen1.setIcon(null);
+                lbl_imagen2.setIcon(null);
+                lbl_imagen3.setIcon(null);
+                list2.clear();
             }
             else{
                 //ciudadO
@@ -5004,13 +5059,17 @@ public class Help4Travelling extends javax.swing.JFrame {
                         }
                     }
                 }
+                txt_nombreS.setText("");
+                txt_precioS.setText("");
+                txt_descripcionS.setText("");
+                lbl_imagen1.setIcon(null);
+                lbl_imagen2.setIcon(null);
+                lbl_imagen3.setIcon(null);
+                list2.clear();
             }
         }
 
-        txt_nombreS.setText("");
-        txt_precioS.setText("");
-        txt_descripcionS.setText("");
-        list2.clear();
+        
     }//GEN-LAST:event_jLabel72MouseClicked
 
     private void chek_destinoSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chek_destinoSMouseClicked
@@ -5265,14 +5324,14 @@ public class Help4Travelling extends javax.swing.JFrame {
         tex_origen.setText("");
         tex_destino.setText("");
         list2.clear();
-
+        
         String prov = cmb_proveedorP.getSelectedItem().toString();
         DtProveedor DtProv = ICUsuario.datosProveedor(prov);
         
         lbl_avatarProveedor.setIcon(null);
         if(ManejadorSQL.GetInstance().selectImgUsuario(DtProv.getNick().trim()) != null){
             Image a =  new ImageIcon(ManejadorSQL.GetInstance().selectImgUsuario(DtProv.getNick().trim())).getImage();
-            ImageIcon icon = new ImageIcon(a);
+            ImageIcon icon = new ImageIcon(ScaledImage(a,lbl_avatarProveedor.getWidth(),lbl_avatarProveedor.getHeight()));
             lbl_avatarProveedor.setIcon(icon);
         }
 
@@ -5382,6 +5441,16 @@ public class Help4Travelling extends javax.swing.JFrame {
 
     private void cmb_consultar_promocionesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmb_consultar_promocionesItemStateChanged
         String nickP, nombreA;
+        jLabel78.setText("");
+        jLabel80.setText("");
+        jLabel51.setText("");
+        jLabel97.setText("");
+        lbl_prov.setText("");
+        lbl_nom.setText("");
+        lbl_desc.setText("");
+        lbl_precioP.setText("");
+        list2.clear();
+        list_servs.setModel(list2);
         if(!cmb_consultar_promociones.getSelectedItem().toString().trim().isEmpty()){
             nickP = cmb_consultar_promociones.getSelectedItem().toString().substring(0, cmb_consultar_promociones.getSelectedItem().toString().lastIndexOf(","));
             nombreA = cmb_consultar_promociones.getSelectedItem().toString().substring(cmb_consultar_promociones.getSelectedItem().toString().lastIndexOf(",")+2);
@@ -5602,17 +5671,17 @@ public class Help4Travelling extends javax.swing.JFrame {
     }//GEN-LAST:event_list_servsValueChanged
 
     private void list_servsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_list_servsMouseClicked
-        
-        String prov = lbl_prov.getText();
-
-        String NomSer = list_servs.getSelectedValue().toString();
-        
-        DtServicio ret = ICArticulo.datosServicio(NomSer, prov);
-        jLabel78.setText(ret.getNombre());
-        jLabel80.setText(ret.getCiudadOrigen());
-        jLabel97.setText(ret.getCiudadDestino());
-        jLabel51.setText(ret.getDescripcion());
-
+        try{
+            String prov = lbl_prov.getText();
+            String NomSer = list_servs.getSelectedValue();
+            DtServicio ret = ICArticulo.datosServicio(NomSer, prov);
+            jLabel78.setText(ret.getNombre());
+            jLabel80.setText(ret.getCiudadOrigen());
+            jLabel97.setText(ret.getCiudadDestino());
+            jLabel51.setText(ret.getDescripcion());
+        }catch(Exception ex){
+              
+        }
         //Agregar Imagenes
         //imagenes del servicio -> ret.getImagen()
         //imagen en interfaz -> jLabel207
@@ -5659,17 +5728,34 @@ public class Help4Travelling extends javax.swing.JFrame {
         element[0]=sel;
         lis_categoria.setListData(element);*/
     }//GEN-LAST:event_jLabel47MouseClicked
-
+    private Image ScaledImage(Image img, int w, int h){
+        BufferedImage resizedImage = new BufferedImage(w,h,BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2 = resizedImage.createGraphics();
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2.drawImage(img, 0, 0, w, h,null);
+        g2.dispose();
+        return resizedImage;
+    }
     private void AnioCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnioCliActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AnioCliActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        BufferedImage img = null;
+        try {
         JFileChooser fc = new JFileChooser();
         fc.showOpenDialog(this);
         fileUsuario = fc.getSelectedFile();
         String ruta = fileUsuario.getAbsolutePath();
-        lbl_avatar.setIcon(new ImageIcon(ruta));
+        //Image img = Toolkit.getDefaultToolkit().getImage(ruta);
+        
+            img = ImageIO.read(new File(ruta));
+        } catch (IOException ex) {
+            Logger.getLogger(Help4Travelling.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ImageIcon Imagen = new ImageIcon(ScaledImage(img,lbl_avatar.getWidth(),lbl_avatar.getHeight()));
+        lbl_avatar.setIcon(Imagen);
+               
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -5681,27 +5767,69 @@ public class Help4Travelling extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-        JFileChooser fc = new JFileChooser();
+        /*JFileChooser fc = new JFileChooser();
         fc.showOpenDialog(this);
         fileServicio1 = fc.getSelectedFile();
         String ruta = fileServicio1.getAbsolutePath();
-        lbl_imagen1.setIcon(new ImageIcon(ruta));
+        lbl_imagen1.setIcon(new ImageIcon(ruta));*/
+        BufferedImage img = null;
+        try {
+        JFileChooser fc = new JFileChooser();
+        fc.showOpenDialog(this);
+        fileUsuario = fc.getSelectedFile();
+        String ruta = fileUsuario.getAbsolutePath();
+        //Image img = Toolkit.getDefaultToolkit().getImage(ruta);
+        
+            img = ImageIO.read(new File(ruta));
+        } catch (IOException ex) {
+            Logger.getLogger(Help4Travelling.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ImageIcon Imagen = new ImageIcon(ScaledImage(img,lbl_imagen1.getWidth(),lbl_imagen1.getHeight()));
+        lbl_imagen1.setIcon(Imagen);
     }//GEN-LAST:event_jButton6MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        JFileChooser fc = new JFileChooser();
+        /*JFileChooser fc = new JFileChooser();
         fc.showOpenDialog(this);
         fileServicio2 = fc.getSelectedFile();
         String ruta = fileServicio2.getAbsolutePath();
-        lbl_imagen2.setIcon(new ImageIcon(ruta));
+        lbl_imagen2.setIcon(new ImageIcon(ruta));*/
+        BufferedImage img = null;
+        try {
+        JFileChooser fc = new JFileChooser();
+        fc.showOpenDialog(this);
+        fileUsuario = fc.getSelectedFile();
+        String ruta = fileUsuario.getAbsolutePath();
+        //Image img = Toolkit.getDefaultToolkit().getImage(ruta);
+        
+            img = ImageIO.read(new File(ruta));
+        } catch (IOException ex) {
+            Logger.getLogger(Help4Travelling.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ImageIcon Imagen = new ImageIcon(ScaledImage(img,lbl_imagen3.getWidth(),lbl_imagen3.getHeight()));
+        lbl_imagen3.setIcon(Imagen);
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        JFileChooser fc = new JFileChooser();
+        /*JFileChooser fc = new JFileChooser();
         fc.showOpenDialog(this);
         fileServicio3 = fc.getSelectedFile();
         String ruta = fileServicio3.getAbsolutePath();
-        lbl_imagen3.setIcon(new ImageIcon(ruta));
+        lbl_imagen3.setIcon(new ImageIcon(ruta));*/
+        BufferedImage img = null;
+        try {
+        JFileChooser fc = new JFileChooser();
+        fc.showOpenDialog(this);
+        fileUsuario = fc.getSelectedFile();
+        String ruta = fileUsuario.getAbsolutePath();
+        //Image img = Toolkit.getDefaultToolkit().getImage(ruta);
+        
+            img = ImageIO.read(new File(ruta));
+        } catch (IOException ex) {
+            Logger.getLogger(Help4Travelling.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ImageIcon Imagen = new ImageIcon(ScaledImage(img,lbl_imagen2.getWidth(),lbl_imagen2.getHeight()));
+        lbl_imagen2.setIcon(Imagen);
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void txt_precioSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_precioSActionPerformed
@@ -5978,6 +6106,7 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
@@ -6073,6 +6202,7 @@ public class Help4Travelling extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_img3;
     private javax.swing.JLabel lbl_linkEmpresa;
     private javax.swing.JLabel lbl_menu;
+    private javax.swing.JLabel lbl_menu1;
     private javax.swing.JLabel lbl_mostrar_acercaDe;
     private javax.swing.JLabel lbl_mostrar_cerrar;
     private javax.swing.JLabel lbl_mostrar_consultas;

@@ -21,6 +21,7 @@ public class ConectarBD extends javax.swing.JFrame {
         lbl_mostrar_registros3 = new javax.swing.JLabel();
         lbl_bienvenidoBD = new javax.swing.JLabel();
         txt_conectarBD = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -43,6 +44,7 @@ public class ConectarBD extends javax.swing.JFrame {
         btn_conectarBD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/right-arrow.png"))); // NOI18N
         btn_conectarBD.setText("jLabel2");
         btn_conectarBD.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        btn_conectarBD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_conectarBD.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_conectarBDMouseClicked(evt);
@@ -50,7 +52,7 @@ public class ConectarBD extends javax.swing.JFrame {
         });
         getContentPane().add(btn_conectarBD, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 136, 38, 38));
 
-        lbl_errorBD.setBackground(new java.awt.Color(204, 204, 204));
+        lbl_errorBD.setBackground(java.awt.Color.white);
         lbl_errorBD.setFont(new java.awt.Font("DejaVu Sans Mono", 2, 14)); // NOI18N
         lbl_errorBD.setForeground(new java.awt.Color(204, 0, 0));
         lbl_errorBD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -90,7 +92,7 @@ public class ConectarBD extends javax.swing.JFrame {
         lbl_mostrar_registros3.setOpaque(true);
         getContentPane().add(lbl_mostrar_registros3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 480, 10));
 
-        lbl_bienvenidoBD.setBackground(new java.awt.Color(204, 204, 204));
+        lbl_bienvenidoBD.setBackground(java.awt.Color.white);
         lbl_bienvenidoBD.setFont(new java.awt.Font("DejaVu Sans Mono", 2, 14)); // NOI18N
         lbl_bienvenidoBD.setForeground(new java.awt.Color(0, 153, 51));
         lbl_bienvenidoBD.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -102,10 +104,9 @@ public class ConectarBD extends javax.swing.JFrame {
         getContentPane().add(lbl_bienvenidoBD, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 480, 30));
         lbl_bienvenidoBD.setVisible(false);
 
-        txt_conectarBD.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
         txt_conectarBD.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         txt_conectarBD.setForeground(new java.awt.Color(0, 51, 153));
-        txt_conectarBD.setText("192.168.10.132");
+        txt_conectarBD.setText("192.168.116.128");
         txt_conectarBD.setBorder(null);
         txt_conectarBD.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -124,6 +125,10 @@ public class ConectarBD extends javax.swing.JFrame {
         });
         getContentPane().add(txt_conectarBD, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 310, 30));
 
+        jLabel1.setBackground(java.awt.Color.white);
+        jLabel1.setOpaque(true);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 480, 180));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -135,7 +140,7 @@ public class ConectarBD extends javax.swing.JFrame {
         if(!txt_conectarBD.getText().isEmpty()){
             if(ManejadorSQL.GetInstance().init(txt_conectarBD.getText())){
                 lbl_bienvenidoBD.setVisible(true);
-                new Help4Travelling().setVisible(true);
+                new MenuPrincipal().setVisible(true);
                 dispose();              
             }
             else{
@@ -198,6 +203,7 @@ public class ConectarBD extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel btn_conectarBD;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel lbl_bienvenidoBD;
