@@ -1,6 +1,8 @@
 
 package help4travelling;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -106,7 +108,7 @@ public class ConectarBD extends javax.swing.JFrame {
 
         txt_conectarBD.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         txt_conectarBD.setForeground(new java.awt.Color(0, 51, 153));
-        txt_conectarBD.setText("192.168.116.128");
+        txt_conectarBD.setText("192.168.10.132");
         txt_conectarBD.setBorder(null);
         txt_conectarBD.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -138,12 +140,18 @@ public class ConectarBD extends javax.swing.JFrame {
 
     private void btn_conectarBDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_conectarBDMouseClicked
         if(!txt_conectarBD.getText().isEmpty()){
-            if(ManejadorSQL.GetInstance().init(txt_conectarBD.getText())){
+            ManejadorSQL.GetInstance().init(txt_conectarBD.getText());
+            Connection conex = ManejadorSQL.GetInstance().getConex();
+            if( conex != null){
+                try {
+                    conex.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConectarBD.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 lbl_bienvenidoBD.setVisible(true);
                 new MenuPrincipal().setVisible(true);
                 dispose();              
-            }
-            else{
+            }else{
                 lbl_errorBD.setVisible(true);
             }
         }

@@ -108,7 +108,7 @@ public class ManejadorArticulo {
     public Servicio BuscarServicio(String nameServ, String nomProv){
         Articulo serv = null; 
         for (int i = 0; i < articulos.size(); i++) {
-            if (articulos.get(i).GetNombre().equals(nameServ) && articulos.get(i).IsServicio()){
+            if (articulos.get(i).GetNombre().equals(nameServ) && articulos.get(i).getProv().equals(nomProv) && articulos.get(i).IsServicio()){
                 serv = articulos.get(i);
             }
         }

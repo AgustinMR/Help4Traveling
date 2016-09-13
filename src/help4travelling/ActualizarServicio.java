@@ -100,7 +100,6 @@ public class ActualizarServicio extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
         setBackground(java.awt.Color.white);
         setBounds(new java.awt.Rectangle(0, 0, 1218, 707));
         setMaximumSize(new java.awt.Dimension(1218, 707));
@@ -411,6 +410,8 @@ public class ActualizarServicio extends javax.swing.JFrame {
                 nickP = cmb_actualizar_servicio.getSelectedItem().toString().substring(0, cmb_actualizar_servicio.getSelectedItem().toString().lastIndexOf(","));
                 nombreA = cmb_actualizar_servicio.getSelectedItem().toString().substring(cmb_actualizar_servicio.getSelectedItem().toString().lastIndexOf(",")+1);
                 DtServicio ret = ICArticulo.datosServicio(nombreA.trim(), nickP.trim());
+                //System.out.println(ret.getCiudadOrigen());
+                //System.out.println(ret.getCiudadDestino());
                 if(cmb_origen.getModel().getSize() != 0){
                     for(int x = 0; x < cmb_origen.getModel().getSize(); x++){
                         if(cmb_origen.getModel().getElementAt(x).trim().equals(ret.getCiudadOrigen().trim())){
@@ -420,7 +421,7 @@ public class ActualizarServicio extends javax.swing.JFrame {
                 }
                 if(cmb_destino.getModel().getSize() != 0){
                     for(int x = 0; x < cmb_destino.getModel().getSize(); x++){
-                        if(ret.getCiudadDestino() != null){
+                        if(ret.getCiudadDestino() != null ){
                             if(cmb_destino.getModel().getElementAt(x).trim().equals(ret.getCiudadDestino().trim())){
                                 cmb_destino.setSelectedItem(ret.getCiudadDestino());
                             }
@@ -525,16 +526,17 @@ public class ActualizarServicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel42MouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        List<String> c = ICArticulo.listaDeCiudades();  ArrayList<DtServicio> s = ICArticulo.ListarServicios(); DefaultComboBoxModel lm = new DefaultComboBoxModel(); DefaultComboBoxModel lm2 = new DefaultComboBoxModel();
+        List<String> c = ICArticulo.listaDeCiudades();  ArrayList<DtServicio> s = ICArticulo.ListarServicios(); DefaultComboBoxModel lm = new DefaultComboBoxModel(); DefaultComboBoxModel lm2 = new DefaultComboBoxModel(), lm3 = new DefaultComboBoxModel();
         for(int x = 0; x < s.size(); x++){
             lm.addElement(s.get(x).getNickProveedor() + ", " + s.get(x).getNombre());
         }
         cmb_actualizar_servicio.setModel(lm);
         for(int e = 0; e < c.size(); e++){
             lm2.addElement(c.get(e));
+            lm3.addElement(c.get(e));
         }
         cmb_origen.setModel(lm2);
-        cmb_destino.setModel(lm2);
+        cmb_destino.setModel(lm3);
         DefaultMutableTreeNode tree = new DefaultMutableTreeNode("todas");
         ArrayList<DtCategoria> categorias = ICCategoria.listarCategorias();
 

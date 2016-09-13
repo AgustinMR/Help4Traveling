@@ -88,7 +88,6 @@ public class ConsultarPromocion extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
         setBackground(java.awt.Color.white);
         setBounds(new java.awt.Rectangle(0, 0, 1218, 707));
         setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
@@ -169,7 +168,7 @@ public class ConsultarPromocion extends javax.swing.JFrame {
         jLabel165.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
         jLabel165.setForeground(java.awt.Color.darkGray);
         jLabel165.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        getContentPane().add(jLabel165, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 60, 20));
+        getContentPane().add(jLabel165, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 30, 20));
 
         jLabel166.setBackground(java.awt.Color.darkGray);
         jLabel166.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
@@ -187,7 +186,7 @@ public class ConsultarPromocion extends javax.swing.JFrame {
         jLabel168.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
         jLabel168.setForeground(java.awt.Color.darkGray);
         jLabel168.setText("%");
-        getContentPane().add(jLabel168, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, -1, -1));
+        getContentPane().add(jLabel168, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, -1, -1));
 
         jLabel170.setBackground(java.awt.Color.darkGray);
         jLabel170.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
@@ -286,7 +285,7 @@ public class ConsultarPromocion extends javax.swing.JFrame {
         jLabel1.setEnabled(false);
         jLabel1.setFocusable(false);
         jLabel1.setOpaque(true);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1218, 590));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 110, 1218, 590));
 
         jLabel3.setFont(new java.awt.Font("Ubuntu Light", 0, 36)); // NOI18N
         jLabel3.setForeground(java.awt.Color.white);
@@ -329,8 +328,8 @@ public class ConsultarPromocion extends javax.swing.JFrame {
         if(!list_servs.getSelectedValue().isEmpty()){
             String nickP, nombreA;
             if(!cmb_consultar_promociones.getSelectedItem().toString().trim().isEmpty()){
-                nickP = list_servs.getSelectedValue().trim();
-                nombreA = cmb_consultar_promociones.getSelectedItem().toString().substring(cmb_consultar_promociones.getSelectedItem().toString().lastIndexOf(",")+2);
+                nickP = cmb_consultar_promociones.getSelectedItem().toString().substring(0, cmb_consultar_promociones.getSelectedItem().toString().lastIndexOf(","));
+                nombreA = list_servs.getSelectedValue();
                 DtServicio ret = ICArticulo.datosServicio(nombreA, nickP);
                 jLabel180.setText(ret.getNombre());
                 jLabel181.setText(ret.getCiudadOrigen());

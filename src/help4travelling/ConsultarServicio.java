@@ -84,7 +84,6 @@ public class ConsultarServicio extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
         setBackground(java.awt.Color.white);
         setBounds(new java.awt.Rectangle(0, 0, 1218, 707));
         setMinimumSize(new java.awt.Dimension(1218, 707));
@@ -304,10 +303,13 @@ public class ConsultarServicio extends javax.swing.JFrame {
     private void tree_serviciosTreeExpanded(javax.swing.event.TreeExpansionEvent evt) {//GEN-FIRST:event_tree_serviciosTreeExpanded
         cmb_serviciosXcat.removeAllItems();
         jLabel163.setText("");
-            jLabel164.setText("");
-            jLabel166.setText("");
-            jLabel155.setText("");
-            jLabel167.setText("");
+        jLabel164.setText("");
+        jLabel166.setText("");
+        jLabel155.setText("");
+        jLabel167.setText("");
+        jLabel168.setIcon(null);
+        jLabel169.setIcon(null);
+        jLabel170.setIcon(null);
     }//GEN-LAST:event_tree_serviciosTreeExpanded
 
     private void tree_serviciosValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_tree_serviciosValueChanged
@@ -317,6 +319,9 @@ public class ConsultarServicio extends javax.swing.JFrame {
             jLabel166.setText("");
             jLabel155.setText("");
             jLabel167.setText("");
+            jLabel168.setIcon(null);
+            jLabel169.setIcon(null);
+            jLabel170.setIcon(null);
             cmb_serviciosXcat.removeAllItems();
             DefaultMutableTreeNode node = (DefaultMutableTreeNode)tree_servicios.getLastSelectedPathComponent();
             if(!(node == null)){
