@@ -366,7 +366,7 @@ public class IngresarServicio extends javax.swing.JFrame {
                             ManejadorSQL.GetInstance().insertImgServicio(fileServicio1, "imagen1", Serv.getNickProveedor(), Serv.getNombre());
                         }
                         catch (FileNotFoundException ex) {
-                            Logger.getLogger(Help4Travelling.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(IngresarServicio.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
                     if(lbl_imagen2.getIcon() != null){
@@ -374,7 +374,7 @@ public class IngresarServicio extends javax.swing.JFrame {
                             ManejadorSQL.GetInstance().insertImgServicio(fileServicio2, "imagen2", Serv.getNickProveedor(), Serv.getNombre());
                         }
                         catch (FileNotFoundException ex) {
-                            Logger.getLogger(Help4Travelling.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(IngresarServicio.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
                     if(lbl_imagen3.getIcon() != null){
@@ -382,7 +382,7 @@ public class IngresarServicio extends javax.swing.JFrame {
                             ManejadorSQL.GetInstance().insertImgServicio(fileServicio3, "imagen3", Serv.getNickProveedor(), Serv.getNombre());
                         }
                         catch (FileNotFoundException ex) {
-                            Logger.getLogger(Help4Travelling.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(IngresarServicio.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
                 }
@@ -404,7 +404,7 @@ public class IngresarServicio extends javax.swing.JFrame {
                             ManejadorSQL.GetInstance().insertImgServicio(fileServicio1, "imagen1", Serv.getNickProveedor(), Serv.getNombre());
                         }
                         catch (FileNotFoundException ex) {
-                            Logger.getLogger(Help4Travelling.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(IngresarServicio.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
                     if(lbl_imagen2.getIcon() != null){
@@ -412,7 +412,7 @@ public class IngresarServicio extends javax.swing.JFrame {
                             ManejadorSQL.GetInstance().insertImgServicio(fileServicio2, "imagen2", Serv.getNickProveedor(), Serv.getNombre());
                         }
                         catch (FileNotFoundException ex) {
-                            Logger.getLogger(Help4Travelling.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(IngresarServicio.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
                     if(lbl_imagen3.getIcon() != null){
@@ -420,7 +420,7 @@ public class IngresarServicio extends javax.swing.JFrame {
                             ManejadorSQL.GetInstance().insertImgServicio(fileServicio3, "imagen3", Serv.getNickProveedor(), Serv.getNombre());
                         }
                         catch (FileNotFoundException ex) {
-                            Logger.getLogger(Help4Travelling.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(IngresarServicio.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
                 }

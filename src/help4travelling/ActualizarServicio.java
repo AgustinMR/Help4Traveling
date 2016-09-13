@@ -361,7 +361,7 @@ public class ActualizarServicio extends javax.swing.JFrame {
                     ManejadorSQL.GetInstance().insertImgServicio(fileServicio1, "imagen1", nickP.trim(), nombreA.trim());
                 }
                 catch (FileNotFoundException ex) {
-                    Logger.getLogger(Help4Travelling.class.getName()).log(Level.SEVERE, null, ex);
+
                 }
             }
             if(jLabel218.getIcon() != null){
@@ -369,7 +369,7 @@ public class ActualizarServicio extends javax.swing.JFrame {
                     ManejadorSQL.GetInstance().insertImgServicio(fileServicio2, "imagen2", nickP.trim(), nombreA.trim());
                 }
                 catch (FileNotFoundException ex) {
-                    Logger.getLogger(Help4Travelling.class.getName()).log(Level.SEVERE, null, ex);
+
                 }
             }
             if(jLabel199.getIcon() != null){
@@ -377,7 +377,7 @@ public class ActualizarServicio extends javax.swing.JFrame {
                     ManejadorSQL.GetInstance().insertImgServicio(fileServicio1, "imagen3", nickP.trim(), nombreA.trim());
                 }
                 catch (FileNotFoundException ex) {
-                    Logger.getLogger(Help4Travelling.class.getName()).log(Level.SEVERE, null, ex);
+
                 }
             }
             JOptionPane.showMessageDialog(null, "Servicio actualizado correctamente!");

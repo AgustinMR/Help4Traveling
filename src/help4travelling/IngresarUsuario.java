@@ -343,7 +343,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
             try {
                 ManejadorSQL.GetInstance().insertImgUsuario(fileUsuario, txt_nickname.getText().trim());
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(Help4Travelling.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(IngresarServicio.class.getName()).log(Level.SEVERE, null, ex);
             }
             //procedimiento
             txt_nickname.setText("");
@@ -358,7 +358,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
             try {
                 ManejadorSQL.GetInstance().insertImgUsuario(fileUsuario, txt_nickname.getText().trim());
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(Help4Travelling.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(IngresarServicio.class.getName()).log(Level.SEVERE, null, ex);
             }
             txt_nickname.setText("");
             txt_nombre.setText("");
