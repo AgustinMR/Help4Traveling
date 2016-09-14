@@ -60,4 +60,8 @@ public class ControladorReserva implements IControladorReserva{
     public DtReserva datosReservas(int idRes){
         return ManejadorReserva.GetInstance().ObtenerDatosReserva(idRes);
     }
+
+    public boolean eliminarReserva(String id){
+        return ManejadorReserva.GetInstance().eliminarReserva(id);
+    }
 }

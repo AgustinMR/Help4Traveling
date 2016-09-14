@@ -19,6 +19,11 @@ public class DtFecha {
        this.mes = Calendar.MONTH;
        this.dia = Calendar.DATE;
     }
+
+    @Override
+    public String toString() {
+        return (anio + "/" + mes + "/" + dia);
+    }
     
     //Contruye la fecha con un string de esta forma "yyyy/mm/dd"
     DtFecha(String bdformato){

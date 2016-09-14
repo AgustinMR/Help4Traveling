@@ -58,14 +58,17 @@ public class ManejadorReserva {
     }
     
     public boolean modReserva(Estado e , int idRes){
-        ManejadorSQL.GetInstance().actualizarEstado(idRes, e.toString());
-        return true;
+        return ManejadorSQL.GetInstance().actualizarEstado(idRes, e.toString());
     }    
     
      public boolean GuardarReserva(Reserva res, infoReserva infoRes){
         reservas.put(res.GetId(),res);
         infoRes.EnlazarReserva(res);
         return true;
+    }
+     
+     public boolean eliminarReserva(String id){
+        return ManejadorSQL.GetInstance().eliminarReserva(id);
     }
      
      public ArrayList<DtInfoReserva> ObtenerInfoArticulosReservados(int id){

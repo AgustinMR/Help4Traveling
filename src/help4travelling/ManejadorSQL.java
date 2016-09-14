@@ -656,6 +656,26 @@ public class ManejadorSQL {
         }
         return ret;
     }
+
+    
+    //Eliminar Reserva
+    public boolean eliminarReserva(String id){
+        boolean ret = false;
+        Statement usuario;
+        String sql1 = "DELETE FROM INFO_RESERVA WHERE id=" + id.trim() + ";";
+        String sql2 = "DELETE FROM RESERVAS WHERE id=" + id.trim() + ";";
+        try {
+            Connection conex = getConex();
+            usuario = conex.createStatement();
+            usuario.executeUpdate(sql1);
+            usuario.executeUpdate(sql2);
+            conex.close();
+            ret = true;
+        } catch(SQLException ex){
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ret;
+    }
     
     public Connection getConex() {
         try {

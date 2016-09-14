@@ -50,8 +50,6 @@ public class IngresarPromocion extends javax.swing.JFrame {
         lbl_precioN = new javax.swing.JLabel();
         jLabel118 = new javax.swing.JLabel();
         jLabel119 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        list_serviciosInc = new javax.swing.JList<>();
         jScrollPane9 = new javax.swing.JScrollPane();
         list_serviciosProv = new javax.swing.JList<>();
         lbl_precioProm = new javax.swing.JLabel();
@@ -66,8 +64,9 @@ public class IngresarPromocion extends javax.swing.JFrame {
         jLabel193 = new javax.swing.JLabel();
         lbl_precio1 = new javax.swing.JLabel();
         lbl_precioFinal = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jTextField16 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        list_serviciosInc = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -149,13 +148,7 @@ public class IngresarPromocion extends javax.swing.JFrame {
         jLabel119.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
         jLabel119.setForeground(java.awt.Color.darkGray);
         jLabel119.setText("%");
-        getContentPane().add(jLabel119, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 212, -1, -1));
-
-        list_serviciosInc.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
-        list_serviciosInc.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane4.setViewportView(list_serviciosInc);
-
-        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 160, -1, 420));
+        getContentPane().add(jLabel119, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 20, 30));
 
         list_serviciosProv.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
         list_serviciosProv.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -247,16 +240,17 @@ public class IngresarPromocion extends javax.swing.JFrame {
         lbl_precioFinal.setForeground(new java.awt.Color(204, 0, 0));
         getContentPane().add(lbl_precioFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 660, 100, 20));
 
-        jTextField1.setText("jTextField1");
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 230, -1, -1));
-
         jTextField16.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
         jTextField16.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField16KeyPressed(evt);
             }
         });
-        getContentPane().add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 40, -1));
+        getContentPane().add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 50, 30));
+
+        jScrollPane1.setViewportView(list_serviciosInc);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 160, 250, 420));
 
         jLabel1.setBackground(java.awt.Color.white);
         jLabel1.setEnabled(false);
@@ -317,7 +311,7 @@ public class IngresarPromocion extends javax.swing.JFrame {
             DtServicio a = ICArticulo.datosServicio(list_serviciosInc.getSelectedValue().trim(), cmb_ing_prom.getSelectedItem().toString().trim());
             if(!lbl_precio.getText().isEmpty() && !lbl_precio.getText().trim().equals("0.0")){
                 lbl_precio.setText(""+(Float.valueOf(lbl_precio.getText().trim())-a.getPrecio()));
-                lbl_precioFinal.setText(""+((Float.valueOf(lbl_precio.getText().trim())*Float.valueOf(jTextField16.getText().trim()))/100));
+                lbl_precioFinal.setText(""+(Float.valueOf(lbl_precio.getText().trim())-(Float.valueOf(lbl_precio.getText().trim())*Float.valueOf(jTextField16.getText().trim()))/100));
                 ((DefaultListModel)list_serviciosInc.getModel()).removeElement(list_serviciosInc.getSelectedValue());
             }
         }
@@ -328,50 +322,58 @@ public class IngresarPromocion extends javax.swing.JFrame {
         //DefaultListModel<String> lista2 = new DefaultListModel<String>();
 
         if(list_serviciosProv.getModel().getSize() != 0){
-            if(!list_serviciosProv.getSelectedValue().isEmpty()){
-                if(!list2.contains(list_serviciosProv.getSelectedValue())){
-                    list2.addElement(list_serviciosProv.getSelectedValue());
-                    list_serviciosInc.setModel(list2);
-                    DtServicio a = ICArticulo.datosServicio(list_serviciosProv.getSelectedValue().trim(), cmb_ing_prom.getSelectedItem().toString().trim());
-                    if(lbl_precio.getText().isEmpty())
-                        lbl_precio.setText(""+a.getPrecio());
-                    else
-                        lbl_precio.setText(""+(Float.valueOf(lbl_precio.getText().trim())+a.getPrecio()));
-                    lbl_precioFinal.setText(""+((Float.valueOf(lbl_precio.getText().trim())*Float.valueOf(jTextField16.getText().trim()))/100));
-                }
-                else{
-                    //System.out.println("banderarequeteloca3 ");
-                }
+            if(list_serviciosProv.getSelectedValue() != null){
+                if(!list_serviciosProv.getSelectedValue().isEmpty()){
+                    if(!list2.contains(list_serviciosProv.getSelectedValue())){
+                        try{
+                            Float.valueOf(jTextField16.getText().trim());
+                            list2.addElement(list_serviciosProv.getSelectedValue());
+                            list_serviciosInc.setModel(list2);
+                            DtServicio a = ICArticulo.datosServicio(list_serviciosProv.getSelectedValue().trim(), cmb_ing_prom.getSelectedItem().toString().trim());
 
-                //list_serviciosInc.setModel(lista1);
-
-                /*if(!l1.contains(list_serviciosProv.getSelectedValue())){
-                    list_serviciosInc.getModel().addElement(list_serviciosProv.getSelectedValue());
-                    lis_categoriaS.setModel(list2);
-                }
-
-                if(!list2.contains(lis_categoria.getSelectedValue())){
-                    list2.addElement(lis_categoria.getSelectedValue());
-                    lis_categoriaS.setModel(list2);
-                }
-
-                if((l1.contains(list_serviciosProv.getSelectedValue().toString())){
-                    System.out.println("banderarequeteloca1");
-                    //((DefaultListModel)list_serviciosInc.getModel()).addElement(list_serviciosProv.getSelectedValue());
-                }
-
-                ArrayList<DtCategoria> categorias = ICCategoria.listarCategorias();
-                DefaultListModel<String> list = new DefaultListModel<>();
-
-                int max =0;
-                for (int i = 0; i < categorias.size(); i++){
-                    list.addElement(categorias.get(i).getNombre());
-                    if (max < categorias.get(i).getNivel()){
-                        max =categorias.get(i).getNivel();
+                            if(lbl_precio.getText().isEmpty())
+                                lbl_precio.setText(""+a.getPrecio());
+                            else
+                                lbl_precio.setText(""+(Float.valueOf(lbl_precio.getText().trim())+a.getPrecio()));
+                            lbl_precioFinal.setText(""+(Float.valueOf(lbl_precio.getText().trim())-(Float.valueOf(lbl_precio.getText().trim())*Float.valueOf(jTextField16.getText().trim()))/100));
+                        }catch(Exception ex){
+                            jTextField16.setText("");
+                            JOptionPane.showMessageDialog(null, "Descuento ingresado incorrecto.");
+                        }
+                    }else{
+                        //System.out.println("banderarequeteloca3 ");
                     }
-                }
 
-                */
+                    //list_serviciosInc.setModel(lista1);
+
+                    /*if(!l1.contains(list_serviciosProv.getSelectedValue())){
+                        list_serviciosInc.getModel().addElement(list_serviciosProv.getSelectedValue());
+                        lis_categoriaS.setModel(list2);
+                    }
+
+                    if(!list2.contains(lis_categoria.getSelectedValue())){
+                        list2.addElement(lis_categoria.getSelectedValue());
+                        lis_categoriaS.setModel(list2);
+                    }
+
+                    if((l1.contains(list_serviciosProv.getSelectedValue().toString())){
+                        System.out.println("banderarequeteloca1");
+                        //((DefaultListModel)list_serviciosInc.getModel()).addElement(list_serviciosProv.getSelectedValue());
+                    }
+
+                    ArrayList<DtCategoria> categorias = ICCategoria.listarCategorias();
+                    DefaultListModel<String> list = new DefaultListModel<>();
+
+                    int max =0;
+                    for (int i = 0; i < categorias.size(); i++){
+                        list.addElement(categorias.get(i).getNombre());
+                        if (max < categorias.get(i).getNivel()){
+                            max =categorias.get(i).getNivel();
+                        }
+                    }
+
+                    */
+                }
             }
         }
     }//GEN-LAST:event_btn_addPMouseClicked
@@ -392,7 +394,7 @@ public class IngresarPromocion extends javax.swing.JFrame {
 
     private void jTextField16KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField16KeyPressed
         if (!Character.isDigit(evt.getKeyChar()) && (evt.getKeyChar() != KeyEvent.VK_PERIOD) && (evt.getKeyChar() != KeyEvent.VK_BACK_SPACE)) {
-            jTextField16.setText("");
+            jTextField16.removeAll();
         }
     }//GEN-LAST:event_jTextField16KeyPressed
 
@@ -422,38 +424,7 @@ public class IngresarPromocion extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(IngresarPromocion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
+       
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -481,9 +452,8 @@ public class IngresarPromocion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel75;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
     private javax.swing.JLabel lbl_precio;

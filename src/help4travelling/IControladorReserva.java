@@ -25,4 +25,6 @@ public abstract interface IControladorReserva {
     public abstract boolean actualizarEstado(Estado e, int idRes);
     
     public abstract DtReserva datosReservas(int idRes);
+    
+    public abstract boolean eliminarReserva(String id);
 }
