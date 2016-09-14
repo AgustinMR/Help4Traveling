@@ -14,10 +14,24 @@ public class DtProveedor {
     private String nombreEmpresa;
     private String url;
     private ArrayList<DtServicio> servicio;
+    private String clave;
     
      
-     public DtProveedor(String nick, String nombre, String apellido, String email, DtFecha fechaN, Blob[] avatar, String nombreEmpresa, String url, ArrayList<DtServicio> servicio){
+    public DtProveedor(String nick, String nombre, String apellido, String email, DtFecha fechaN, Blob[] avatar, String nombreEmpresa, String url, ArrayList<DtServicio> servicio){
         this.nick=nick;
+        this.nombre=nombre;
+        this.apellido=apellido;
+        this.email=email;
+        this.fechaN=fechaN;
+        this.avatar=avatar; 
+        this.nombreEmpresa=nombreEmpresa; 
+        this.url=url;
+        this.servicio=servicio;
+    }
+    
+    public DtProveedor(String nick, String nombre, String apellido, String email, DtFecha fechaN, Blob[] avatar, String nombreEmpresa, String url, ArrayList<DtServicio> servicio, String clave){
+        this.nick=nick;
+        this.clave=clave;
         this.nombre=nombre;
         this.apellido=apellido;
         this.email=email;
@@ -74,4 +88,9 @@ public class DtProveedor {
     public ArrayList<DtServicio> getServicio() {
         return servicio;
     }
+
+    public String getClave() {
+        return clave;
+    }
+    
 }

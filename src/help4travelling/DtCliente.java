@@ -7,6 +7,7 @@ import java.util.Set;
 public class DtCliente {
     
     private String nick;
+    private String clave;
     private String nombre;
     private String apellido;
     private String email;
@@ -16,6 +17,17 @@ public class DtCliente {
     
     public DtCliente(String nick, String nombre, String apellido, String email, DtFecha fechaN, Blob[] avatar, ArrayList<Integer> r){
         this.nick=nick;
+        this.nombre=nombre;
+        this.apellido=apellido;
+        this.email=email;
+        this.fechaN=fechaN;
+        this.avatar=avatar;
+        this.reservas=r;
+    }
+    
+    public DtCliente(String nick, String nombre, String apellido, String email, DtFecha fechaN, Blob[] avatar, ArrayList<Integer> r, String clave){
+        this.nick=nick;
+        this.clave=clave;
         this.nombre=nombre;
         this.apellido=apellido;
         this.email=email;
@@ -59,6 +71,10 @@ public class DtCliente {
     
     public Blob[] getAvatar(){
         return this.avatar;
+    }
+
+    public String getClave() {
+        return clave;
     }
     
 }

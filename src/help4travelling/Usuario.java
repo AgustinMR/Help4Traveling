@@ -6,6 +6,7 @@ import java.sql.Blob;
 public abstract class Usuario implements Serializable {
     
      protected String nick;
+     protected String clave;
      protected String nombre; 
      protected String apellido;
      protected String email; 

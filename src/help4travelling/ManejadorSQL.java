@@ -247,7 +247,7 @@ public class ManejadorSQL {
     
     // ALTA DE CLIENTE
     public boolean agregarUsuario(DtCliente c){
-        String sql1 = "INSERT INTO USUARIOS(nickname, nombre, apellido, email, fechaNac) VALUES ('" + c.getNick() + "','" + c.getNombre() + "','" + c.getApellido() + "','" + c.getEmail()+ "','" + c.getFechaN().getAnio() + "/" + c.getFechaN().getMes() + "/" + c.getFechaN().getDia() + "');";
+        String sql1 = "INSERT INTO USUARIOS(nickname, nombre, apellido, email, fechaNac, clave) VALUES ('" + c.getNick() + "','" + c.getNombre() + "','" + c.getApellido() + "','" + c.getEmail()+ "','" + c.getFechaN().getAnio() + "/" + c.getFechaN().getMes() + "/" + c.getFechaN().getDia() + "','" + c.getClave() + "');";
         String sql2 = "INSERT INTO CLIENTES(nicknameCliente) VALUES ('" + c.getNick() + "' );";
         Statement usuario;
         boolean ret = false;
@@ -266,7 +266,7 @@ public class ManejadorSQL {
     
     // ALTA DE PROVEEDOR.
     public boolean agregarUsuario(DtProveedor p){
-        String sql1 = "INSERT INTO USUARIOS(nickname, nombre, apellido, email, fechaNac) VALUES ('" + p.getNick() + "','" + p.getNombre() + "','" + p.getApellido() + "','" + p.getEmail()+ "','" + p.getFechaN().getAnio() + "/" + p.getFechaN().getMes() + "/" + p.getFechaN().getDia() + "');";
+        String sql1 = "INSERT INTO USUARIOS(nickname, nombre, apellido, email, fechaNac, clave) VALUES ('" + p.getNick() + "','" + p.getNombre() + "','" + p.getApellido() + "','" + p.getEmail()+ "','" + p.getFechaN().getAnio() + "/" + p.getFechaN().getMes() + "/" + p.getFechaN().getDia() + "','" + p.getClave() + "');";
         String sql2 = "INSERT INTO PROVEEDORES(nicknameProveedor, nombreEmp, linkEmp) VALUES ('" + p.getNick() + "','" + p.getNombreEmpresa() + "','" + p.getUrl() + "');";
         Statement usuario;
         boolean ret = false;

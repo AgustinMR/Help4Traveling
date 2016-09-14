@@ -8,6 +8,10 @@ package help4travelling;
 import java.awt.Rectangle;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -72,6 +76,8 @@ public class IngresarUsuario extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
+        jLabel90 = new javax.swing.JLabel();
+        txt_pass = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -92,7 +98,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
         jLabel82.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
         jLabel82.setForeground(java.awt.Color.darkGray);
         jLabel82.setText("Fecha Nacimiento");
-        getContentPane().add(jLabel82, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
+        getContentPane().add(jLabel82, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, -1, -1));
 
         txt_nickname.setFont(new java.awt.Font("Nimbus Sans", 0, 14)); // NOI18N
         getContentPane().add(txt_nickname, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, 280, -1));
@@ -100,29 +106,29 @@ public class IngresarUsuario extends javax.swing.JFrame {
         jLabel86.setBackground(java.awt.Color.darkGray);
         jLabel86.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
         jLabel86.setForeground(java.awt.Color.darkGray);
-        jLabel86.setText("Nombre");
+        jLabel86.setText("Contraseña");
         getContentPane().add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
 
         txt_nombre.setFont(new java.awt.Font("Nimbus Sans", 0, 14)); // NOI18N
-        getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 280, -1));
+        getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 280, -1));
 
         jLabel87.setBackground(java.awt.Color.darkGray);
         jLabel87.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
         jLabel87.setForeground(java.awt.Color.darkGray);
         jLabel87.setText("Apellido");
-        getContentPane().add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
+        getContentPane().add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
 
         txt_apellido.setFont(new java.awt.Font("Nimbus Sans", 0, 14)); // NOI18N
-        getContentPane().add(txt_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 280, -1));
+        getContentPane().add(txt_apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 280, -1));
 
         jLabel88.setBackground(java.awt.Color.darkGray);
         jLabel88.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
         jLabel88.setForeground(java.awt.Color.darkGray);
         jLabel88.setText("E-mail");
-        getContentPane().add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, -1));
+        getContentPane().add(jLabel88, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, -1, -1));
 
         txt_email.setFont(new java.awt.Font("Nimbus Sans", 0, 14)); // NOI18N
-        getContentPane().add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 280, -1));
+        getContentPane().add(txt_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, 280, -1));
 
         jLabel89.setBackground(java.awt.Color.darkGray);
         jLabel89.setFont(new java.awt.Font("Liberation Sans", 3, 16)); // NOI18N
@@ -149,22 +155,22 @@ public class IngresarUsuario extends javax.swing.JFrame {
         lbl_nombreEmpresa.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
         lbl_nombreEmpresa.setForeground(java.awt.Color.darkGray);
         lbl_nombreEmpresa.setText("Nombre empresa");
-        getContentPane().add(lbl_nombreEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, -1, -1));
+        getContentPane().add(lbl_nombreEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, -1, -1));
         lbl_nombreEmpresa.setVisible(false);
 
         txt_nombreEmpresa.setFont(new java.awt.Font("Nimbus Sans", 0, 14)); // NOI18N
-        getContentPane().add(txt_nombreEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 280, -1));
+        getContentPane().add(txt_nombreEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 470, 280, -1));
         txt_nombreEmpresa.setVisible(false);
 
         txt_linkEmpresa.setFont(new java.awt.Font("Nimbus Sans", 0, 14)); // NOI18N
-        getContentPane().add(txt_linkEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 470, 280, -1));
+        getContentPane().add(txt_linkEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 510, 280, -1));
         txt_linkEmpresa.setVisible(false);
 
         lbl_linkEmpresa.setBackground(java.awt.Color.darkGray);
         lbl_linkEmpresa.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
         lbl_linkEmpresa.setForeground(java.awt.Color.darkGray);
         lbl_linkEmpresa.setText("Link empresa");
-        getContentPane().add(lbl_linkEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, -1, -1));
+        getContentPane().add(lbl_linkEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, -1, -1));
         lbl_linkEmpresa.setVisible(false);
 
         jLabel71.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/confirmar.png"))); // NOI18N
@@ -188,10 +194,10 @@ public class IngresarUsuario extends javax.swing.JFrame {
         jLabel159.setFont(new java.awt.Font("FreeSans", 1, 12)); // NOI18N
         jLabel159.setForeground(java.awt.Color.darkGray);
         jLabel159.setText("año");
-        getContentPane().add(jLabel159, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 370, -1, -1));
+        getContentPane().add(jLabel159, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 410, -1, -1));
 
         cmb_mes.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        getContentPane().add(cmb_mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, 70, -1));
+        getContentPane().add(cmb_mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 430, 70, -1));
         cmb_mes.removeAllItems();
         for(int x = 1; x <= 12; x++){
             cmb_mes.addItem(""+x);
@@ -199,7 +205,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
 
         cmb_dia.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
         cmb_dia.setAutoscrolls(true);
-        getContentPane().add(cmb_dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 390, 80, -1));
+        getContentPane().add(cmb_dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 80, -1));
         cmb_dia.removeAllItems();
         for(int x = 1; x <= 31; x++){
             cmb_dia.addItem(""+x);
@@ -215,25 +221,25 @@ public class IngresarUsuario extends javax.swing.JFrame {
         jLabel209.setFont(new java.awt.Font("FreeSans", 1, 12)); // NOI18N
         jLabel209.setForeground(java.awt.Color.darkGray);
         jLabel209.setText("dia");
-        getContentPane().add(jLabel209, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 370, -1, -1));
+        getContentPane().add(jLabel209, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, -1, -1));
 
         jLabel210.setBackground(java.awt.Color.darkGray);
         jLabel210.setFont(new java.awt.Font("FreeSans", 1, 14)); // NOI18N
         jLabel210.setForeground(java.awt.Color.darkGray);
         jLabel210.setText("/");
-        getContentPane().add(jLabel210, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 390, -1, -1));
+        getContentPane().add(jLabel210, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, -1, -1));
 
         jLabel211.setBackground(java.awt.Color.darkGray);
         jLabel211.setFont(new java.awt.Font("FreeSans", 1, 12)); // NOI18N
         jLabel211.setForeground(java.awt.Color.darkGray);
         jLabel211.setText("mes");
-        getContentPane().add(jLabel211, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, -1, -1));
+        getContentPane().add(jLabel211, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 410, -1, -1));
 
         jLabel212.setBackground(java.awt.Color.darkGray);
         jLabel212.setFont(new java.awt.Font("FreeSans", 1, 14)); // NOI18N
         jLabel212.setForeground(java.awt.Color.darkGray);
         jLabel212.setText("/");
-        getContentPane().add(jLabel212, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 390, -1, -1));
+        getContentPane().add(jLabel212, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 430, -1, -1));
 
         chk_cliente.setBackground(java.awt.Color.white);
         buttonGroup1.add(chk_cliente);
@@ -273,7 +279,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
         getContentPane().add(chk_proveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, -1));
 
         cmb_anio_u.setFont(new java.awt.Font("DejaVu Sans", 0, 12)); // NOI18N
-        getContentPane().add(cmb_anio_u, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, 70, -1));
+        getContentPane().add(cmb_anio_u, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 430, 70, -1));
         for(int x = 1950; x <= 2020; x++){
             cmb_anio_u.addItem(""+x);
         }
@@ -292,7 +298,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
         jLabel4.setMaximumSize(new java.awt.Dimension(540, 240));
         jLabel4.setMinimumSize(new java.awt.Dimension(540, 240));
         jLabel4.setPreferredSize(new java.awt.Dimension(540, 240));
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, 540, 240));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, 580, 270));
 
         jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/error.png"))); // NOI18N
@@ -304,6 +310,20 @@ public class IngresarUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 630, 42, 42));
+
+        jLabel90.setBackground(java.awt.Color.darkGray);
+        jLabel90.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
+        jLabel90.setForeground(java.awt.Color.darkGray);
+        jLabel90.setText("Nombre");
+        getContentPane().add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
+
+        txt_pass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txt_pass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_passActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 280, -1));
 
         jLabel1.setBackground(java.awt.Color.white);
         jLabel1.setEnabled(false);
@@ -335,11 +355,29 @@ public class IngresarUsuario extends javax.swing.JFrame {
         chk_cliente.setSelected(true);
         else
         chk_proveedor.setSelected(true);
-
-        if (chk_cliente.isSelected() && !txt_nickname.getText().isEmpty() && !txt_nombre.getText().isEmpty() && !txt_apellido.getText().isEmpty()  && !txt_email.getText().isEmpty()){
+        
+        if (chk_cliente.isSelected() && !txt_nickname.getText().isEmpty() && !txt_nombre.getText().isEmpty() && !txt_apellido.getText().isEmpty()  && !txt_email.getText().isEmpty() && txt_pass.getPassword().length != 0){
             //Es un cliente
+            
+            String hashtext ="";
+            try {
+               
+                try {
+                    String pass = new String(txt_pass.getPassword());
+                    MessageDigest md = MessageDigest.getInstance("MD5");
+                    byte[] clave = md.digest(pass.getBytes("UTF-8"));
+                    BigInteger bigInt = new BigInteger(1,clave);
+                    hashtext = bigInt.toString(16);
+                    //System.out.println(hashtext);
+                } catch (UnsupportedEncodingException ex) {
+                    Logger.getLogger(IngresarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }   
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(IngresarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             DtFecha nacimiento = new DtFecha(Integer.valueOf(cmb_anio_u.getSelectedItem().toString().trim()),Integer.valueOf(cmb_mes.getSelectedItem().toString().trim()),Integer.valueOf(cmb_dia.getSelectedItem().toString().trim()));
-            ICUsuario.AltaCliente(new DtCliente (txt_nickname.getText(), txt_nombre.getText(), txt_apellido.getText(), txt_email.getText(), nacimiento,null,null));
+            ICUsuario.AltaCliente(new DtCliente (txt_nickname.getText(), txt_nombre.getText(), txt_apellido.getText(), txt_email.getText(), nacimiento,null,null,hashtext));
             try {
                 ManejadorSQL.GetInstance().insertImgUsuario(fileUsuario, txt_nickname.getText().trim());
             } catch (FileNotFoundException ex) {
@@ -350,11 +388,29 @@ public class IngresarUsuario extends javax.swing.JFrame {
             txt_nombre.setText("");
             txt_apellido.setText("");
             txt_email.setText("");
+            txt_pass.setText("");
             JOptionPane.showMessageDialog(null, "Usuario ingresado");
         }
-        else if(chk_proveedor.isSelected() && !txt_nickname.getText().isEmpty() && !txt_nombre.getText().isEmpty() && !txt_apellido.getText().isEmpty() && !txt_email.getText().isEmpty() && !txt_linkEmpresa.getText().isEmpty() && !txt_nombreEmpresa.getText().isEmpty()){
+        else if(chk_proveedor.isSelected() && !txt_nickname.getText().isEmpty() && !txt_nombre.getText().isEmpty() && !txt_apellido.getText().isEmpty() && !txt_email.getText().isEmpty() && !txt_linkEmpresa.getText().isEmpty() && !txt_nombreEmpresa.getText().isEmpty() && txt_pass.getPassword().length != 0){
+            
+            String hashtext ="";
+            try {
+                try {
+                    String pass = new String(txt_pass.getPassword());
+                    MessageDigest md = MessageDigest.getInstance("MD5");
+                    byte[] clave = md.digest(pass.getBytes("UTF-8"));
+                    BigInteger bigInt = new BigInteger(1,clave);
+                    hashtext = bigInt.toString(16);
+                    //System.out.println(hashtext);
+                } catch (UnsupportedEncodingException ex) {
+                    Logger.getLogger(IngresarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }   
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(IngresarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             DtFecha nacimiento = new DtFecha(Integer.valueOf(cmb_anio_u.getSelectedItem().toString().trim()),Integer.valueOf(cmb_mes.getSelectedItem().toString().trim()),Integer.valueOf(cmb_dia.getSelectedItem().toString().trim()));
-            ICUsuario.AltaProveedor(new DtProveedor (txt_nickname.getText(), txt_nombre.getText(), txt_apellido.getText(), txt_email.getText(),nacimiento,null,txt_nombreEmpresa.getText(),txt_linkEmpresa.getText(), null));
+            ICUsuario.AltaProveedor(new DtProveedor (txt_nickname.getText(), txt_nombre.getText(), txt_apellido.getText(), txt_email.getText(),nacimiento,null,txt_nombreEmpresa.getText(),txt_linkEmpresa.getText(), null, hashtext));
             try {
                 ManejadorSQL.GetInstance().insertImgUsuario(fileUsuario, txt_nickname.getText().trim());
             } catch (FileNotFoundException ex) {
@@ -409,6 +465,10 @@ public class IngresarUsuario extends javax.swing.JFrame {
     private void jLabel42MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel42MouseClicked
         dispose();
     }//GEN-LAST:event_jLabel42MouseClicked
+
+    private void txt_passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_passActionPerformed
 
     /**
      * @param args the command line arguments
@@ -472,6 +532,7 @@ public class IngresarUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel87;
     private javax.swing.JLabel jLabel88;
     private javax.swing.JLabel jLabel89;
+    private javax.swing.JLabel jLabel90;
     private javax.swing.JLabel lbl_avatar;
     private javax.swing.JLabel lbl_linkEmpresa;
     private javax.swing.JLabel lbl_nombreEmpresa;
@@ -481,5 +542,6 @@ public class IngresarUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField txt_nickname;
     private javax.swing.JTextField txt_nombre;
     private javax.swing.JTextField txt_nombreEmpresa;
+    private javax.swing.JPasswordField txt_pass;
     // End of variables declaration//GEN-END:variables
 }

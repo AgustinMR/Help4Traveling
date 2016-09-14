@@ -11,6 +11,7 @@ public class Proveedor extends Usuario{
 
     public Proveedor (DtProveedor u){
         this.nick= u.getNick();
+        this.clave = u.getClave();
         this.nombre= u.getNombre();
         this.apellido= u.getApellido();
         this.email= u.getEmail();
