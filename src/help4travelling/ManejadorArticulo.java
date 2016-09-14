@@ -1,15 +1,6 @@
 package help4travelling;
 
-import java.util.HashMap;
 import java.util.ArrayList;
-import java.util.Set;
-import java.util.HashSet;
-
-/**
- * @author Antares
- */
-
-import java.util.HashMap;
 import java.util.Map;
 import javafx.util.Pair;
 
@@ -132,7 +123,7 @@ public class ManejadorArticulo {
     
     public boolean insertarServicio(DtServicio DtServ, Ciudad ciudadO, Ciudad ciudadD){
        for (int i = 0; i < articulos.size(); i++) {
-            if (articulos.get(i).GetNombre() == DtServ.getNombre() && articulos.get(i).getProv() == DtServ.getNickProveedor() )
+            if (articulos.get(i).GetNombre().equals(DtServ.getNombre()) && articulos.get(i).getProv().equals(DtServ.getNickProveedor()) )
                 return false;
        }
        Servicio serv = new Servicio(DtServ.getNombre(), DtServ.getNickProveedor());
@@ -141,4 +132,15 @@ public class ManejadorArticulo {
        //mandar datos a la base de datos
        return ManejadorSQL.GetInstance().agregarServicio(DtServ, DtServ.getNickProveedor(), DtServ.getCategorias());
     }
+    
+    public boolean insertarPromocion(DtPromocion promo){
+       for (int i = 0; i < articulos.size(); i++) {
+            if (articulos.get(i).GetNombre().equals(promo.GetNombre()) && articulos.get(i).getProv().equals(promo.getNickProv()) )
+                return false;
+       }
+       Promocion p = new Promocion(promo.GetNombre(), promo.getNickProv());
+       articulos.add((Articulo)p);
+       return ManejadorSQL.GetInstance().agregarPromocion(promo, promo.getNickProv(), promo.GetServicios());
+    }
+    
 }

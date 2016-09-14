@@ -87,16 +87,24 @@ public class ControladorArticulo implements IControladorArticulo{
         this.serv.CambiarDestino(ciu);
     }
     
+    @Override
     public void AgregarCategoria(String catName){
         Categoria cat = ManejadorCategoria.GetInstance().BuscarCategoria(catName);
         this.serv.AgregarCategoria(cat);
     }
     
+    @Override
     public void QuitarCategoria(String catName){
         ManejadorCategoria.GetInstance().QuitarCategoria(catName);
     }   
     
+    @Override
     public List<String> listaDeCiudades(){
         return ManejadorCiudad.GetInstance().listaDeCiudades();
+    }
+
+    @Override
+    public boolean insertarPromocion(DtPromocion promo) {
+        return ManejadorArticulo.GetInstance().insertarPromocion(promo);
     }
 }

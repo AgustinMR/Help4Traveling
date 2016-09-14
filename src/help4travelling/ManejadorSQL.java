@@ -335,8 +335,8 @@ public class ManejadorSQL {
     
         // ALTA DE PROMOCION.
     public boolean agregarPromocion(DtPromocion p, String nickProveedor, ArrayList<String> servicios){
-        String sql1 = "INSERT INTO ARTICULOS(nicknameProveedor, nombre) VALUES (" + nickProveedor + "," + p.GetNombre()+ " );";
-        String sql2 = "INSERT INTO PROMOCIONES(nicknameProveedor, nombreArticulo, descuento, precio) VALUES (" + nickProveedor + ", " + p.GetNombre() + ", " + p.GetDescuento() + ", " + p.GetPrecio() + " );";
+        String sql1 = "INSERT INTO ARTICULOS(nicknameProveedor, nombre) VALUES ('" + p.getNickProv() + "','" + p.GetNombre()+ "');";
+        String sql2 = "INSERT INTO PROMOCIONES(nicknameProveedor, nombreArticulo, descuento, precio) VALUES ('" + p.getNickProv() + "', '" + p.GetNombre() + "', '" + p.GetDescuento() + "', '" + p.GetPrecio() + "');";
         String sql3;
         Statement usuario;
         boolean ret = false;
@@ -347,7 +347,7 @@ public class ManejadorSQL {
             usuario.executeUpdate(sql1);
             usuario.executeUpdate(sql2);
             for(int x = 0; x < servicios.size(); x++){
-                sql3 = "INSERT INTO COMPUESTOS(nicknameProvServ, nombreArticuloServ, nicknameProvProm, nombreArticuloProm) VALUES (" + nickProveedor + ", " + servicios.get(x) + ", " + nickProveedor + ", " + p.GetNombre() + " );";
+                sql3 = "INSERT INTO COMPUESTOS(nicknameProvServ, nombreArticuloServ, nicknameProvProm, nombreArticuloProm) VALUES ('" + p.getNickProv() + "', '" + servicios.get(x) + "', '" + p.getNickProv() + "', '" + p.GetNombre() + "');";
                 usuario.executeUpdate(sql3); // ingreso las categorias, asumo que estas ya existen debido a que fueron seleccionadas.
             }
             ret = true;

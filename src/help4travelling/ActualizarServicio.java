@@ -526,6 +526,7 @@ public class ActualizarServicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel42MouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        
         List<String> c = ICArticulo.listaDeCiudades();  ArrayList<DtServicio> s = ICArticulo.ListarServicios(); DefaultComboBoxModel lm = new DefaultComboBoxModel(); DefaultComboBoxModel lm2 = new DefaultComboBoxModel(), lm3 = new DefaultComboBoxModel();
         for(int x = 0; x < s.size(); x++){
             lm.addElement(s.get(x).getNickProveedor() + ", " + s.get(x).getNombre());

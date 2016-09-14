@@ -31,7 +31,6 @@ public class CancelarReserva extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
         setBackground(java.awt.Color.white);
         setBounds(new java.awt.Rectangle(0, 0, 1218, 707));
         setMaximumSize(new java.awt.Dimension(1218, 707));

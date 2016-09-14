@@ -5,10 +5,11 @@
  */
 package help4travelling;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 
 /**
@@ -46,7 +47,6 @@ public class IngresarPromocion extends javax.swing.JFrame {
         cmb_ing_prom = new javax.swing.JComboBox<>();
         jLabel115 = new javax.swing.JLabel();
         jLabel116 = new javax.swing.JLabel();
-        jTextField16 = new javax.swing.JTextField();
         lbl_precioN = new javax.swing.JLabel();
         jLabel118 = new javax.swing.JLabel();
         jLabel119 = new javax.swing.JLabel();
@@ -60,13 +60,17 @@ public class IngresarPromocion extends javax.swing.JFrame {
         jLabel192 = new javax.swing.JLabel();
         jButton11 = new javax.swing.JButton();
         jLabel42 = new javax.swing.JLabel();
-        lbl_precioProm1 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lbl_precio = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel193 = new javax.swing.JLabel();
+        lbl_precio1 = new javax.swing.JLabel();
+        lbl_precioFinal = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField16 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
         setBackground(java.awt.Color.white);
         setBounds(new java.awt.Rectangle(0, 0, 1218, 707));
         setMinimumSize(new java.awt.Dimension(1218, 707));
@@ -130,9 +134,6 @@ public class IngresarPromocion extends javax.swing.JFrame {
         jLabel116.setText("Nombre");
         getContentPane().add(jLabel116, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
 
-        jTextField16.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
-        getContentPane().add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 90, -1));
-
         lbl_precioN.setBackground(java.awt.Color.darkGray);
         lbl_precioN.setFont(new java.awt.Font("FreeSans", 1, 14)); // NOI18N
         lbl_precioN.setForeground(new java.awt.Color(204, 0, 0));
@@ -148,15 +149,19 @@ public class IngresarPromocion extends javax.swing.JFrame {
         jLabel119.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
         jLabel119.setForeground(java.awt.Color.darkGray);
         jLabel119.setText("%");
-        getContentPane().add(jLabel119, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, -1, -1));
+        getContentPane().add(jLabel119, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 212, -1, -1));
 
+        list_serviciosInc.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
+        list_serviciosInc.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane4.setViewportView(list_serviciosInc);
 
-        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 160, -1, 440));
+        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 160, -1, 420));
 
+        list_serviciosProv.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
+        list_serviciosProv.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane9.setViewportView(list_serviciosProv);
 
-        getContentPane().add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 240, 520));
+        getContentPane().add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 240, 420));
 
         lbl_precioProm.setBackground(java.awt.Color.darkGray);
         lbl_precioProm.setFont(new java.awt.Font("FreeSans", 1, 14)); // NOI18N
@@ -187,8 +192,9 @@ public class IngresarPromocion extends javax.swing.JFrame {
 
         jLabel192.setBackground(java.awt.Color.darkGray);
         jLabel192.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
-        jLabel192.setText("Precio total");
-        getContentPane().add(jLabel192, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 650, -1, -1));
+        jLabel192.setForeground(new java.awt.Color(0, 51, 153));
+        jLabel192.setText("Precio final");
+        getContentPane().add(jLabel192, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 660, -1, -1));
 
         jButton11.setBackground(java.awt.Color.white);
         jButton11.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
@@ -198,7 +204,7 @@ public class IngresarPromocion extends javax.swing.JFrame {
                 jButton11MouseClicked(evt);
             }
         });
-        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 600, -1, -1));
+        getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 580, -1, -1));
 
         jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/error.png"))); // NOI18N
@@ -211,16 +217,10 @@ public class IngresarPromocion extends javax.swing.JFrame {
         });
         getContentPane().add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 650, 42, 42));
 
-        lbl_precioProm1.setBackground(java.awt.Color.darkGray);
-        lbl_precioProm1.setFont(new java.awt.Font("FreeSans", 1, 14)); // NOI18N
-        lbl_precioProm1.setForeground(new java.awt.Color(204, 0, 0));
-        getContentPane().add(lbl_precioProm1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 650, 160, 20));
-
-        jLabel1.setBackground(java.awt.Color.white);
-        jLabel1.setEnabled(false);
-        jLabel1.setFocusable(false);
-        jLabel1.setOpaque(true);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1218, 590));
+        lbl_precio.setBackground(java.awt.Color.darkGray);
+        lbl_precio.setFont(new java.awt.Font("FreeSans", 1, 14)); // NOI18N
+        lbl_precio.setForeground(new java.awt.Color(204, 0, 0));
+        getContentPane().add(lbl_precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 630, 100, 20));
 
         jLabel3.setFont(new java.awt.Font("Ubuntu Light", 0, 36)); // NOI18N
         jLabel3.setForeground(java.awt.Color.white);
@@ -232,32 +232,79 @@ public class IngresarPromocion extends javax.swing.JFrame {
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1220, -1));
 
+        jLabel193.setBackground(java.awt.Color.darkGray);
+        jLabel193.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
+        jLabel193.setText("Precio sin descuento");
+        getContentPane().add(jLabel193, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 630, -1, -1));
+
+        lbl_precio1.setBackground(java.awt.Color.darkGray);
+        lbl_precio1.setFont(new java.awt.Font("FreeSans", 1, 14)); // NOI18N
+        lbl_precio1.setForeground(new java.awt.Color(204, 0, 0));
+        getContentPane().add(lbl_precio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 630, 90, 20));
+
+        lbl_precioFinal.setBackground(java.awt.Color.darkGray);
+        lbl_precioFinal.setFont(new java.awt.Font("FreeSans", 1, 14)); // NOI18N
+        lbl_precioFinal.setForeground(new java.awt.Color(204, 0, 0));
+        getContentPane().add(lbl_precioFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 660, 100, 20));
+
+        jTextField1.setText("jTextField1");
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 230, -1, -1));
+
+        jTextField16.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
+        jTextField16.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField16KeyPressed(evt);
+            }
+        });
+        getContentPane().add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 40, -1));
+
+        jLabel1.setBackground(java.awt.Color.white);
+        jLabel1.setEnabled(false);
+        jLabel1.setFocusable(false);
+        jLabel1.setOpaque(true);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1218, 590));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel75MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel75MouseClicked
-
-        List<String> lservi = list_serviciosInc.getSelectedValuesList();
-        float preciototal = 0;
-
-        for(String x: lservi){
-            DtServicio dataser = ManejadorSQL.GetInstance().devolverServicio(cmb_ing_prom.getModel().getSelectedItem().toString(), jTextField16.getText());
-            preciototal += dataser.getPrecio();
+        if(cmb_ing_prom.getModel().getSize() > 0){
+            if(!jTextField15.getText().isEmpty() && !jTextField16.getText().isEmpty()){
+                if(list_serviciosInc.getModel().getSize() > 0){
+                    ArrayList<String> s = new ArrayList();
+                    for(int x = 0; x < list_serviciosInc.getModel().getSize(); x++){
+                        s.add(list_serviciosInc.getModel().getElementAt(x).trim());
+                    }
+                    DtPromocion dataProm = new DtPromocion(jTextField15.getText().trim(), cmb_ing_prom.getModel().getSelectedItem().toString().trim(), Float.valueOf(jTextField16.getText().trim()), Float.valueOf(lbl_precioFinal.getText().trim()), s);
+                    boolean ret = ICArticulo.insertarPromocion(dataProm);
+                    if(ret){
+                        JOptionPane.showMessageDialog(null, "Promoción ingresada correctamente!.");
+                        ((DefaultListModel)list_serviciosInc.getModel()).setSize(0);
+                        lbl_precio.setText("");
+                        lbl_precioFinal.setText("");
+                        jTextField15.setText("");
+                        jTextField16.setText("");
+                    }else{
+                        JOptionPane.showMessageDialog(null, "No se pudo ingresar la promocion.");
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "La promoción debe tener al menos un servicio asociado.");
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "La promoción debe tener un nombre, y un descuento.");
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Seleccione un proveedor.");
         }
-
-        ArrayList<String> retser = new ArrayList<String>(lservi);
-
-        DtPromocion dataProm = new DtPromocion(jTextField16.getText(), cmb_ing_prom.getModel().getSelectedItem().toString(), Float.valueOf(jTextField15.getText()), preciototal, retser);
-
-        //Esta el manejador aca con fines de testeo, luego que funcione bien se borra y se mete en ControladorArticulo
-        ManejadorSQL.GetInstance().agregarPromocion(dataProm, cmb_ing_prom.getModel().getSelectedItem().toString(), retser);
-        //this.ICArticulo.CrearPromocion(dataProm);
     }//GEN-LAST:event_jLabel75MouseClicked
 
     private void cmb_ing_promItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmb_ing_promItemStateChanged
         if(cmb_ing_prom.getSelectedItem()!= null){
             ArrayList<DtServicio> s = ICArticulo.ListarServiciosProv(cmb_ing_prom.getSelectedItem().toString().trim());
             DefaultListModel lm = new DefaultListModel();
+            lbl_precio.setText("");
+            lbl_precioFinal.setText("");
+            list2.clear();
             for(int x = 0; x < s.size(); x++){
                 lm.addElement(s.get(x).getNombre());
             }
@@ -266,8 +313,13 @@ public class IngresarPromocion extends javax.swing.JFrame {
     }//GEN-LAST:event_cmb_ing_promItemStateChanged
 
     private void btn_rmPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_rmPMouseClicked
-        if(!list_serviciosInc.getSelectedValue().isEmpty() && (list_serviciosInc.getSelectedValue() != null)){
-            ((DefaultListModel)list_serviciosInc.getModel()).removeElement(list_serviciosInc.getSelectedValue());
+        if((list_serviciosInc.getSelectedValue() != null) && (!list_serviciosInc.getSelectedValue().isEmpty())){
+            DtServicio a = ICArticulo.datosServicio(list_serviciosInc.getSelectedValue().trim(), cmb_ing_prom.getSelectedItem().toString().trim());
+            if(!lbl_precio.getText().isEmpty() && !lbl_precio.getText().trim().equals("0.0")){
+                lbl_precio.setText(""+(Float.valueOf(lbl_precio.getText().trim())-a.getPrecio()));
+                lbl_precioFinal.setText(""+((Float.valueOf(lbl_precio.getText().trim())*Float.valueOf(jTextField16.getText().trim()))/100));
+                ((DefaultListModel)list_serviciosInc.getModel()).removeElement(list_serviciosInc.getSelectedValue());
+            }
         }
     }//GEN-LAST:event_btn_rmPMouseClicked
 
@@ -280,6 +332,12 @@ public class IngresarPromocion extends javax.swing.JFrame {
                 if(!list2.contains(list_serviciosProv.getSelectedValue())){
                     list2.addElement(list_serviciosProv.getSelectedValue());
                     list_serviciosInc.setModel(list2);
+                    DtServicio a = ICArticulo.datosServicio(list_serviciosProv.getSelectedValue().trim(), cmb_ing_prom.getSelectedItem().toString().trim());
+                    if(lbl_precio.getText().isEmpty())
+                        lbl_precio.setText(""+a.getPrecio());
+                    else
+                        lbl_precio.setText(""+(Float.valueOf(lbl_precio.getText().trim())+a.getPrecio()));
+                    lbl_precioFinal.setText(""+((Float.valueOf(lbl_precio.getText().trim())*Float.valueOf(jTextField16.getText().trim()))/100));
                 }
                 else{
                     //System.out.println("banderarequeteloca3 ");
@@ -320,15 +378,23 @@ public class IngresarPromocion extends javax.swing.JFrame {
 
     private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
         ((DefaultListModel)list_serviciosInc.getModel()).setSize(0);
+        lbl_precio.setText("");
+        lbl_precioFinal.setText("");
     }//GEN-LAST:event_jButton11MouseClicked
 
     private void jLabel42MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel42MouseClicked
-
+        dispose();
     }//GEN-LAST:event_jLabel42MouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         cmb_ing_prom.setModel(new DefaultComboBoxModel(ICUsuario.listarProveedores().toArray()));
     }//GEN-LAST:event_formWindowOpened
+
+    private void jTextField16KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField16KeyPressed
+        if (!Character.isDigit(evt.getKeyChar()) && (evt.getKeyChar() != KeyEvent.VK_PERIOD) && (evt.getKeyChar() != KeyEvent.VK_BACK_SPACE)) {
+            jTextField16.setText("");
+        }
+    }//GEN-LAST:event_jTextField16KeyPressed
 
     /**
      * @param args the command line arguments
@@ -409,6 +475,7 @@ public class IngresarPromocion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel118;
     private javax.swing.JLabel jLabel119;
     private javax.swing.JLabel jLabel192;
+    private javax.swing.JLabel jLabel193;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel42;
@@ -416,11 +483,14 @@ public class IngresarPromocion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
+    private javax.swing.JLabel lbl_precio;
+    private javax.swing.JLabel lbl_precio1;
+    private javax.swing.JLabel lbl_precioFinal;
     private javax.swing.JLabel lbl_precioN;
     private javax.swing.JLabel lbl_precioProm;
-    private javax.swing.JLabel lbl_precioProm1;
     private javax.swing.JList<String> list_serviciosInc;
     private javax.swing.JList<String> list_serviciosProv;
     // End of variables declaration//GEN-END:variables

@@ -1,8 +1,6 @@
 package help4travelling;
 
 import java.util.ArrayList;
-import java.util.Set;
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -19,6 +17,7 @@ public abstract interface IControladorArticulo {
     public abstract void AgregarCategoria(String catName);
     public abstract void QuitarCategoria(String catName);
     public abstract boolean insertarServicio(DtServicio DtServ);
+    public abstract boolean insertarPromocion(DtPromocion promo);
     public abstract List<String> listaDeCiudades();
     public abstract ArrayList<DtPromocion> listarPromocionesProv(String nick);
     public abstract ArrayList<DtServicio> ListarServiciosProv(String nick);

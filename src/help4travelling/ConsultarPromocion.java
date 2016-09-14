@@ -127,7 +127,7 @@ public class ConsultarPromocion extends javax.swing.JFrame {
                 jLabel163MouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel163, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 620, 43, 43));
+        getContentPane().add(jLabel163, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 620, 43, 43));
 
         cmb_consultar_promociones.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
         cmb_consultar_promociones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -285,7 +285,7 @@ public class ConsultarPromocion extends javax.swing.JFrame {
         jLabel1.setEnabled(false);
         jLabel1.setFocusable(false);
         jLabel1.setOpaque(true);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 110, 1218, 590));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 110, 1230, 590));
 
         jLabel3.setFont(new java.awt.Font("Ubuntu Light", 0, 36)); // NOI18N
         jLabel3.setForeground(java.awt.Color.white);
