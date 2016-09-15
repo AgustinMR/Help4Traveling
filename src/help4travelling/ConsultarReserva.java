@@ -44,8 +44,6 @@ public class ConsultarReserva extends javax.swing.JFrame {
         cmb_reservasI = new javax.swing.JComboBox<>();
         txt_cantidadR = new javax.swing.JLabel();
         jLabel147 = new javax.swing.JLabel();
-        jScrollPane17 = new javax.swing.JScrollPane();
-        jList_reservasR = new javax.swing.JList<>();
         lbl_ffin = new javax.swing.JLabel();
         lbl_finicio = new javax.swing.JLabel();
         jLabel221 = new javax.swing.JLabel();
@@ -57,11 +55,13 @@ public class ConsultarReserva extends javax.swing.JFrame {
         txt_finicio = new javax.swing.JLabel();
         jLabel152 = new javax.swing.JLabel();
         txt_ffin = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList_reservasR = new javax.swing.JList<>();
+        jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(java.awt.Color.white);
         setBounds(new java.awt.Rectangle(0, 0, 1218, 707));
         setMaximumSize(new java.awt.Dimension(1218, 707));
@@ -127,15 +127,6 @@ public class ConsultarReserva extends javax.swing.JFrame {
         jLabel147.setText("Servicios y promociones asociados");
         getContentPane().add(jLabel147, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, 20));
 
-        jList_reservasR.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jList_reservasRValueChanged(evt);
-            }
-        });
-        jScrollPane17.setViewportView(jList_reservasR);
-
-        getContentPane().add(jScrollPane17, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, -1, 370));
-
         lbl_ffin.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
         lbl_ffin.setText("Fecha fin");
         getContentPane().add(lbl_ffin, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 360, -1, -1));
@@ -190,12 +181,6 @@ public class ConsultarReserva extends javax.swing.JFrame {
         txt_ffin.setForeground(java.awt.Color.darkGray);
         getContentPane().add(txt_ffin, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 360, 200, 20));
 
-        jLabel1.setBackground(java.awt.Color.white);
-        jLabel1.setEnabled(false);
-        jLabel1.setFocusable(false);
-        jLabel1.setOpaque(true);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 1218, 590));
-
         jLabel3.setFont(new java.awt.Font("Ubuntu Light", 0, 36)); // NOI18N
         jLabel3.setForeground(java.awt.Color.white);
         jLabel3.setText("Ver información de reserva");
@@ -206,11 +191,27 @@ public class ConsultarReserva extends javax.swing.JFrame {
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1220, -1));
 
+        jList_reservasR.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
+        jList_reservasR.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList_reservasRValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jList_reservasR);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 260, 370));
+
+        jLabel1.setBackground(java.awt.Color.white);
+        jLabel1.setEnabled(false);
+        jLabel1.setFocusable(false);
+        jLabel1.setOpaque(true);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 1218, 590));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel143MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel143MouseClicked
-
+        dispose();
     }//GEN-LAST:event_jLabel143MouseClicked
 
     private void cmb_reservasIItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmb_reservasIItemStateChanged
@@ -263,22 +264,6 @@ public class ConsultarReserva extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmb_reservasIMouseClicked
 
-    private void jList_reservasRValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList_reservasRValueChanged
-        DtReserva dtRes = ICReserva.ObtenerDatosReserva(this.idReserva);
-
-        String nomart = jList_reservasR.getSelectedValue();
-
-        List<DtInfoReserva> lir = new ArrayList<DtInfoReserva>(dtRes.GetInfoReservas());
-
-        for(DtInfoReserva i: lir){
-            if(i.GetNombreArticulo().equals(nomart)){
-                txt_cantidadR.setText(Integer.toString(i.GetCantidad()));
-                txt_finicio.setText(Integer.toString(i.GetFechaIni().getDia()) + "/" + Integer.toString(i.GetFechaIni().getMes()) + "/" + Integer.toString(i.GetFechaIni().getAnio()));
-                txt_ffin.setText(Integer.toString(i.GetFechaFin().getDia()) + "/" + Integer.toString(i.GetFechaFin().getMes()) + "/" + Integer.toString(i.GetFechaFin().getAnio()));
-            }
-        }
-    }//GEN-LAST:event_jList_reservasRValueChanged
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
         //rty
@@ -295,6 +280,19 @@ public class ConsultarReserva extends javax.swing.JFrame {
         txt_ffin.setText("");
         jList_reservasR.clearSelection();
     }//GEN-LAST:event_formWindowOpened
+
+    private void jList_reservasRValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList_reservasRValueChanged
+        DtReserva dtRes = ICReserva.ObtenerDatosReserva(this.idReserva);
+        String nomart = jList_reservasR.getSelectedValue();
+        List<DtInfoReserva> lir = new ArrayList<DtInfoReserva>(dtRes.GetInfoReservas());
+        for(DtInfoReserva i: lir){
+            if(i.GetNombreArticulo().equals(nomart)){
+                txt_cantidadR.setText(Integer.toString(i.GetCantidad()));
+                txt_finicio.setText(Integer.toString(i.GetFechaIni().getDia()) + "/" + Integer.toString(i.GetFechaIni().getMes()) + "/" + Integer.toString(i.GetFechaIni().getAnio()));
+                txt_ffin.setText(Integer.toString(i.GetFechaFin().getDia()) + "/" + Integer.toString(i.GetFechaFin().getMes()) + "/" + Integer.toString(i.GetFechaFin().getAnio()));
+            }
+        }
+    }//GEN-LAST:event_jList_reservasRValueChanged
 
     /**
      * @param args the command line arguments
@@ -348,7 +346,7 @@ public class ConsultarReserva extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JList<String> jList_reservasR;
-    private javax.swing.JScrollPane jScrollPane17;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_cantidadR1;
     private javax.swing.JLabel lbl_ffin;
     private javax.swing.JLabel lbl_finicio;

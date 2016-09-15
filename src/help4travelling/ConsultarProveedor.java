@@ -5,7 +5,10 @@
  */
 package help4travelling;
 
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
@@ -27,6 +30,15 @@ public class ConsultarProveedor extends javax.swing.JFrame {
         initComponents();
         ICUsuario = Factory.GetInstance().getIControladorUsuario();
         ICArticulo = Factory.GetInstance().getIControladorArticulo();
+    }
+    
+    private Image ScaledImage(Image img, int w, int h){
+        BufferedImage resizedImage = new BufferedImage(w,h,BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2 = resizedImage.createGraphics();
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2.drawImage(img, 0, 0, w, h,null);
+        g2.dispose();
+        return resizedImage;
     }
 
     /**
@@ -74,7 +86,7 @@ public class ConsultarProveedor extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(java.awt.Color.white);
         setBounds(new java.awt.Rectangle(0, 0, 1218, 707));
         setMaximumSize(new java.awt.Dimension(1218, 707));
@@ -160,17 +172,14 @@ public class ConsultarProveedor extends javax.swing.JFrame {
         getContentPane().add(jLabel193, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 160, -1, -1));
 
         jLabel194.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel194.setText("Aqui se mostrara imagen");
         jLabel194.setOpaque(true);
         getContentPane().add(jLabel194, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 490, 220, 130));
 
         jLabel195.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel195.setText("Aqui se mostrara imagen");
         jLabel195.setOpaque(true);
         getContentPane().add(jLabel195, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 490, 220, 130));
 
         jLabel196.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel196.setText("Aqui se mostrara imagen");
         jLabel196.setOpaque(true);
         getContentPane().add(jLabel196, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 490, 230, 130));
 
@@ -196,8 +205,6 @@ public class ConsultarProveedor extends javax.swing.JFrame {
         jLabel202.setForeground(java.awt.Color.darkGray);
         jLabel202.setText("E-mail");
         getContentPane().add(jLabel202, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
-
-        lbl_avatarProveedor.setText("Aqui se mostrara imagen de usuario");
         getContentPane().add(lbl_avatarProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 400, 210));
 
         jLabel204.setBackground(java.awt.Color.darkGray);
@@ -221,6 +228,7 @@ public class ConsultarProveedor extends javax.swing.JFrame {
         txt_DescripcionP.setBackground(java.awt.Color.darkGray);
         txt_DescripcionP.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
         txt_DescripcionP.setForeground(java.awt.Color.darkGray);
+        txt_DescripcionP.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         getContentPane().add(txt_DescripcionP, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 230, 370, 220));
 
         txt_ApellidoP.setBackground(java.awt.Color.darkGray);
@@ -236,11 +244,10 @@ public class ConsultarProveedor extends javax.swing.JFrame {
         tex_anio.setBackground(java.awt.Color.darkGray);
         tex_anio.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
         tex_anio.setForeground(java.awt.Color.darkGray);
-        getContentPane().add(tex_anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 70, 20));
+        getContentPane().add(tex_anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 230, 50, 20));
 
-        txt_NombreP.setBackground(java.awt.Color.darkGray);
+        txt_NombreP.setBackground(new java.awt.Color(255, 255, 255));
         txt_NombreP.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
-        txt_NombreP.setForeground(java.awt.Color.darkGray);
         getContentPane().add(txt_NombreP, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 240, 20));
 
         tex_origen.setBackground(java.awt.Color.darkGray);
@@ -261,12 +268,12 @@ public class ConsultarProveedor extends javax.swing.JFrame {
         tex_dia.setBackground(java.awt.Color.darkGray);
         tex_dia.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
         tex_dia.setForeground(java.awt.Color.darkGray);
-        getContentPane().add(tex_dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 70, 20));
+        getContentPane().add(tex_dia, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 50, 20));
 
         tex_mes.setBackground(java.awt.Color.darkGray);
         tex_mes.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
         tex_mes.setForeground(java.awt.Color.darkGray);
-        getContentPane().add(tex_mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 70, 20));
+        getContentPane().add(tex_mes, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 50, 20));
 
         jLabel1.setBackground(java.awt.Color.white);
         jLabel1.setEnabled(false);
@@ -361,8 +368,28 @@ public class ConsultarProveedor extends javax.swing.JFrame {
             DtServicio DtServ = ICArticulo.datosServicio(NameServ, prov);
             txt_DescripcionP.setText(DtServ.getDescripcion());
             tex_origen.setText(DtServ.getCiudadOrigen());
-
             tex_destino.setText(DtServ.getCiudadDestino());
+            
+            jLabel194.setIcon(null);
+            if(ManejadorSQL.GetInstance().selectImgServicio("imagen1", DtServ.getNickProveedor().trim(), DtServ.getNombre().trim()) != null){
+                Image a =  new ImageIcon(ManejadorSQL.GetInstance().selectImgServicio("imagen1", DtServ.getNickProveedor().trim(), DtServ.getNombre().trim())).getImage();
+                ImageIcon icon = new ImageIcon(ScaledImage(a,jLabel194.getWidth(),jLabel194.getHeight()));
+                jLabel194.setIcon(icon);
+            }
+            
+            jLabel196.setIcon(null);
+            if(ManejadorSQL.GetInstance().selectImgServicio("imagen2", DtServ.getNickProveedor().trim(), DtServ.getNombre().trim()) != null){
+                Image a =  new ImageIcon(ManejadorSQL.GetInstance().selectImgServicio("imagen2", DtServ.getNickProveedor().trim(), DtServ.getNombre().trim())).getImage();
+                ImageIcon icon = new ImageIcon(ScaledImage(a,jLabel196.getWidth(),jLabel196.getHeight()));
+                jLabel196.setIcon(icon);
+            }
+            
+            jLabel195.setIcon(null);
+            if(ManejadorSQL.GetInstance().selectImgServicio("imagen3", DtServ.getNickProveedor().trim(), DtServ.getNombre().trim()) != null){
+                Image a =  new ImageIcon(ManejadorSQL.GetInstance().selectImgServicio("imagen3", DtServ.getNickProveedor().trim(), DtServ.getNombre().trim())).getImage();
+                ImageIcon icon = new ImageIcon(ScaledImage(a,jLabel195.getWidth(),jLabel195.getHeight()));
+                jLabel195.setIcon(icon);
+            }
         }
     }//GEN-LAST:event_jList_ServiciosPMouseClicked
 

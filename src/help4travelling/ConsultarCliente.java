@@ -73,7 +73,7 @@ public class ConsultarCliente extends javax.swing.JFrame {
         jLabel1.setFocusable(false);
         jLabel1.setOpaque(true);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(java.awt.Color.white);
         setBounds(new java.awt.Rectangle(0, 0, 1218, 707));
         setMaximumSize(new java.awt.Dimension(1218, 707));

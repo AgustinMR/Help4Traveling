@@ -69,7 +69,7 @@ public class IngresarPromocion extends javax.swing.JFrame {
         list_serviciosInc = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(java.awt.Color.white);
         setBounds(new java.awt.Rectangle(0, 0, 1218, 707));
         setMinimumSize(new java.awt.Dimension(1218, 707));

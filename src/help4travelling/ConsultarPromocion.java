@@ -119,7 +119,7 @@ public class ConsultarPromocion extends javax.swing.JFrame {
 
         jLabel163.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/confirmar.png"))); // NOI18N
         jLabel163.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jLabel163.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel163.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel163.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jLabel163.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         jLabel163.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -145,11 +145,6 @@ public class ConsultarPromocion extends javax.swing.JFrame {
         getContentPane().add(jLabel164, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
         list_servs.setFont(new java.awt.Font("Liberation Sans", 0, 14)); // NOI18N
-        list_servs.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         list_servs.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 list_servsMouseClicked(evt);

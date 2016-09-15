@@ -100,7 +100,7 @@ public class ConectarBD extends javax.swing.JFrame {
         txt_conectarBD.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
         txt_conectarBD.setForeground(new java.awt.Color(255, 255, 255));
         txt_conectarBD.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_conectarBD.setText("192.168.10.132");
+        txt_conectarBD.setText("192.168.116.128");
         txt_conectarBD.setBorder(null);
         txt_conectarBD.setSelectionColor(new java.awt.Color(51, 51, 51));
         txt_conectarBD.addMouseListener(new java.awt.event.MouseAdapter() {

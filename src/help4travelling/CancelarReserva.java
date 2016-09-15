@@ -39,6 +39,7 @@ public class CancelarReserva extends javax.swing.JFrame {
         tree = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -92,12 +93,12 @@ public class CancelarReserva extends javax.swing.JFrame {
         tree.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tree);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 1090, 500));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 1060, 500));
 
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("RESERVAS INGRESADAS EN EL SISTEMA");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 1070, 40));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 1060, 40));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/confirmar.png"))); // NOI18N
@@ -109,6 +110,17 @@ public class CancelarReserva extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 620, 43, 43));
+
+        jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/help4travelling/img/error.png"))); // NOI18N
+        jLabel42.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel42.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel42.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel42MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 620, 42, 42));
 
         jLabel3.setBackground(java.awt.Color.white);
         jLabel3.setEnabled(false);
@@ -156,8 +168,14 @@ public class CancelarReserva extends javax.swing.JFrame {
                     }
                 }
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe haber una reserva seleccionada.");
         }
     }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel42MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel42MouseClicked
+        dispose();
+    }//GEN-LAST:event_jLabel42MouseClicked
 
     /**
      * @param args the command line arguments
@@ -200,6 +218,7 @@ public class CancelarReserva extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tree;

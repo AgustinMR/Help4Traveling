@@ -8,13 +8,15 @@ package help4travelling;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -25,7 +27,7 @@ public class IngresarServicio extends javax.swing.JFrame {
     File fileServicio2;
     File fileServicio3;
     DefaultListModel<String> list2 = new DefaultListModel<>();
-    DefaultListModel<String> list3 = new DefaultListModel<>();
+    DefaultListModel<String> list4 = new DefaultListModel<>();
     private IControladorArticulo ICArticulo;
     private IControladorCategoria ICCategoria;
     private IControladorUsuario ICUsuario;
@@ -66,8 +68,6 @@ public class IngresarServicio extends javax.swing.JFrame {
         cmb_destinoS = new javax.swing.JComboBox<>();
         cmb_origenS = new javax.swing.JComboBox<>();
         chek_destinoS = new java.awt.Checkbox();
-        jScrollPane18 = new javax.swing.JScrollPane();
-        lis_categoria = new javax.swing.JList<>();
         jScrollPane19 = new javax.swing.JScrollPane();
         lis_categoriaS = new javax.swing.JList<>();
         jLabel103 = new javax.swing.JLabel();
@@ -84,6 +84,9 @@ public class IngresarServicio extends javax.swing.JFrame {
         lab_origenS1 = new javax.swing.JLabel();
         lab_origenS2 = new javax.swing.JLabel();
         lab_origenS3 = new javax.swing.JLabel();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        tree_actualizar_servicios = new javax.swing.JTree();
+        jButton16 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -205,10 +208,6 @@ public class IngresarServicio extends javax.swing.JFrame {
         });
         getContentPane().add(chek_destinoS, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 430, -1, -1));
 
-        jScrollPane18.setViewportView(lis_categoria);
-
-        getContentPane().add(jScrollPane18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 220, 530));
-
         lis_categoriaS.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 lis_categoriaSValueChanged(evt);
@@ -216,7 +215,7 @@ public class IngresarServicio extends javax.swing.JFrame {
         });
         jScrollPane19.setViewportView(lis_categoriaS);
 
-        getContentPane().add(jScrollPane19, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 230, 530));
+        getContentPane().add(jScrollPane19, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 230, 500));
 
         jLabel103.setBackground(java.awt.Color.darkGray);
         jLabel103.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
@@ -307,7 +306,7 @@ public class IngresarServicio extends javax.swing.JFrame {
         lab_origenS1.setBackground(java.awt.Color.darkGray);
         lab_origenS1.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         lab_origenS1.setForeground(new java.awt.Color(0, 102, 204));
-        getContentPane().add(lab_origenS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 590, 500, 30));
+        getContentPane().add(lab_origenS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 590, 500, 30));
 
         lab_origenS2.setBackground(java.awt.Color.darkGray);
         lab_origenS2.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
@@ -319,11 +318,38 @@ public class IngresarServicio extends javax.swing.JFrame {
         lab_origenS3.setForeground(new java.awt.Color(0, 102, 204));
         getContentPane().add(lab_origenS3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 550, 500, 30));
 
+        tree_actualizar_servicios.setAutoscrolls(true);
+        tree_actualizar_servicios.addTreeExpansionListener(new javax.swing.event.TreeExpansionListener() {
+            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
+            }
+            public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
+                tree_actualizar_serviciosTreeExpanded(evt);
+            }
+        });
+        tree_actualizar_servicios.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+            public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+                tree_actualizar_serviciosValueChanged(evt);
+            }
+        });
+        jScrollPane14.setViewportView(tree_actualizar_servicios);
+
+        getContentPane().add(jScrollPane14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 220, 530));
+
+        jButton16.setBackground(java.awt.Color.white);
+        jButton16.setFont(new java.awt.Font("DejaVu Sans", 0, 14)); // NOI18N
+        jButton16.setText("Limpiar");
+        jButton16.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton16MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 650, -1, -1));
+
         jLabel1.setBackground(java.awt.Color.white);
         jLabel1.setEnabled(false);
         jLabel1.setFocusable(false);
         jLabel1.setOpaque(true);
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1218, 590));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 1280, 660));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -453,21 +479,31 @@ public class IngresarServicio extends javax.swing.JFrame {
     }//GEN-LAST:event_lis_categoriaSValueChanged
 
     private void jLabel46MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel46MouseClicked
-        if(lis_categoriaS.getSelectedValue() != null){
-            int index = lis_categoriaS.getSelectedIndex();
-            list2.remove(index);
+        if(lis_categoriaS.getModel().getSize() > 0){
+            if(lis_categoriaS.getSelectedValue() != null){
+            ((DefaultListModel)lis_categoriaS.getModel()).removeElementAt(lis_categoriaS.getSelectedIndex());
         }
+        }
+        
     }//GEN-LAST:event_jLabel46MouseClicked
 
     private void jLabel47MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel47MouseClicked
+        if((DefaultMutableTreeNode)tree_actualizar_servicios.getLastSelectedPathComponent() != null){
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode)tree_actualizar_servicios.getLastSelectedPathComponent();
+            String nameCat = node.getUserObject().toString().trim();
+            if(!list4.contains(nameCat))
+                list4.addElement(nameCat);
+            lis_categoriaS.setModel(list4);
+        }
+        
         //DefaultMutableTreeNode Arbol = (DefaultMutableTreeNode)tree_servicios2.getLastSelectedPathComponent();
         //String sel = (String) Arbol.getUserObject();
         //list2.addElement(lis_categoria.getSelectedValue());
-
+        /*
         if(!list2.contains(lis_categoria.getSelectedValue())){
             list2.addElement(lis_categoria.getSelectedValue());
             lis_categoriaS.setModel(list2);
-        }
+        }*/
         /*
         String [] element = new String[5];
         element[0]=sel;
@@ -519,18 +555,18 @@ public class IngresarServicio extends javax.swing.JFrame {
         cmb_destinoS.setModel(new DefaultComboBoxModel(ICArticulo.listaDeCiudades().toArray()));
         
         ArrayList<DtCategoria> categorias = ICCategoria.listarCategorias();
+        DefaultMutableTreeNode tree = new DefaultMutableTreeNode("todas");
         DefaultListModel<String> list = new DefaultListModel<>();
-        
-        
         int max =0;
         for (int i = 0; i < categorias.size(); i++){
             list.addElement(categorias.get(i).getNombre());
             if (max < categorias.get(i).getNivel()){
                 max =categorias.get(i).getNivel();
             }
-        }    /*  
-        //HashMap<String, DefaultMutableTreeNode> tree2 = new HashMap();
-        tree2.put("todas", tree2);
+        }
+
+        HashMap<String, DefaultMutableTreeNode> tree2 = new HashMap();
+        tree2.put("todas", tree);
         for (int j = 0; j < max+1; j++){
             for (DtCategoria categoria : categorias) {
                 if(j == categoria.getNivel()){
@@ -545,23 +581,24 @@ public class IngresarServicio extends javax.swing.JFrame {
                 }
             }
         }
+        DefaultTreeModel modeloTree = new DefaultTreeModel(tree);
+        tree_actualizar_servicios.setModel(modeloTree);
         
-        //DefaultTreeModel modeloTree = new DefaultTreeModel(tree);
-        //*/
         
-        
-        lis_categoria.setModel(list);
-        
-        //tree_servicios2.setModel(modeloTree);
-        
-        //listar categorias!
-        //devuelve arry list dtcategoria
-        /*ArrayList<DtCategoria> listdtcat = new ArrayList();
-        listdtcat = ICCategoria.listarCategorias();
-        ArrayList<String> lista = new ArrayList(); 
-        listdtcat.forEach(i -> lista.add(((DtCategoria)i).getNombre()));*/
-        //lista posse la lista de los nombres de la categorias
     }//GEN-LAST:event_formWindowOpened
+
+    private void tree_actualizar_serviciosTreeExpanded(javax.swing.event.TreeExpansionEvent evt) {//GEN-FIRST:event_tree_actualizar_serviciosTreeExpanded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tree_actualizar_serviciosTreeExpanded
+
+    private void tree_actualizar_serviciosValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_tree_actualizar_serviciosValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tree_actualizar_serviciosValueChanged
+
+    private void jButton16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton16MouseClicked
+        if(lis_categoriaS.getModel().getSize() != 0)
+            ((DefaultListModel)lis_categoriaS.getModel()).removeAllElements();
+    }//GEN-LAST:event_jButton16MouseClicked
 
     /**
      * @param args the command line arguments
@@ -610,6 +647,7 @@ public class IngresarServicio extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmb_destinoS;
     private javax.swing.JComboBox<String> cmb_origenS;
     private javax.swing.JComboBox<String> cmb_proveedorS;
+    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
@@ -627,7 +665,7 @@ public class IngresarServicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel98;
     private javax.swing.JLabel jLabel99;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane18;
+    private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JLabel lab_destinoS;
     private javax.swing.JLabel lab_origenS;
@@ -638,8 +676,8 @@ public class IngresarServicio extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_imagen2;
     private javax.swing.JLabel lbl_imagen3;
     private javax.swing.JLabel lbl_precio;
-    private javax.swing.JList<String> lis_categoria;
     private javax.swing.JList<String> lis_categoriaS;
+    private javax.swing.JTree tree_actualizar_servicios;
     private javax.swing.JTextPane txt_descripcionS;
     private javax.swing.JTextField txt_nombreS;
     private javax.swing.JTextField txt_precioS;

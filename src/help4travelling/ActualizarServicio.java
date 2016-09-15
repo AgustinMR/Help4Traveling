@@ -15,8 +15,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
@@ -493,7 +491,8 @@ public class ActualizarServicio extends javax.swing.JFrame {
         if((DefaultMutableTreeNode)tree_actualizar_servicios.getLastSelectedPathComponent() != null){
             DefaultMutableTreeNode node = (DefaultMutableTreeNode)tree_actualizar_servicios.getLastSelectedPathComponent();
             String nameCat = node.getUserObject().toString().trim();
-            list3.addElement(nameCat);
+            if(!list3.contains(nameCat))
+                list3.addElement(nameCat);
             list_catServicio.setModel(list3);
         }
     }//GEN-LAST:event_btn_addP1MouseClicked
@@ -510,7 +509,7 @@ public class ActualizarServicio extends javax.swing.JFrame {
 
     private void jButton16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton16MouseClicked
         if(list_catServicio.getModel().getSize() != 0)
-        ((DefaultListModel)list_catServicio.getModel()).removeAllElements();
+            ((DefaultListModel)list_catServicio.getModel()).removeAllElements();
     }//GEN-LAST:event_jButton16MouseClicked
 
     private void tree_actualizar_serviciosTreeExpanded(javax.swing.event.TreeExpansionEvent evt) {//GEN-FIRST:event_tree_actualizar_serviciosTreeExpanded
