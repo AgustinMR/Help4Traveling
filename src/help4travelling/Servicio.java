@@ -41,7 +41,7 @@ public class Servicio extends Articulo{
     public void AddImage(Blob Image){}
    
     
-      public Blob[] GetImage(){
+    public Blob[] GetImage(){
         return this.image;
     }
     

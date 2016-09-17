@@ -9,6 +9,7 @@ import java.util.Iterator;
 public class ManejadorUsuario {
     private static ManejadorUsuario instancia=null;
     private static HashMap<String, Usuario> usuarios;
+    private static ArrayList<String> emails;
     
      private ManejadorUsuario(){
        usuarios=new HashMap<String, Usuario>();
@@ -29,6 +30,10 @@ public class ManejadorUsuario {
         for (int i = 0; i < arrayProv .size(); i++) {
             Usuario p = new Proveedor(arrayProv.get(i));
             usuarios.put(p.getNickProveedor(),p);
+        }
+        ArrayList<String> arrayEmails = ManejadorSQL.GetInstance().cargarEmail();
+        for (int i = 0; i < arrayEmails .size(); i++) {
+            emails.add(arrayEmails.get(i));
         }
         return instancia;
     }
@@ -76,11 +81,21 @@ public class ManejadorUsuario {
         ManejadorSQL.GetInstance().agregarUsuario(p);
     }
      
-    /*public void InstertarCliente(DtCliente c){
-        Cliente newcli = new Cliente(c);
-        this.usuarios.put(c.getNick(), newcli);
-        ManejadorSQL.GetInstance().agregarUsuario(c);
-    }*/
+    public boolean chequearNick(String nick){
+        for (String name: usuarios.keySet()){
+            if (name.equals(nick))
+                return true;
+        }
+        return false;
+    }
+    
+    public boolean chequearEmail(String email){
+        for (int i = 0; i < emails.size(); i++) {
+            if (emails.get(i).equals(email))
+                return true;
+        }
+        return false;
+    }
     
     public void InstertarCliente(DtCliente c){
         Cliente newcli = new Cliente(c.getNick());

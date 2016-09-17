@@ -30,7 +30,102 @@ public class ManejadorSQL {
     public boolean init(String ip){
         this.ip = ip;
         return true;
-    }            
+    }
+    
+    public boolean agregarServicioReserva(DtInfoReserva inf){
+        boolean ret = false;
+        String sql1 = "INSERT INTO INFO_RESERVA(id,cantArticulos,nicknameProveedor,nombreArticulo,fechaIni,fechaFin,precioUnitario,precioTotal)";
+        sql1 += " VALUES (" + inf.GetIdReserva() + "," + inf.GetCantidad() + ",'" + inf.getNickProveedor() + "','" + inf.GetNombreArticulo() + "','";
+        sql1 += inf.GetFechaIni().getAnio() + "/" + inf.GetFechaIni().getMes() + "/" + inf.GetFechaIni().getDia() + "','";
+        sql1 += inf.GetFechaFin().getAnio() + "/" + inf.GetFechaFin().getMes() + "/" + inf.GetFechaFin().getDia() + "',";
+        sql1 += inf.getPrecioArticulo() + "," + (inf.getPrecioArticulo()*inf.GetCantidad()) + ");";
+        
+        Statement usuarios;
+        Connection conex = getConex();
+        try {
+            usuarios = conex.createStatement();
+            ManejadorSQL.GetInstance().setForeignKeysOff(usuarios);
+            usuarios.executeUpdate(sql1);
+            ManejadorSQL.GetInstance().setForeignKeysOn(usuarios);
+            ret = true;
+            conex.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ret;
+    }
+    
+    public ArrayList<Integer> cargarReservasXcli(String nickU){
+        String sql = "SELECT id FROM RESERVAS where nickname='"+nickU+"';";
+        Statement usuarios;
+        ArrayList<Integer> ret = new ArrayList<Integer>();
+        try {
+            Connection conex = getConex();
+            usuarios = conex.createStatement();
+            ResultSet rs = usuarios.executeQuery(sql);
+            while(rs.next()){
+                ret.add(rs.getInt("id"));
+            }
+            conex.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ret;
+    }
+    
+    public ArrayList<String> cargarEmail(){
+        String sql = "SELECT email FROM USUARIOS;";
+        Statement usuarios;
+        ArrayList<String> ret= new ArrayList<>();
+        try {
+            Connection conex = getConex();
+            usuarios = conex.createStatement();
+            ResultSet rs = usuarios.executeQuery(sql);
+            rs.next();
+            while(rs.next()){
+                ret.add(rs.getString("email"));
+            }
+            conex.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ret;
+     
+    }
+    
+    public boolean autenticarCliente(String nickname){
+        boolean ret = false;
+        String sql = "SELECT COUNT(*) FROM USUARIOS WHERE nickname='"+nickname+"';";
+        Statement usuarios;
+        try {
+            Connection conex = getConex();
+            usuarios = conex.createStatement();
+            ResultSet rs = usuarios.executeQuery(sql);
+            if(rs.isAfterLast()){
+                ret = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ret;
+    }
+
+    public boolean autenticarCliente(String nickname, String pass){
+        boolean ret = false;
+        String sql = "SELECT COUNT(*) FROM USUARIOS WHERE nickname='"+nickname+"' AND clave='"+pass+"';";
+        Statement usuarios;
+        try {
+            Connection conex = getConex();
+            usuarios = conex.createStatement();
+            ResultSet rs = usuarios.executeQuery(sql);
+            if(rs.isAfterLast()){
+                ret = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ManejadorSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ret;
+    }
     
     // CARGAR USUARIOS
     public ArrayList<String> cargarUsuarios(){
@@ -382,7 +477,6 @@ public class ManejadorSQL {
                 sql3 += inf.GetFechaIni().getAnio() + "/" + inf.GetFechaIni().getMes() + "/" + inf.GetFechaIni().getDia() + "','";
                 sql3 += inf.GetFechaFin().getAnio() + "/" + inf.GetFechaFin().getMes() + "/" + inf.GetFechaFin().getDia() + "',";
                 sql3 += inf.getPrecioArticulo() + "," + (inf.getPrecioArticulo()*inf.GetCantidad()) + ");";
-                
                 usuario.executeUpdate(sql3);
             }
             ManejadorSQL.GetInstance().setForeignKeysOn(usuario);

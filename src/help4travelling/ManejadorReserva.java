@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.Set;
-import java.util.HashSet;
-import javafx.util.Pair;
 
 /**
  * @author Antares
@@ -73,5 +71,9 @@ public class ManejadorReserva {
      
      public ArrayList<DtInfoReserva> ObtenerInfoArticulosReservados(int id){
         return ManejadorSQL.GetInstance().devolverInfoReserva(id);
+    }
+
+    ArrayList<Integer> listarReservasXcli(String nickU) {
+        return ManejadorSQL.GetInstance().cargarReservasXcli(nickU);
     }
 }

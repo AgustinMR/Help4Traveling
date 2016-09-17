@@ -22,5 +22,7 @@ public abstract interface IControladorUsuario {
   public abstract boolean VerificarUsuario(String nickUsaurio, String email);
   public abstract void AltaCliente(DtCliente dataCli);
   public abstract void AltaProveedor(DtProveedor dataProv);
+  public abstract boolean chequearNick(String nick);
+  public abstract boolean chequearEmail(String email);
   
 }

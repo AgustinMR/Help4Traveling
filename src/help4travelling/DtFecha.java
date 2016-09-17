@@ -8,13 +8,13 @@ public class DtFecha {
     private int mes;
     private int dia;
     
-    DtFecha(int anio, int mes, int dia){
+    public DtFecha(int anio, int mes, int dia){
         this.anio = anio;
         this.mes = mes;
         this.dia =  dia;
     }
     
-    DtFecha(){
+    public DtFecha(){
        this.anio = Calendar.YEAR;
        this.mes = Calendar.MONTH;
        this.dia = Calendar.DATE;
@@ -26,7 +26,7 @@ public class DtFecha {
     }
     
     //Contruye la fecha con un string de esta forma "yyyy/mm/dd"
-    DtFecha(String bdformato){
+    public DtFecha(String bdformato){
         try{        
             String[] parts = bdformato.split("/");
             this.anio = Integer.parseInt(parts[0]);
